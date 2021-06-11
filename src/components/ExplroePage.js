@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, Container, Row, Col, Button, Form, FormControl } from 'react-bootstrap'
+import { Navbar, Nav, Container, Row, Button, Form, FormControl } from 'react-bootstrap'
 import ProjectCard from './ProjectCard'
 export default function ExplroePage() {
     return (

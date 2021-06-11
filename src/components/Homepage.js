@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap'
+import imgPlaceholder from '../images/img-placeholder.png'
 
 export default function Homepage() {
     return (
@@ -21,11 +22,12 @@ export default function Homepage() {
                     Start your Full Stack project now!<br />
                     Choose a project you like and start coding!
                 </h1>
-                <div className='img-fluid enviormentImg'></div>
-                <Row>
+                {/* <div className='img-fluid enviormentImg'></div> */}
+                <img src={imgPlaceholder} alt='' className='img-fluid w-100' />
+                <Row className='mt-4'>
                     <Col md={4} sm={12}>
                         <section>
-                            <img src='' alt='' />
+                            <img src={imgPlaceholder} alt='' className='img-fluid' />
                             <h2>
                                 Choose a Project
                             </h2>
@@ -34,7 +36,7 @@ export default function Homepage() {
                     </Col>
                     <Col md={4} sm={12}>
                         <section>
-                            <img src='' alt='' />
+                            <img src={imgPlaceholder} alt='' className='img-fluid' />
                             <h2>
                                 Download Assets
                             </h2>
@@ -43,7 +45,7 @@ export default function Homepage() {
                     </Col>
                     <Col md={4} sm={12}>
                         <section>
-                            <img src='' alt='' />
+                            <img src={imgPlaceholder} alt='' className='img-fluid' />
                             <h2>
                                 Communicate with others
                             </h2>
