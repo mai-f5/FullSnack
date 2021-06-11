@@ -3,7 +3,7 @@ import { Form, FormControl, Button } from 'react-bootstrap'
 
 export default function SignIn() {
     return (
-        <div>
+        <>
             <Form>
                 <Form.Group controlId="username">
                     <Form.Label>Username</Form.Label>
@@ -22,9 +22,6 @@ export default function SignIn() {
                     Sign in
                 </Button>
             </Form>
-
-
-
-        </div>
+        </>
     )
 }

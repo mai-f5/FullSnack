@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function MyPopover() {
     return (
-        <div>
+        <>
             <OverlayTrigger
                 trigger="click"
                 key='bottom'
@@ -18,6 +18,6 @@ export default function MyPopover() {
             >
                 {/* <Button variant="secondary">Popover on {placement}</Button> */}
             </OverlayTrigger>
-        </div>
+        </>
     )
 }

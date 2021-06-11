@@ -1,10 +1,16 @@
 import React from 'react'
-import { Navbar, Nav, Container, Row, Button, Form, FormControl } from 'react-bootstrap'
+import { Row, Button, Form, FormControl } from 'react-bootstrap'
 import ProjectCard from './ProjectCard'
-export default function ExplroePage() {
+import imgPlaceholder from '../images/img-placeholder.png'
+
+
+export default function UsersProject() {
     return (
         <>
-
+            <section>
+                <h2>My Projects</h2>
+                <Button>+ Add New Project</Button>
+            </section>
             <div className='topSection'>
                 <h2>Full Stack Projects</h2>
                 <Form inline>
@@ -64,18 +70,22 @@ export default function ExplroePage() {
                     </Form.Row>
                 </Form>
             </div>
-
-
-            <div className='projectsExplore'>
+            <div className='usersProjects'>
                 <Row>
-                    <ProjectCard />
-                    <ProjectCard />
-                    <ProjectCard />
-                    <ProjectCard />
+                    {/* //users project list Or empty state */}
                     <ProjectCard />
                 </Row>
             </div>
+            <div className='emptyProject text-center'>
+                <img src={imgPlaceholder} alt='' /> {/*will be through css */}
+                <p>No projects created yet.<br />
+                    Go ahead and create your first project!
+                </p>
+                <Button>+ Add your first project</Button>
+            </div>
+
 
         </>
     )
 }
+

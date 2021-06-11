@@ -3,7 +3,7 @@ import { Form, FormControl, Button } from 'react-bootstrap'
 
 export default function SignUp() {
     return (
-        <div>
+        <>
             <h2>Sign Up</h2>
             <hr />
             <p>All fields are Required</p>
@@ -50,9 +50,6 @@ export default function SignUp() {
                     Join
                 </Button>
             </Form>
-
-
-
-        </div>
+        </>
     )
 }
