@@ -2,7 +2,12 @@ import React from 'react'
 import { Row, Button, Form, FormControl } from 'react-bootstrap'
 import ProjectCard from './ProjectCard'
 import imgPlaceholder from '../images/img-placeholder.png'
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 export default function UsersProject() {
     return (

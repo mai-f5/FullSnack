@@ -1,7 +1,16 @@
 import React from 'react'
-import { Nav } from 'react-bootstrap'
+import { Nav, Container } from 'react-bootstrap'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
 
 export default function UserMenu() {
+    const history = useHistory();
     return (
         <>
             <Nav /*defaultActiveKey="/home"*/ className="flex-column">
@@ -9,11 +18,12 @@ export default function UserMenu() {
                     leebaronx3
                 </p>
                 <hr />
-                <Nav.Link>My Projects</Nav.Link>
-                <Nav.Link>Settings</Nav.Link>
+                <Nav.Link onClick={() => history.push('/usersproject')}>My Projects</Nav.Link>
+                <Nav.Link onClick={() => history.push('/settings')}>Settings</Nav.Link>
                 <Nav.Link>Log Out</Nav.Link>
 
             </Nav>
+
         </>
     )
 }
