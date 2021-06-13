@@ -18,6 +18,7 @@ import Settings from './components/Settings';
 import EditProject from './components/EditProject';
 import ProjectDisplay from './components/ProjectDisplay';
 import ProjectsForum from './components/ProjectsForum';
+import logo from './images/logo.png'
 import './App.css';
 
 function App() {
@@ -26,45 +27,45 @@ function App() {
 
       <Router>
         <header>
-          <Navbar bg="dark" variant="dark">
-            <Navbar.Brand><Link to="/home" >Full Snack</Link></Navbar.Brand>
+          <Navbar variant="dark">
+            <Navbar.Brand><Link to="/home" ><img src={logo} alt='full snack logo' className='img-fluid mr-3' id='logo' />Full Snack</Link></Navbar.Brand>
             <Nav className="mr-auto">
               <Nav.Link ><Link to="/explore" >Explore</Link></Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link ><Link to="/signup" >Sign Up</Link></Nav.Link>
               <Nav.Link ><Link to="/signin" >Sign In</Link></Nav.Link>
-              <Nav.Link ><Link to="/usermenu" >(user menu icon)</Link></Nav.Link>
-              <Nav.Link >(Notifications)</Nav.Link>
+              {/* <Nav.Link ><Link to="/usermenu" >(user menu icon)</Link></Nav.Link> */}
+              {/* <Nav.Link >(Notifications)</Nav.Link> */}
             </Nav>
           </Navbar>
         </header>
 
         {/* ///////////////////////////////// */}
         <Switch>
-          <Container>
-            <Route path="/home">
-              <Homepage />
-            </Route>
-            <Route path="/explore">
-              <ExplorePage />
-            </Route>
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="/signin">
-              <SignIn />
-            </Route>
-            <Route path="/usermenu">
-              <UserMenu />
-            </Route>
-            <Route path="/usersproject">
-              <UsersProject />
-            </Route>
-            <Route path="/settings">
-              <Settings />
-            </Route>
-          </Container>
+          {/* <Container> */}
+          <Route path="/home">
+            <Homepage />
+          </Route>
+          <Route path="/explore">
+            <ExplorePage />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+          <Route path="/usermenu">
+            <UserMenu />
+          </Route>
+          <Route path="/usersproject">
+            <UsersProject />
+          </Route>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          {/* </Container> */}
         </Switch>
       </Router>
 
