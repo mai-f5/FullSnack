@@ -11,11 +11,11 @@ export default function Homepage() {
         <div className='homepage'>
             <Container fluid>
                 <Row className='homepage-top'>
-                    <div className='homepage-top-img'>
+                    <div className='homepage-top-img d-flex align-items-center'>
                         <Container>
-                            <h2 >
-                                Start your Full Stack project now!<br />
-                                Choose a project you like and start coding!
+                            <h2>
+                                Start Your Full Stack Project Now!<br />
+                                Choose A Project You Like And Start Coding!
                             </h2>
                         </Container>
                     </div>
@@ -29,7 +29,7 @@ export default function Homepage() {
                                 <GrProjects className='align-middle' />
                             </div>
                             <h3>
-                                Choose a Project
+                                Choose A Project
                             </h3>
                             <p>Explore the projects and build the one you like</p>
                         </section>
@@ -42,7 +42,7 @@ export default function Homepage() {
                             <h3>
                                 Download Assets
                             </h3>
-                            <p>Download the provided assets and save time</p>
+                            <p>Download the provided assets to save time</p>
                         </section>
                     </Col>
                     <Col md={4} sm={12} className='mb-3'>
@@ -51,9 +51,9 @@ export default function Homepage() {
                                 <BsChatSquareDots className='align-middle' />
                             </div>
                             <h3>
-                                Communicate with others
+                                Communicate With Others
                             </h3>
-                            <p>Talk in the project's forum and help each other!</p>
+                            <p>Chat in the project's forum and help each other!</p>
                         </section>
                     </Col>
                 </Row>

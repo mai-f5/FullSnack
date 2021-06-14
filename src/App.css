@@ -15,7 +15,7 @@ body {
 	color: var(--black);
 	font-family: "Lato", sans-serif;
 	font-weight: 300;
-	/* font-size: 0.8rem; */
+	/* font-size: 0.9rem; */
 }
 
 /* GENERAL */
@@ -40,6 +40,11 @@ body {
 }
 
 /* NAVBAR */
+h1 {
+	font-weight: 900;
+	font-size: 1.2rem;
+	display: inline;
+}
 nav {
 	background: linear-gradient(180deg, #0a1b6d 0%, #000a3a 100%) 0% 0%;
 }
@@ -67,21 +72,27 @@ a:hover {
 		url("./images/homepage_jumbo.jpg");
 	background-position: -700px -100px;
 	width: 100%;
-	height: 350px;
+	height: 50vh;
 }
 
 .homepage-top h2 {
 	font-weight: 900;
-	margin-top: 3em;
 	color: var(--white);
+	margin-top: -30px;
 }
 
 .white-bg-thumbnails {
 	background-color: var(--white);
 	border: 3px var(--medium-blue) dashed;
-	margin: -80px auto 10px auto;
-	width: 40%;
-	height: 140px;
+	margin: -120px auto 10px auto;
+	width: 160px;
+	height: 160px;
+}
+
+@media (max-width: 768px) {
+	.white-bg-thumbnails {
+		margin: 0 auto 10px auto;
+	}
 }
 
 .white-bg-thumbnails svg {
@@ -91,12 +102,6 @@ a:hover {
 }
 .white-bg-thumbnails path {
 	stroke: var(--medium-blue);
-}
-@media (max-width: 576px) {
-	.white-bg-thumbnails {
-		width: 30%;
-		margin: 0 auto 10px auto;
-	}
 }
 
 /* @media (max-width: 768px) {

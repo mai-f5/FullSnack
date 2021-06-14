@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import Homepage from './components/Homepage';
+import Header from './components/Header';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import UserMenu from './components/UserMenu';
@@ -18,7 +19,8 @@ import Settings from './components/Settings';
 import EditProject from './components/EditProject';
 import ProjectDisplay from './components/ProjectDisplay';
 import ProjectsForum from './components/ProjectsForum';
-import logo from './images/logo.png'
+// import logo from './images/logo.png'
+// import logo from './images/logoSvg.svg'
 import './App.css';
 
 function App() {
@@ -26,7 +28,8 @@ function App() {
     <>
 
       <Router>
-        <header>
+        <Header />
+        {/* <header>
           <Navbar variant="dark">
             <Navbar.Brand><Link to="/home" ><img src={logo} alt='full snack logo' className='img-fluid mr-3' id='logo' />Full Snack</Link></Navbar.Brand>
             <Nav className="mr-auto">
@@ -35,11 +38,11 @@ function App() {
             <Nav>
               <Nav.Link ><Link to="/signup" >Sign Up</Link></Nav.Link>
               <Nav.Link ><Link to="/signin" >Sign In</Link></Nav.Link>
-              {/* <Nav.Link ><Link to="/usermenu" >(user menu icon)</Link></Nav.Link> */}
-              {/* <Nav.Link >(Notifications)</Nav.Link> */}
             </Nav>
           </Navbar>
-        </header>
+        </header> */}
+        {/* <Nav.Link ><Link to="/usermenu" >(user menu icon)</Link></Nav.Link> */}
+        {/* <Nav.Link >(Notifications)</Nav.Link> */}
 
         {/* ///////////////////////////////// */}
         <Switch>
@@ -68,8 +71,6 @@ function App() {
           {/* </Container> */}
         </Switch>
       </Router>
-
-
     </>
   );
 }
