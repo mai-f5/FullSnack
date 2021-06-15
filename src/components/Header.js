@@ -1,14 +1,18 @@
 import React from 'react'
+import { useState } from "react";
 import { Navbar, Nav } from 'react-bootstrap'
+import MyPopover from './MyPopover';
+import MyModal from './MyModal';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-// import logo from '../images/logo.png'
-import logo from '../images/logoSvg.svg'
+import logo from '../images/logoSvg.svg';
+
 export default function Header() {
+    const [logged, setLogged] = useState(false)
     return (
         <header>
             <Navbar>
@@ -17,10 +21,15 @@ export default function Header() {
                     <Nav.Link ><Link to="/explore" >Explore</Link></Nav.Link>
                 </Nav>
                 <Nav>
-                    <Nav.Link ><Link to="/signup" >Sign Up</Link></Nav.Link>
-                    <Nav.Link ><Link to="/signin" >Sign In</Link></Nav.Link>
-                    {/* <Nav.Link ><Link to="/usermenu" >(user menu icon)</Link></Nav.Link> */}
-                    {/* <Nav.Link >(Notifications)</Nav.Link> */}
+                    {!logged &&
+                        <>
+                            <MyModal type='signup' />
+                            <MyPopover type='signin' />
+                        </>
+                    }
+                    {logged && <>
+                        <MyPopover type='notifications' />
+                        <MyPopover type='usermenu' /></>}
                 </Nav>
             </Navbar>
         </header>

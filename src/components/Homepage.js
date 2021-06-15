@@ -4,6 +4,7 @@ import { Row, Col, Button, Container } from 'react-bootstrap'
 import { GrProjects } from "react-icons/gr"
 import { BiDownload } from "react-icons/bi"
 import { BsChatSquareDots } from "react-icons/bs"
+import MyModal from './MyModal'
 
 
 export default function Homepage() {
@@ -57,7 +58,7 @@ export default function Homepage() {
                         </section>
                     </Col>
                 </Row>
-                <Button className='mt-5'>Sign Up</Button>
+                <MyModal type='signup' />
             </Container>
         </div>
     )

@@ -73,8 +73,8 @@ function App() {
           {/* </Container> */}
         </Switch>
       </Router>
-      <MyModal type='signup' />
-      <MyPopover type='usermenu' />
+
+
     </>
   );
 }

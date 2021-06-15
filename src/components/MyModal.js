@@ -11,7 +11,7 @@ function MyModal({ type }) {
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
+                {type === 'signup' ? 'Sign Up' : '(delete icon)'}
             </Button>
 
             <Modal show={show} onHide={handleClose}>
