@@ -1,7 +1,8 @@
 
-import Modal from 'react-bootstrap/Modal'
-
-function MyModal() {
+import { Modal, Button } from 'react-bootstrap'
+import { useState } from 'react';
+import SignUp from './SignUp';
+function MyModal({ type }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -9,11 +10,13 @@ function MyModal() {
 
     return (
         <>
-            {/* <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary" onClick={handleShow}>
                 Launch demo modal
-            </Button> */}
+            </Button>
 
             <Modal show={show} onHide={handleClose}>
+                {type === 'signup' ? <SignUp /> : null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
+                {/* <SignUp /> */}
                 {/* <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>

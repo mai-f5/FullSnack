@@ -1,6 +1,9 @@
 import React from 'react'
+import SignIn from './SignIn'
+import UserMenu from './UserMenu'
+import { OverlayTrigger, Popover, Button } from 'react-bootstrap'
 
-export default function MyPopover() {
+export default function MyPopover({ type }) {
     return (
         <>
             <OverlayTrigger
@@ -9,14 +12,15 @@ export default function MyPopover() {
                 placement='bottom'
                 overlay={
                     <Popover id={`popover-positioned-bottom`}>
-                        {/* <Popover.Title as="h3">{`Popover ${placement}`}</Popover.Title>
+                        {type === 'signin' ? <SignIn /> : <UserMenu />}
+                        {/* <Popover.Title as="h3">{`Popover `}</Popover.Title>
                         <Popover.Content>
                             <strong>Holy guacamole!</strong> Check this info.
                         </Popover.Content> */}
                     </Popover>
                 }
             >
-                {/* <Button variant="secondary">Popover on {placement}</Button> */}
+                <Button variant="secondary">Popover on </Button>
             </OverlayTrigger>
         </>
     )

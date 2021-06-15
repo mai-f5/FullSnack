@@ -13,14 +13,16 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import UserMenu from './components/UserMenu';
 
+
 import ExplorePage from './components/ExplorePage';
 import UsersProject from './components/UsersProject';
 import Settings from './components/Settings';
 import EditProject from './components/EditProject';
 import ProjectDisplay from './components/ProjectDisplay';
 import ProjectsForum from './components/ProjectsForum';
-// import logo from './images/logo.png'
-// import logo from './images/logoSvg.svg'
+
+import MyModal from './components/MyModal';
+import MyPopover from './components/MyPopover';
 import './App.css';
 
 function App() {
@@ -71,6 +73,8 @@ function App() {
           {/* </Container> */}
         </Switch>
       </Router>
+      <MyModal type='signup' />
+      <MyPopover type='usermenu' />
     </>
   );
 }
