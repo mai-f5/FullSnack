@@ -8,6 +8,7 @@
 	--medium-blue: #0a1b6d;
 	--lightest-blue: #bfebff;
 	--mustard: #ffcf56;
+	--blue-shadow: 0 0 0 0.2rem rgb(0 10 58 / 50%);
 }
 
 body {
@@ -195,4 +196,33 @@ a:hover {
 }
 .card-img-top {
 	border: 1px solid #b2b2b2;
+}
+
+/* FILTER SECTION */
+.search input {
+	padding-right: 40px;
+	border-radius: 10px;
+}
+.search button {
+	position: absolute;
+	right: 0;
+	top: 5px;
+}
+
+select {
+	background-color: transparent !important;
+	border-radius: 20px;
+}
+select:focus {
+	background-color: transparent !important;
+	box-shadow: var(--blue-shadow) !important;
+	border: var(--darkest-blue);
+}
+select:active {
+	box-shadow: var(--blue-shadow) !important;
+	border: var(--darkest-blue);
+}
+
+.custom-control-label {
+	font-weight: normal;
 }
