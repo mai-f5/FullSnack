@@ -49,6 +49,9 @@ h2 {
 	border: none;
 	display: inline;
 }
+.text-dark {
+	color: var(--medium-blue) !important;
+}
 
 .btn-as-link svg {
 	font-size: 1.5rem;
@@ -162,13 +165,35 @@ a:hover {
 /* EXPLORE PAGE */
 
 .card {
-	background: rgba(255, 255, 255, 0.3);
-	box-shadow: 0 8px 32px 0 rgba(116, 116, 117, 0.37);
-	backdrop-filter: blur(10.5px);
-	-webkit-backdrop-filter: blur(10.5px);
-	border-radius: 10px;
-	border: 1px solid rgba(255, 255, 255, 0.18);
+	background: #ffffff7d linear-gradient(135deg, #f1f1f1 0%, #e3e3e34d 100%) 0%
+		0% no-repeat padding-box;
+	box-shadow: 3px 3px 7px #b4b4b485;
+	border: 2px solid #dfdfdf63;
+	border-radius: 20px;
+	opacity: 0.8;
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
 }
-.text-dark {
-	color: var(--medium-blue) !important;
+.card-header {
+	background: inherit;
+	font-weight: 900 !important;
+	border: none;
+}
+
+.list-group-item {
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	padding: 5px 0;
+	border: none;
+	background: inherit;
+}
+
+.list-group-item svg {
+	display: inline;
+}
+.card-img-top {
+	border: 1px solid #b2b2b2;
 }

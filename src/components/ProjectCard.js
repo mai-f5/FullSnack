@@ -1,25 +1,31 @@
 import React from 'react'
-import { Card, Col, ListGroup, Button, Row } from 'react-bootstrap'
-import { BiTrash } from 'react-icons/bi'
-import imgPlaceholder from '../images/img-placeholder.png'
+import { useState } from 'react'
+import { Card, Col, ListGroup, Button } from 'react-bootstrap'
+import { BiTrash, BiLike } from 'react-icons/bi'
+import { FiCode } from 'react-icons/fi'
+import { GrAttachment } from 'react-icons/gr'
+import { BsBarChart } from 'react-icons/bs'
+import image from '../images/projectsImgs/1/homepage.PNG'
 export default function ProjectCard() {
+    const [ownsProject, setOwnsProject] = useState(false)
     return (
         <Col sm={12} md={4} lg={3}>
-            <Card className='mb-4'>
+            <Card className='mb-4 pt-4 pl-4 pr-4 pb-3'>
                 {/* Pics Carousel!! */}
-                <Card.Img variant="top" src={imgPlaceholder} fluid />
-                <Card.Header>Recipes notebook</Card.Header>
+                <Card.Img variant="top" src={image} fluid className='rounded' />
+                <Card.Header className='text-center font-weight-bold border-none p-2'>Recipes notebook</Card.Header>
 
                 <ListGroup variant="flush">
-                    <ListGroup.Item>HTML, CSS, JavaScript</ListGroup.Item>
-                    <ListGroup.Item>Assets Included</ListGroup.Item>
-                    <ListGroup.Item>Medium Level</ListGroup.Item>
-                    <ListGroup.Item>52 Recommended</ListGroup.Item>
+                    <ListGroup.Item><FiCode className='mr-3' />HTML, CSS, JavaScript, Python</ListGroup.Item>
+                    <ListGroup.Item><GrAttachment className='mr-3' />Assets Included</ListGroup.Item>
+                    <ListGroup.Item><BsBarChart className='mr-3' />Medium Level</ListGroup.Item>
+                    <ListGroup.Item><BiLike className='mr-3' />52 Recommended</ListGroup.Item>
                 </ListGroup>
-                <Card.Body className='d-flex justify-content-between'>
+
+                {ownsProject && <Card.Body className='d-flex justify-content-between pb-0 pt-2'>
                     <Button>Edit</Button>
                     <button className='btn-as-link text-dark'><BiTrash /></button>
-                </Card.Body>
+                </Card.Body>}
             </Card>
         </Col>
     )
