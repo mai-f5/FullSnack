@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, FormControl } from 'react-bootstrap'
 import { BiSearch } from 'react-icons/bi'
+import MultiTechSelect from './MultiTechSelect'
 
 export default function FilterSection() {
     return (
@@ -14,14 +15,16 @@ export default function FilterSection() {
             <Form>
                 <Form.Row>
                     <p className='mr-4 font-weight-bold'>Filter By</p>
-                    <Form.Group controlId="requiredTechSelect" className='mr-2'>{/*WILL BE MULTISELECT - COMPONENT */}
+                    {/* <Form.Group controlId="requiredTechSelect" className='mr-2'>
+                        
                         <Form.Control as="select">
                             <option disabled hidden selected value=''>Required Technologies</option>
                             <option>HTML</option>
                             <option>CSS</option>
                             <option>JavaScript</option>
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
+                    <MultiTechSelect />
 
                     <Form.Group controlId="difficultyLvlSelect" className='ml-2 mr-2'>
                         <Form.Control as="select">

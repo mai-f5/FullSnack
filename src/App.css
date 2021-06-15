@@ -211,7 +211,8 @@ a:hover {
 
 select {
 	background-color: transparent !important;
-	border-radius: 20px;
+	border-radius: 10px !important;
+	padding: 5px !important;
 }
 select:focus {
 	background-color: transparent !important;
@@ -225,4 +226,7 @@ select:active {
 
 .custom-control-label {
 	font-weight: normal;
+}
+option:hover {
+	background-color: red !important;
 }
