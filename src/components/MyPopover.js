@@ -1,14 +1,8 @@
 import React from 'react'
 import SignIn from './SignIn'
 import UserMenu from './UserMenu'
-import { OverlayTrigger, Popover, Button, Nav } from 'react-bootstrap'
+import { OverlayTrigger, Popover } from 'react-bootstrap'
 import { BiBell, BiUser } from 'react-icons/bi'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 
 export default function MyPopover({ type }) {
     console.log(type)
@@ -28,7 +22,6 @@ export default function MyPopover({ type }) {
                     </Popover>
                 }
             >
-
                 {
                     <button className='btn-as-link'>
                         {
@@ -37,17 +30,7 @@ export default function MyPopover({ type }) {
                                     <BiBell />
                         }
                     </button>
-
                 }
-                {/* 
-                {type === 'signin' ? <button className='button-as-link'>Sign In</button> :
-                    type === 'usermenu' ? <button>(user icon) </button> :
-                        <button>(notifications icon) </button>
-                } */}
-
-
-
-                {/* <Button variant="secondary">Popover on </Button> */}
             </OverlayTrigger>
         </>
     )
