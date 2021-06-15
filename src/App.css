@@ -48,6 +48,9 @@ h1 {
 nav {
 	background: linear-gradient(180deg, #0a1b6d 0%, #000a3a 100%) 0% 0%;
 }
+.navbar-nav {
+	margin-right: 40px;
+}
 
 a {
 	text-decoration: none;
@@ -117,11 +120,49 @@ a:hover {
 	font-size: 12pt;
 }
 
-.card {
+/* .card {
 	background: rgba(255, 255, 255, 0.3);
 	box-shadow: 0 8px 32px 0 rgba(116, 116, 117, 0.37);
 	backdrop-filter: blur(10.5px);
 	-webkit-backdrop-filter: blur(10.5px);
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.18);
+} */
+
+.btn-as-link {
+	color: var(--white);
+	background-color: transparent;
+	border: none;
+	display: inline;
+}
+
+.btn-as-link svg {
+	font-size: 1.5rem;
+}
+
+.popover {
+	box-shadow: 0 8px 32px 0 rgb(116 116 117 / 37%);
+	padding: 20px;
+}
+.modal-content {
+	padding: 30px;
+}
+
+.modal-content h2,
+p {
+	text-align: center;
+}
+
+.modal-content hr {
+	width: 80%;
+	background-color: var(--medium-blue);
+	margin-bottom: 5px;
+}
+/* Forms */
+label {
+	font-weight: 700;
+}
+
+input {
+	border-color: var(--white-with-opacity) !important;
 }

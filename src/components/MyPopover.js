@@ -2,6 +2,7 @@ import React from 'react'
 import SignIn from './SignIn'
 import UserMenu from './UserMenu'
 import { OverlayTrigger, Popover, Button, Nav } from 'react-bootstrap'
+import { BiBell, BiUser } from 'react-icons/bi'
 import {
     BrowserRouter as Router,
     Switch,
@@ -17,24 +18,32 @@ export default function MyPopover({ type }) {
                 trigger="click"
                 key='bottom'
                 placement='bottom'
+                rootClose
                 overlay={
                     <Popover id={`popover-positioned-bottom`}>
                         {type === 'signin' ? <SignIn /> :
                             type === 'usermenu' ? <UserMenu /> :
                                 'NOTIFICATIONS'
                         }
-
-                        {/* <Popover.Title as="h3">{`Popover `}</Popover.Title>
-                        <Popover.Content>
-                            <strong>Holy guacamole!</strong> Check this info.
-                        </Popover.Content> */}
                     </Popover>
                 }
             >
-                {type === 'signin' ? <Button variant="secondary">Sign In</Button> :
-                    type === 'usermenu' ? <Button variant="secondary">(user icon) </Button> :
-                        <Button variant="secondary">(notifications icon) </Button>
+
+                {
+                    <button className='btn-as-link'>
+                        {
+                            type === 'signin' ? 'Sign In' :
+                                type === 'usermenu' ? <BiUser /> :
+                                    <BiBell />
+                        }
+                    </button>
+
                 }
+                {/* 
+                {type === 'signin' ? <button className='button-as-link'>Sign In</button> :
+                    type === 'usermenu' ? <button>(user icon) </button> :
+                        <button>(notifications icon) </button>
+                } */}
 
 
 

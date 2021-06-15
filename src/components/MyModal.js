@@ -10,12 +10,18 @@ function MyModal({ type }) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+
+            {type === 'signup-nav' ? <button onClick={handleShow} className='btn-as-link'>Sign Up</button> :
+                <Button variant="primary" onClick={handleShow}>
+                    {type === 'signup' ? 'Sign Up' : '(delete icon)'}
+                </Button>
+            }
+            {/* <Button variant="primary" onClick={handleShow}>
                 {type === 'signup' ? 'Sign Up' : '(delete icon)'}
-            </Button>
+            </Button> */}
 
             <Modal show={show} onHide={handleClose}>
-                {type === 'signup' ? <SignUp /> : null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
+                {type.includes('signup') ? <SignUp /> : null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
                 {/* <SignUp /> */}
                 {/* <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>

@@ -38,7 +38,7 @@ export default function SignUp() {
 
 
                 <Form.Group controlId="passwordConfirm">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Confirm Password</Form.Label>
                     <Form.Text className="text-muted">
                         Must match password
                     </Form.Text>
@@ -46,7 +46,7 @@ export default function SignUp() {
                     {/* <FormControl.Feedback type='invalid'></FormControl.Feedback> */}
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className='d-block mx-auto'>
                     Join
                 </Button>
             </Form>

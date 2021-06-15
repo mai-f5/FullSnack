@@ -23,13 +23,14 @@ export default function Header() {
                 <Nav>
                     {!logged &&
                         <>
-                            <MyModal type='signup' />
+                            <MyModal type='signup-nav' />
                             <MyPopover type='signin' />
                         </>
                     }
                     {logged && <>
+                        <MyPopover type='usermenu' />
                         <MyPopover type='notifications' />
-                        <MyPopover type='usermenu' /></>}
+                    </>}
                 </Nav>
             </Navbar>
         </header>

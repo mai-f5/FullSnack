@@ -18,7 +18,7 @@ export default function SignIn() {
 
                 {/* <FormControl.Feedback type='invalid'></FormControl.Feedback> */}
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className='d-block mx-auto'>
                     Sign in
                 </Button>
             </Form>
