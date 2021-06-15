@@ -165,12 +165,11 @@ a:hover {
 /* EXPLORE PAGE */
 
 .card {
-	background: #ffffff7d linear-gradient(135deg, #f1f1f1 0%, #e3e3e34d 100%) 0%
+	background: #f1f1f14a linear-gradient(135deg, #f1f1f1 0%, #e3e3e300 100%) 0%
 		0% no-repeat padding-box;
 	box-shadow: 3px 3px 7px #b4b4b485;
 	border: 2px solid #dfdfdf63;
 	border-radius: 20px;
-	opacity: 0.8;
 	backdrop-filter: blur(15px);
 	-webkit-backdrop-filter: blur(15px);
 }
