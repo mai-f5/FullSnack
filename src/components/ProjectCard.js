@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Col, ListGroup, Button, Row } from 'react-bootstrap'
+import { BiTrash } from 'react-icons/bi'
 import imgPlaceholder from '../images/img-placeholder.png'
 export default function ProjectCard() {
     return (
@@ -15,9 +16,9 @@ export default function ProjectCard() {
                     <ListGroup.Item>Medium Level</ListGroup.Item>
                     <ListGroup.Item>52 Recommended</ListGroup.Item>
                 </ListGroup>
-                <Card.Body className={'hidden?'}>
+                <Card.Body className='d-flex justify-content-between'>
                     <Button>Edit</Button>
-                    <Button>Delete</Button>
+                    <button className='btn-as-link text-dark'><BiTrash /></button>
                 </Card.Body>
             </Card>
         </Col>

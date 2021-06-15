@@ -19,6 +19,10 @@ body {
 }
 
 /* GENERAL */
+h2 {
+	font-weight: 900;
+	font-size: 1.5rem;
+}
 .btn {
 	background-color: var(--medium-blue);
 	border: none;
@@ -37,6 +41,44 @@ body {
 .btn:focus {
 	background-color: var(--darkest-blue) !important;
 	box-shadow: 0 0 0 0.2rem rgb(0 10 58 / 50%) !important;
+}
+
+.btn-as-link {
+	color: var(--white);
+	background-color: transparent;
+	border: none;
+	display: inline;
+}
+
+.btn-as-link svg {
+	font-size: 1.5rem;
+}
+
+.popover {
+	box-shadow: 0 8px 32px 0 rgb(116 116 117 / 37%);
+	padding: 20px;
+}
+.modal-content {
+	padding: 30px;
+}
+
+.modal-content h2,
+p {
+	text-align: center;
+}
+
+.modal-content hr {
+	width: 80%;
+	background-color: var(--medium-blue);
+	margin-bottom: 5px;
+}
+/* Forms */
+label {
+	font-weight: 700;
+}
+
+input {
+	border-color: var(--white-with-opacity) !important;
 }
 
 /* NAVBAR */
@@ -96,6 +138,10 @@ a:hover {
 	.white-bg-thumbnails {
 		margin: 0 auto 10px auto;
 	}
+
+	.homepage-top h2 {
+		margin-top: 0;
+	}
 }
 
 .white-bg-thumbnails svg {
@@ -107,62 +153,22 @@ a:hover {
 	stroke: var(--medium-blue);
 }
 
-/* @media (max-width: 768px) {
-	.white-bg-thumbnails {
-		width: 20%;
-		margin: 0 auto 10px auto;
-	}
-} */
-
 .homepage h3 {
 	color: var(--medium-blue);
 	font-weight: bold;
 	font-size: 12pt;
 }
 
-/* .card {
+/* EXPLORE PAGE */
+
+.card {
 	background: rgba(255, 255, 255, 0.3);
 	box-shadow: 0 8px 32px 0 rgba(116, 116, 117, 0.37);
 	backdrop-filter: blur(10.5px);
 	-webkit-backdrop-filter: blur(10.5px);
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.18);
-} */
-
-.btn-as-link {
-	color: var(--white);
-	background-color: transparent;
-	border: none;
-	display: inline;
 }
-
-.btn-as-link svg {
-	font-size: 1.5rem;
-}
-
-.popover {
-	box-shadow: 0 8px 32px 0 rgb(116 116 117 / 37%);
-	padding: 20px;
-}
-.modal-content {
-	padding: 30px;
-}
-
-.modal-content h2,
-p {
-	text-align: center;
-}
-
-.modal-content hr {
-	width: 80%;
-	background-color: var(--medium-blue);
-	margin-bottom: 5px;
-}
-/* Forms */
-label {
-	font-weight: 700;
-}
-
-input {
-	border-color: var(--white-with-opacity) !important;
+.text-dark {
+	color: var(--medium-blue) !important;
 }
