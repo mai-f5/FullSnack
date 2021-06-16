@@ -2,6 +2,7 @@
 import { Modal, Button } from 'react-bootstrap'
 import { useState } from 'react';
 import SignUp from './SignUp';
+import PasswordChange from './PasswordChange';
 function MyModal({ type }) {
     const [show, setShow] = useState(false);
 
@@ -13,12 +14,16 @@ function MyModal({ type }) {
             {/*add close button */}
             {type === 'signup-nav' ? <button onClick={handleShow} className='btn-as-link'>Sign Up</button> :
                 <Button variant="primary" onClick={handleShow}>
-                    {type === 'signup' ? 'Sign Up' : '(delete icon)'}
+                    {type === 'signup' ?
+                        'Sign Up' :
+                        type === 'delete' ? '(delete icon)' : 'Change Password'
+                    }
                 </Button>
             }
 
             <Modal show={show} onHide={handleClose}>
-                {type.includes('signup') ? <SignUp /> : null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
+                {type.includes('signup') ? <SignUp /> :
+                    type === 'password' ? <PasswordChange /> : null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
 
             </Modal>
         </>
