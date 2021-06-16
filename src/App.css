@@ -253,3 +253,14 @@ option:hover {
 .required-tech-p span {
 	display: inline-block;
 }
+
+/* User's Projects */
+.empty-users-projects svg {
+	font-size: 8rem;
+	opacity: 0.6;
+	/* stroke: var(--darkest-blue) !important; */
+	/* color: var(--medium-blue) !important; */
+}
+.empty-users-projects path {
+	stroke: var(--medium-blue) !important;
+}
