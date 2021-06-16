@@ -264,3 +264,21 @@ option:hover {
 .empty-users-projects path {
 	stroke: var(--medium-blue) !important;
 }
+
+/* Settings */
+.settings input[type="radio"] {
+	display: none;
+}
+.user-profile-img img {
+	object-fit: cover;
+	width: 200px;
+	height: 200px;
+}
+.user-profile-img button {
+	margin-top: 80px;
+	margin-left: -30px;
+}
+
+.settings button[type="submit"] {
+	float: right;
+}
