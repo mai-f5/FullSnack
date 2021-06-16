@@ -12,7 +12,7 @@ import {
 import logo from '../images/logoSvg.svg';
 
 export default function Header() {
-    const [logged, setLogged] = useState(false)
+    const [logged, setLogged] = useState(true)
     return (
         <header>
             <Navbar>

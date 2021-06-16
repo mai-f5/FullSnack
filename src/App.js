@@ -40,6 +40,9 @@ function App() {
           <Route path="/projectdisplay">
             <ProjectDisplay />
           </Route>
+          <Route path="/editproject">
+            <EditProject />
+          </Route>
         </Switch>
       </Router>
 

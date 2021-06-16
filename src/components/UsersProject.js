@@ -1,5 +1,6 @@
 import React from 'react'
-import { Row, Button, Form, FormControl } from 'react-bootstrap'
+import { useState } from 'react'
+import { Container, Row, Button, Form, FormControl } from 'react-bootstrap'
 import ProjectCard from './ProjectCard'
 import imgPlaceholder from '../images/img-placeholder.png'
 import {
@@ -9,31 +10,35 @@ import {
     Link
 } from "react-router-dom";
 import FilterSection from './FilterSection';
-
+import EmptyProjectSvg from '../images/development.svg'
+import { useHistory } from 'react-router'
 export default function UsersProject() {
+    const [hasProjects, setHasProjects] = useState(true)
+    const history = useHistory();
     return (
-        <>
-            <section>
-                <h2>My Projects</h2>
-                <Button>+ Add New Project</Button>
+        <Container className='mb-3'>
+            <section className='mt-5 mb-4'>
+                <h2 className='mb-3'>My Projects</h2>
+                <Button onClick={() => history.push('./editproject')}>+ Add New Project</Button>
             </section>
             <FilterSection />
-            <div className='usersProjects'>
+            {hasProjects && <div className='usersProjects mt-2 '>
+
                 <Row>
-                    {/* //users project list Or empty state */}
-                    <ProjectCard />
+                    <ProjectCard ownsProject={true} />
                 </Row>
-            </div>
-            <div className='emptyProject text-center'>
-                <img src={imgPlaceholder} alt='' /> {/*will be through css */}
+            </div>}
+
+            {!hasProjects && <div className='empty-users-projects mt-2 text-center'>
+                <img src={EmptyProjectSvg} className='m-5' />
                 <p>No projects created yet.<br />
                     Go ahead and create your first project!
                 </p>
-                <Button>+ Add your first project</Button>
-            </div>
+                <Button onClick={() => history.push('./editproject')}>+ Add your first project</Button>
+            </div>}
 
 
-        </>
+        </Container>
     )
 }
 
