@@ -67,7 +67,7 @@ h2 {
 }
 
 .modal-content h2,
-p {
+.modal-content p {
 	text-align: center;
 }
 
@@ -98,11 +98,10 @@ nav {
 	margin-right: 40px;
 }
 
-a {
-	text-decoration: none;
+.navbar a {
 	color: var(--white);
 }
-a:hover {
+.navbar a:hover {
 	text-decoration: none;
 	color: var(--white);
 }
@@ -229,4 +228,28 @@ select:active {
 }
 option:hover {
 	background-color: red !important;
+}
+
+/* PROJECT DISPLAY */
+
+.projectDisplay h3 {
+	font-size: 1.1rem;
+	font-weight: 900;
+}
+.projectDisplay svg {
+	font-size: 1.2rem;
+	height: 1.5rem;
+}
+.projectInfo path,
+.projectInfo svg {
+	color: var(--medium-blue) !important;
+	stroke: var(--medium-blue) !important;
+}
+
+.projectInfo a {
+	color: var(--black);
+}
+
+.required-tech-p span {
+	display: inline-block;
 }

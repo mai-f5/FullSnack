@@ -37,6 +37,9 @@ function App() {
           <Route path="/settings">
             <Settings />
           </Route>
+          <Route path="/projectdisplay">
+            <ProjectDisplay />
+          </Route>
         </Switch>
       </Router>
 
