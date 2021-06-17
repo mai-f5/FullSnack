@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.139" height="20.581" viewBox="0 0 25.139 20.581">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #0a1b6d;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        fill: #0a1b6d;
+      }
+    </style>
+  </defs>
+  <g id="Group_93" data-name="Group 93" transform="translate(-239 -266.709)">
+    <g id="Group_35" data-name="Group 35" transform="translate(-463.657 -216.692)">
+      <path id="Path_2" data-name="Path 2" class="cls-1" d="M24,17.071l4.036-4.036L24,9" transform="translate(693.917 482.081)"/>
+      <path id="Path_3" data-name="Path 3" class="cls-1" d="M7.036,9,3,13.036l4.036,4.036" transform="translate(705.5 482.081)"/>
+    </g>
+    <path id="Path_30" data-name="Path 30" class="cls-2" d="M19.066,3.267A1.267,1.267,0,0,0,17.8,2H15.267A1.267,1.267,0,0,0,14,3.267V7.7h5.066ZM17.8,6.433H15.267V3.267H17.8Z" transform="translate(234.724 264.709)"/>
+    <path id="Path_32" data-name="Path 32" class="cls-2" d="M29.872,6H23.09V7.267h6.782v15.2H7.267V7.267h5.922V6H7.267A1.267,1.267,0,0,0,6,7.267v15.2a1.267,1.267,0,0,0,1.267,1.267H29.872a1.267,1.267,0,0,0,1.267-1.267V7.267A1.267,1.267,0,0,0,29.872,6Z" transform="translate(233 263.559)"/>
+  </g>
+</svg>
