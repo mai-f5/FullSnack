@@ -12,22 +12,22 @@ export default function ProjectCard({ ownsProject }) {
     const history = useHistory();
     return (
         <Col sm={12} md={4} lg={3} className='project-card'>
-            <Card className='mb-4 pt-4 pl-4 pr-4 pb-3' onClick={() => history.push('/projectdisplay')}>
+            <Card className='mb-4 pt-4 pl-4 pr-4 pb-3'>
+                <div onClick={() => history.push('/projectdisplay')}>
+                    {/* Pics Carousel!! */}
+                    <Card.Img variant="top" src={image} fluid className='rounded' />
+                    <Card.Header className='text-center font-weight-bold border-none p-2'>Recipes notebook</Card.Header>
 
-                {/* Pics Carousel!! */}
-                <Card.Img variant="top" src={image} fluid className='rounded' />
-                <Card.Header className='text-center font-weight-bold border-none p-2'>Recipes notebook</Card.Header>
-
-                <ListGroup variant="flush">
-                    <ListGroup.Item><FiCode className='mr-3' />HTML, CSS, JavaScript, Python</ListGroup.Item>
-                    <ListGroup.Item><GrAttachment className='mr-3' />Assets Included</ListGroup.Item>
-                    <ListGroup.Item><BsBarChart className='mr-3' />Medium Level</ListGroup.Item>
-                    <ListGroup.Item><BiLike className='mr-3' />52 Recommended</ListGroup.Item>
-                </ListGroup>
-
+                    <ListGroup variant="flush">
+                        <ListGroup.Item><FiCode className='mr-3' />HTML, CSS, JavaScript, Python</ListGroup.Item>
+                        <ListGroup.Item><GrAttachment className='mr-3' />Assets Included</ListGroup.Item>
+                        <ListGroup.Item><BsBarChart className='mr-3' />Medium Level</ListGroup.Item>
+                        <ListGroup.Item><BiLike className='mr-3' />52 Recommended</ListGroup.Item>
+                    </ListGroup>
+                </div>
                 {ownsProject && <Card.Body className='d-flex justify-content-between pb-0 pt-2'>
-                    <Button>Edit</Button>
-                    <button className='btn-as-link text-dark'><BiTrash /></button>
+                    <Button className='button-zindex' onClick={() => history.push('./editproject')} >Edit</Button>
+                    <button className='btn-as-link text-dark button-zindex'><BiTrash /></button>
                 </Card.Body>}
             </Card>
         </Col>

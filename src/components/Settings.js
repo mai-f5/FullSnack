@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Container, Button, Form, Col, ButtonGroup, ToggleButton } from 'react-bootstrap'
+import { Container, Button, Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap'
 import imgPlaceholder from '../images/img-placeholder.png'
 import MyModal from './MyModal'
 
@@ -66,9 +66,11 @@ export default function Settings() {
                         </Form.Group>
                     </Col>
                 </Form.Row>
-                <Button variant="primary" type="submit" className='mt-5 mb-5'>
-                    Save Settings
-                </Button>
+                <Row className='justify-content-end'>
+                    <Button variant="primary" type="submit" className='mt-5 mb-5'>
+                        Save Settings
+                    </Button>
+                </Row>
             </Form>
         </Container>
     )
