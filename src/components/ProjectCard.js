@@ -11,7 +11,7 @@ export default function ProjectCard({ ownsProject }) {
     // const [ownsProject, setOwnsProject] = useState(false)
     const history = useHistory();
     return (
-        <Col sm={12} md={4} lg={3}>
+        <Col sm={12} md={4} lg={3} className='project-card'>
             <Card className='mb-4 pt-4 pl-4 pr-4 pb-3' onClick={() => history.push('/projectdisplay')}>
 
                 {/* Pics Carousel!! */}

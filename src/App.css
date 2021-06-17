@@ -164,7 +164,7 @@ nav {
 
 /* EXPLORE PAGE */
 
-.card {
+.project-card .card {
 	background: #f1f1f14a linear-gradient(135deg, #f1f1f1 0%, #e3e3e300 100%) 0%
 		0% no-repeat padding-box;
 	box-shadow: 3px 3px 7px #b4b4b485;
@@ -173,13 +173,13 @@ nav {
 	backdrop-filter: blur(15px);
 	-webkit-backdrop-filter: blur(15px);
 }
-.card-header {
+.project-card .card-header {
 	background: inherit;
 	font-weight: 900 !important;
 	border: none;
 }
 
-.list-group-item {
+.project-card .list-group-item {
 	width: 100%;
 	white-space: nowrap;
 	overflow: hidden;
@@ -190,10 +190,10 @@ nav {
 	background: inherit;
 }
 
-.list-group-item svg {
+.project-card .list-group-item svg {
 	display: inline;
 }
-.card-img-top {
+.project-card .card-img-top {
 	border: 1px solid #b2b2b2;
 }
 
@@ -281,4 +281,22 @@ option:hover {
 
 .settings button[type="submit"] {
 	float: right;
+}
+
+.empty-forum svg {
+	color: var(--medium-blue);
+	width: 170px;
+	height: auto;
+	opacity: 0.2;
+	margin-top: 50px;
+}
+/* .empty-forum.forum-bg {
+	padding: 100px 0 !important;
+} */
+/* Forum */
+
+.forum-bg {
+	background-color: #f3f3f3;
+	min-height: 400px;
+	border-radius: 20px;
 }
