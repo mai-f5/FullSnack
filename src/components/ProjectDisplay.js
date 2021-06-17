@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
-import ProjectForum from './ProjectForum'
+import ProjectsForum from './ProjectsForum'
 
 import { BiLike, BiShareAlt, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
@@ -84,7 +84,7 @@ export default function ProjectDisplay() {
                     </Row>
                 </Col>
                 <Col>
-                    <ProjectForum />
+                    <ProjectsForum />
                 </Col>
             </Row>
         </Container >
