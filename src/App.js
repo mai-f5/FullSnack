@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   Link
 } from "react-router-dom";
 
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route path="/editproject">
             <EditProject />
+          </Route>
+          <Route path='*'>
+            <Redirect to='/home'></Redirect>
           </Route>
         </Switch>
       </Router>
