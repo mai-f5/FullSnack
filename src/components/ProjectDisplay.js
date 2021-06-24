@@ -21,16 +21,18 @@ export default function ProjectDisplay() {
     return (
         <Container fluid className='projectDisplay text-left'>
             <Row>
-                <Col lg='6' md='12' className='p-5 border-right border-dark'>
+                <Col lg='6' md='12' className='p-3 p-md-4 p-lg-5 right-side-display'>
+
+
                     <Row className='ml-2 flex-column'>
                         <div>
-                            <h2 className='mr-5 text-dark d-inline'>Recipes notebook</h2>
+                            <h2 className='mr-5 text-dark d-block d-md-inline'>Recipes notebook</h2>
                             <Button className='rounded-circle text-center mr-2'><BiLike /></Button>
                             <Button className='rounded-circle text-center ml-2'><BiShareAlt /></Button>
                         </div>
                         <p><BiLike className='mr-3 text-dark' />52 Recommended this project</p>
                     </Row>
-                    <Carousel activeIndex={index} onSelect={handleSelect} className='w-75 ml-0'>
+                    <Carousel activeIndex={index} onSelect={handleSelect} className='ml-0 col-lg-9 col-sm-12'>
                         {pics.map(pic => {
                             return (
                                 <Carousel.Item>
@@ -65,7 +67,7 @@ export default function ProjectDisplay() {
                                 <div className='w-75'>
                                     <h3 className='text-dark'>Required Technologies:</h3>
                                     <p className='required-tech-p'>
-                                        {projectsRec.map(tech => <span className='mr-2 border border-dark p-1 rounded'>{tech}</span>)}
+                                        {projectsRec.map(tech => <span className='mr-2 mb-2 border border-dark p-1 rounded'>{tech}</span>)}
                                     </p>
                                 </div>
                             </div>
@@ -82,8 +84,11 @@ export default function ProjectDisplay() {
                             </div>
                         </Col>
                     </Row>
+
+
                 </Col>
-                <Col>
+
+                <Col lg='6' md='12' className='p-3 p-md-4 p-lg-5'>
                     <ProjectsForum />
                 </Col>
             </Row>
