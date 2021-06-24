@@ -67,6 +67,9 @@ const getNotificationsTypesList = () => {
         }, 500)
     })
 }
+
+export { getDifficultyLevelsList, getGenderList, getOccupationsList, getRequiredTechsList, getNotificationsTypesList };
+
 ///////////////////////////////////////////////////
 
 const getProjectsReqTechs = projectId => {
@@ -106,12 +109,12 @@ const getProjectsMinimalData = (sortBy = 'likes', amount = 20) => {
     )
 }
 
-const filterProjectsList = (projectsList, txt, difficultyLevel, hasAssets) => {
-    //query that filters by given values
-    return Promise.resolve(
-        projectsList.filter(project => project.includes(txt) && project.difficulty_level === difficultyLevel && !!project.assets_src === hasAssets)
-    )
-}
+// const filterProjectsList = (projectsList, txt, difficultyLevel, hasAssets) => {
+//     //query that filters by given values
+//     return Promise.resolve(
+//         projectsList.filter(project => project.includes(txt) && project.difficulty_level === difficultyLevel && !!project.assets_src === hasAssets)
+//     )
+// }
 
 const login = (username, password) => {
     // return users.
@@ -232,6 +235,8 @@ const getUsersNewNotifications = userId => {
         ]
     )
 }
+
+export { getProjectsReqTechs, getFilteredProjectsListRequiredTechs, getProjectsMinimalData, getUsersData, getUsersProjectsList, getProjectsRowData, getProjectsPicturesList, getProjectsThreads, getThreadsComments, getUsersNewNotifications }
 ///////////////////////////
 
 // const getProjectsFullData = projectId => {
@@ -287,6 +292,8 @@ const getUsersNewNotifications = userId => {
 //     }
 // }
 
+
+
 /////////////////////////////////////////////////////////////
 ///post req
 const tempUsersTable = [];
@@ -296,7 +303,6 @@ const tempPicturesTable = [];
 const tempThreadsTable = [];
 const tempCommentsTable = [];
 const tempNotificationsTable = [];
-
 
 //some of the pushed data, will be set by default via sql
 const addNewProject = projectData => {
@@ -379,3 +385,5 @@ const addNewNotification = notificationData => {
 }
 /////////////////////////////////////////////////////////////////////
 //update request?
+
+export { addNewProject, addNewUser, addNewThread, addNewComment, addNewNotification }
