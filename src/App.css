@@ -319,3 +319,8 @@ option:hover {
 .name-svg {
 	width: 20px;
 }
+@media (min-width: 992px) {
+	.right-side-display {
+		border-right: 1px solid black;
+	}
+}
