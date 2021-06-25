@@ -3,6 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { useState } from 'react';
 import SignUp from './SignUp';
 import PasswordChange from './PasswordChange';
+import NewThread from './NewThread';
 function MyModal({ type }) {
     const [show, setShow] = useState(false);
 
@@ -16,14 +17,16 @@ function MyModal({ type }) {
                 <Button variant="primary" onClick={handleShow}>
                     {type === 'signup' ?
                         'Sign Up' :
-                        type === 'delete' ? '(delete icon)' : 'Change Password'
+                        type === 'delete' ? '(delete icon)' : type === 'newThread' ? 'New Thread' : 'Change Password'
                     }
                 </Button>
             }
 
             <Modal show={show} onHide={handleClose}>
                 {type.includes('signup') ? <SignUp /> :
-                    type === 'password' ? <PasswordChange /> : null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
+                    type === 'password' ? <PasswordChange /> : type === 'newThread' ?
+                        <NewThread /> :
+                        null/*Change Password, Delete- img, asset, project, (changes not saved if started editing project) */}
 
             </Modal>
         </>
