@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
-import ProjectsForum from './ProjectsForum'
+import ProjectsForum from './Forum/ProjectsForum'
 
 import { BiLike, BiShareAlt, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'

@@ -319,15 +319,19 @@ button.forum-post:focus {
 }
 
 .forum-post h4 {
-	font-size: 14pt;
+	font-size: 12pt;
 }
-
 .forum-post p {
 	font-size: 9pt;
 }
+
+.comment-mdata p {
+	font-size: 10pt;
+}
+
 .forum-user-img {
-	width: 60px;
-	height: 60px;
+	width: 45px;
+	height: 45px;
 	object-fit: cover;
 }
 .blk-txt {
@@ -335,7 +339,10 @@ button.forum-post:focus {
 }
 
 .projects-forum .card-header {
-	padding: 0 1rem;
+	padding: 0;
+}
+.projects-forum .card-body {
+	padding: 0;
 }
 
 .forum-comment {
