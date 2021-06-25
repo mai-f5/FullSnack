@@ -8,7 +8,8 @@ import { BiLike, BiShareAlt, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
-import image from '../images/projectsImgs/1/homepage.PNG'
+import image from '../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
+
 export default function ProjectDisplay() {
     const pics = [image, image, image]
     const [index, setIndex] = useState(0);

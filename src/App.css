@@ -44,12 +44,17 @@ h2 {
 	box-shadow: 0 0 0 0.2rem rgb(0 10 58 / 50%) !important;
 }
 
-.btn-as-link {
-	color: var(--white);
-	background-color: transparent;
-	border: none;
-	display: inline;
+.btn-as-link,
+.btn-as-link:hover,
+.btn-as-link:active,
+.btn-as-link:focus {
+	color: var(--white) !important;
+	background-color: transparent !important;
+	border: none !important;
+	display: inline !important;
+	box-shadow: none !important;
 }
+
 .text-dark {
 	color: var(--medium-blue) !important;
 }
@@ -251,6 +256,12 @@ option:hover {
 	display: inline-block;
 }
 
+@media (min-width: 992px) {
+	.right-side-display {
+		border-right: 1px solid black;
+	}
+}
+
 /* User's Projects */
 .empty-users-projects svg {
 	font-size: 8rem;
@@ -291,7 +302,8 @@ option:hover {
 
 .forum-bg {
 	background-color: #f3f3f3;
-	min-height: 400px;
+	height: 450px;
+	overflow-y: auto;
 	border-radius: 20px;
 }
 
@@ -299,6 +311,37 @@ option:hover {
 	z-index: 222;
 }
 
+button.forum-post:hover,
+button.forum-post:active,
+button.forum-post:focus {
+	color: var(--medium-blue) !important;
+	text-decoration: none;
+}
+
+.forum-post h4 {
+	font-size: 14pt;
+}
+
+.forum-post p {
+	font-size: 9pt;
+}
+.forum-user-img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+.blk-txt {
+	color: var(--black);
+}
+
+.projects-forum .card-header {
+	padding: 0 1rem;
+}
+
+.forum-comment {
+	border: 1pt solid var(--black);
+}
+/*EDIT PAGE*/
 .dropzone {
 	text-align: center;
 	padding: 20px;
@@ -315,9 +358,4 @@ option:hover {
 }
 .name-svg {
 	width: 20px;
-}
-@media (min-width: 992px) {
-	.right-side-display {
-		border-right: 1px solid black;
-	}
 }

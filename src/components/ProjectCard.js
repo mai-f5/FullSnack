@@ -6,7 +6,7 @@ import { BiTrash, BiLike } from 'react-icons/bi'
 import { FiCode } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { BsBarChart } from 'react-icons/bs'
-import image from '../images/projectsImgs/1/homepage.PNG'
+import image from '../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
 export default function ProjectCard({ ownsProject }) {
     // const [ownsProject, setOwnsProject] = useState(false)
     const history = useHistory();
