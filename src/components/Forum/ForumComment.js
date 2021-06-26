@@ -1,11 +1,12 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import userProfileImagePlaceholder from '../../images/usersImages/user_id_1/img-placeholder.png'
+
 export default function ForumComment({ comment }) {
     return (
         <div>
             <Card.Body className=''>
-                <div className='media text-left forum-comment pt-3 pl-5'>
+                <div className='media text-left forum-comment pt-3 pl-5 rounded'>
                     <img src={userProfileImagePlaceholder} className='mr-3 forum-user-img rounded-circle d-inline' />
                     <div className='media-body '>
                         <div className='comment-mdata d-md-flex justify-content-between'>

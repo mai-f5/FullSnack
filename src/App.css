@@ -348,6 +348,21 @@ button.forum-post:focus {
 .forum-comment {
 	border: 1pt solid var(--black);
 }
+
+/* New Comment */
+.rdw-emoji-modal {
+	top: -186px;
+	left: -197px;
+}
+.editor-height {
+	min-height: 100px;
+}
+.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr {
+	margin: 0;
+}
+.inline-space {
+	flex: 1;
+}
 /*EDIT PAGE*/
 .dropzone {
 	text-align: center;

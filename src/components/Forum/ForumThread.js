@@ -3,7 +3,7 @@ import { MdReply } from 'react-icons/md'
 import { Card, Accordion, Button, Form } from 'react-bootstrap'
 import ForumComment from './ForumComment'
 import userProfileImagePlaceholder from '../../images/usersImages/user_id_1/img-placeholder.png'
-
+import NewComment from './NewComment'
 
 export default function ForumThread({ thread, idx }) {
     return (<Card>
@@ -27,14 +27,12 @@ export default function ForumThread({ thread, idx }) {
         </Card.Header>
         <Accordion.Collapse eventKey={idx.toString()}>
             <Card.Body>
-                <div className='thread-body py-3 pl-5 pr-3 border border-dark font-weight-normal'>
+                <div className='thread-body py-3 pl-5 pr-3 border border-dark rounded font-weight-normal'>
                     {thread.body}
                 </div>
                 {thread.comments.map(comment => <ForumComment comment={comment} />)}
                 <div className='insert-new-comment'>
-                    <Form>
-                        <Form.Control type="text" />
-                    </Form>
+                    <NewComment />
                 </div>
             </Card.Body>
 
