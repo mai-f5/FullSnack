@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { useState } from 'react';
 import SignUp from './SignUp';
 import PasswordChange from './PasswordChange';
-import NewThread from './NewThread';
+import NewThread from './Forum/NewThread';
 function MyModal({ type }) {
     const [show, setShow] = useState(false);
 
