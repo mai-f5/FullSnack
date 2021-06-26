@@ -3,6 +3,7 @@ import SignIn from './SignIn'
 import UserMenu from './UserMenu'
 import { OverlayTrigger, Popover } from 'react-bootstrap'
 import { BiBell, BiUser } from 'react-icons/bi'
+import Notifications from './Notifications'
 
 export default function MyPopover({ type }) {
     console.log(type)
@@ -17,7 +18,7 @@ export default function MyPopover({ type }) {
                     <Popover id={`popover-positioned-bottom`}>
                         {type === 'signin' ? <SignIn /> :
                             type === 'usermenu' ? <UserMenu /> :
-                                'NOTIFICATIONS'
+                                <Notifications />
                         }
                     </Popover>
                 }

@@ -381,3 +381,20 @@ button.forum-post:focus {
 .name-svg {
 	width: 20px;
 }
+
+/* Notifications */
+.notification-wrapper a {
+	color: var(--black);
+}
+.notification-wrapper a:hover {
+	text-decoration: none;
+}
+.notification-wrapper p {
+	background-color: var(--white);
+}
+.notification-wrapper p:hover {
+	background-color: rgb(226, 226, 226);
+}
+.notif-time {
+	font-size: 9pt;
+}
