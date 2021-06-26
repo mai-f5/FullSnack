@@ -398,3 +398,14 @@ button.forum-post:focus {
 .notif-time {
 	font-size: 9pt;
 }
+
+/* User Menu */
+.user-menu-wrapper {
+	min-width: 200px;
+}
+.user-menu-wrapper a {
+	color: var(--black);
+}
+.user-menu-wrapper a:hover {
+	background-color: rgb(247, 247, 247);
+}
