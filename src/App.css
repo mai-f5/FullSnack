@@ -158,7 +158,8 @@ nav {
 	stroke: var(--medium-blue);
 }
 
-.homepage h3 {
+.homepage h3,
+.share-project h3 {
 	color: var(--medium-blue);
 	font-weight: bold;
 	font-size: 12pt;
@@ -408,4 +409,24 @@ button.forum-post:focus {
 }
 .user-menu-wrapper a:hover {
 	background-color: rgb(247, 247, 247);
+}
+
+/* SHARE */
+
+.text-dark-hover:hover,
+.text-dark-hover:active,
+.text-dark-hover:focus {
+	color: var(--darkest-blue) !important;
+}
+
+.share-link-copy {
+	background-color: var(--white);
+}
+.copy-btn svg {
+	font-size: 12pt;
+	margin-left: -5px;
+}
+
+.share-btns svg {
+	width: 50px;
 }

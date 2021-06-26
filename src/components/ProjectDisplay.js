@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
-
+import MyModal from './MyModal'
 import { BiLike, BiShareAlt, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
@@ -29,7 +29,8 @@ export default function ProjectDisplay() {
                         <div>
                             <h2 className='mr-5 text-dark d-block d-md-inline'>Recipes notebook</h2>
                             <Button className='rounded-circle text-center mr-2'><BiLike /></Button>
-                            <Button className='rounded-circle text-center ml-2'><BiShareAlt /></Button>
+                            <MyModal type='share' />
+                            {/* <Button className='rounded-circle text-center ml-2'><BiShareAlt /></Button> */}
                         </div>
                         <p><BiLike className='mr-3 text-dark' />52 Recommended this project</p>
                     </Row>
