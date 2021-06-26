@@ -11,7 +11,7 @@ export default function ShareProject() {
         <div className='share-project'>
             <h2>Share Project</h2>
             <hr />
-            <div className='mt-4 d-flex justify-content-between'>
+            <div className='mt-4 d-flex justify-content-between share-btns w-50 mx-auto'>
                 <FacebookShareButton url={link}
                 ><FacebookIcon round={true} /></FacebookShareButton>
                 <LinkedinShareButton url={link}
@@ -21,7 +21,7 @@ export default function ShareProject() {
                 <WhatsappShareButton url={link}
                 ><WhatsappIcon round={true} /></WhatsappShareButton>
             </div>
-            <div className='mt-5'>
+            <div className='mt-4'>
                 <h3 className='mb-3'>Page Link</h3>
                 <div className='d-inline share-link-copy pl-1 pr-5 rounded py-1'>{link}</div>
                 <CopyToClipboard text={link}>

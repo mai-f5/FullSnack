@@ -426,3 +426,7 @@ button.forum-post:focus {
 	font-size: 12pt;
 	margin-left: -5px;
 }
+
+.share-btns svg {
+	width: 50px;
+}
