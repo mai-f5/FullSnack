@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
 import MyModal from './MyModal'
-import { BiLike, BiShareAlt, BiDownload } from 'react-icons/bi'
+import { BiLike, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
@@ -22,7 +22,7 @@ export default function ProjectDisplay() {
     return (
         <Container fluid className='projectDisplay text-left'>
             <Row>
-                <Col lg='6' md='12' className='p-3 p-md-4 p-lg-5 right-side-display'>
+                <Col lg='6' md='12' className='px-3 pt-3 px-md-4 pt-md-4 px-lg-5 pt-lg-5 right-side-display'>
 
 
                     <Row className='ml-2 flex-column'>
@@ -30,7 +30,8 @@ export default function ProjectDisplay() {
                             <h2 className='mr-5 text-dark d-block d-md-inline'>Recipes notebook</h2>
                             <Button className='rounded-circle text-center mr-2'><BiLike /></Button>
                             <MyModal type='share' />
-                            {/* <Button className='rounded-circle text-center ml-2'><BiShareAlt /></Button> */}
+                            <p className='font-weight-bold d-block mb-3 mt-3 mt-lg-0'>By {'leebaronx3'}</p>
+
                         </div>
                         <p><BiLike className='mr-3 text-dark' />52 Recommended this project</p>
                     </Row>
@@ -44,7 +45,7 @@ export default function ProjectDisplay() {
                         })}
                     </Carousel>
 
-                    <Row className='projectInfo mt-4 ml-2'>
+                    <Row className='projectInfo mt-4 ml-2 mb-0'>
                         <Col lg="6" md="12">
                             <div className='d-flex'>
                                 <BsBarChart className='mr-2' />

@@ -249,12 +249,13 @@ option:hover {
 /* PROJECT DISPLAY */
 
 .projectDisplay h3 {
+	font-size: 12pt !important;
 	font-size: 1.1rem;
 	font-weight: 900;
 }
 .projectDisplay svg {
-	font-size: 1.2rem;
-	height: 1.5rem;
+	font-size: 1rem;
+	height: 1.2rem;
 }
 .projectInfo path,
 .projectInfo svg {
