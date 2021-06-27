@@ -34,7 +34,7 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
 
                     <Nav className="mr-auto">
-                        <Nav.Link ><Link to="/explore" >Explore</Link></Nav.Link>
+                        <Nav.Link className='ml-lg-4'><Link to="/explore" >Explore</Link></Nav.Link>
 
                         <div className='border-top'>
 
