@@ -7,7 +7,7 @@ import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import { CgImage } from 'react-icons/cg'
 import MyDropzone from './MyDropzone'
-import MultiTechSelect from './MultiTechSelect'
+import MyMultiSelect from './MyMultiSelect'
 
 export default function EditProject() {
     return (
@@ -51,7 +51,7 @@ export default function EditProject() {
                         <Form.Group controlId="requiredTechSelect" className='mr-2'>
 
                             <Form.Label><FiCode className='mr-2 text-dark' />Required Technologies</Form.Label>
-                            <MultiTechSelect location={'edit'} />
+                            <MyMultiSelect type={'tech'} location={'edit'} />
                         </Form.Group>
                     </Col>
 
