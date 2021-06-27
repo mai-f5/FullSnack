@@ -224,26 +224,12 @@ header {
 	top: 5px;
 }
 
-select {
-	background-color: transparent !important;
-	border-radius: 10px !important;
-	padding: 5px !important;
+.multi-select {
+	width: 200px;
+	z-index: 1;
 }
-select:focus {
-	background-color: transparent !important;
-	box-shadow: var(--blue-shadow) !important;
-	border: var(--darkest-blue);
-}
-select:active {
-	box-shadow: var(--blue-shadow) !important;
-	border: var(--darkest-blue);
-}
-
-.custom-control-label {
-	font-weight: normal;
-}
-option:hover {
-	background-color: red !important;
+.custom-control.custom-radio {
+	z-index: 0;
 }
 
 /* PROJECT DISPLAY */
