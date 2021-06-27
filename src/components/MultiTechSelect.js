@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes'
 
-export default function MultiTechSelect() {
+export default function MultiTechSelect({ location }) {
     const techs = [
         { value: 'HTML', label: 'HTML' },
         { value: 'CSS', label: 'CSS' },
@@ -11,6 +11,7 @@ export default function MultiTechSelect() {
     const customStyles = {
         dropdownButton: provided => ({
             ...provided,
+            minWidth: location ? 250 : 200,
             border: '1px #ced4da solid',
             backgroundColor: 'transparent !important',
             borderRadius: 10,
@@ -22,7 +23,7 @@ export default function MultiTechSelect() {
     };
     return (
         <ReactMultiSelectCheckboxes
-            placeholderButtonLabel='Required Technologies'
+            placeholderButtonLabel={location ? 'Select Required Technologies' : 'Required Technologies'}
             options={techs}
             styles={customStyles}
         />
