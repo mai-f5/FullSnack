@@ -82,12 +82,12 @@ export default function EditProject() {
                     <Col className='' sm={12} md={5} lg={4}>
                         <Form.Group>
                             <Form.Label><CgImage className='mr-2 text-dark' />Project's Images:</Form.Label>
-                            <MyDropzone />
+                            <MyDropzone type={'images'} />
                         </Form.Group>
 
                         <Form.Group>
                             <Form.Label><GrAttachment className='mr-2 text-dark' />Project's Assets:</Form.Label>
-                            <MyDropzone />
+                            <MyDropzone type={'assets'} />
                         </Form.Group>
                     </Col>
 
