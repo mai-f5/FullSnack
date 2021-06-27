@@ -442,7 +442,13 @@ button.forum-post:focus {
 .notif-time {
 	font-size: 9pt;
 }
-
+.notif-badge {
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	position: relative;
+	font-size: 9pt;
+}
 /* User Menu */
 .user-menu-wrapper {
 	min-width: 200px;
