@@ -365,14 +365,20 @@ button.forum-post:focus {
 	flex: 1;
 }
 /*EDIT PAGE*/
+.drag-drop-files {
+	background-color: var(--white);
+	padding: 10px;
+	border: 3px dashed var(--medium-blue);
+	border-radius: 10px;
+	max-width: 300px;
+}
 .dropzone {
 	text-align: center;
-	padding: 20px;
-	border: 3px dashed var(--medium-blue);
+	padding: 10px;
+	background-color: var(--white-with-opacity);
 	border-radius: 10px;
 	height: 170px;
 	overflow-y: auto;
-	color: #979797;
 }
 .drag-drop-files svg {
 	color: var(--medium-blue);
@@ -383,6 +389,30 @@ button.forum-post:focus {
 	width: 20px;
 }
 
+.dnd-ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.file-icon-dnd {
+	font-size: 12pt !important;
+}
+.remove-link {
+	color: red !important;
+}
+.remove-link:hover,
+.remove-link:active,
+.remove-link:focus {
+	color: red !important;
+}
+.file-name-dnd {
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+}
 /* Notifications */
 .notification-wrapper a {
 	color: var(--black);

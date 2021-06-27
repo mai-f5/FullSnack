@@ -7,6 +7,7 @@ import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import { CgImage } from 'react-icons/cg'
 import MyDropzone from './MyDropzone'
+import MultiTechSelect from './MultiTechSelect'
 
 export default function EditProject() {
     return (
@@ -47,19 +48,10 @@ export default function EditProject() {
                             </ButtonGroup>
                             {/* <FormControl.Feedback type='invalid'></FormControl.Feedback> */}
                         </Form.Group>
-
                         <Form.Group controlId="requiredTechSelect" className='mr-2'>
-                            <Form.Label><FiCode className='mr-2 text-dark' />Required Technologies</Form.Label>
-                            <Form.Control as="select">
 
-                                <option>Required Technologies:</option>
-                                {/* <option>
-                                <input type='checkbox'>html</input>
-                            </option>
-                            <option>
-                                <input type='checkbox'>html</input>
-                            </option> */}
-                            </Form.Control>
+                            <Form.Label><FiCode className='mr-2 text-dark' />Required Technologies</Form.Label>
+                            <MultiTechSelect location={'edit'} />
                         </Form.Group>
                     </Col>
 
@@ -82,12 +74,12 @@ export default function EditProject() {
                     <Col className='' sm={12} md={5} lg={4}>
                         <Form.Group>
                             <Form.Label><CgImage className='mr-2 text-dark' />Project's Images:</Form.Label>
-                            <MyDropzone />
+                            <MyDropzone type={'images'} />
                         </Form.Group>
 
                         <Form.Group>
                             <Form.Label><GrAttachment className='mr-2 text-dark' />Project's Assets:</Form.Label>
-                            <MyDropzone />
+                            <MyDropzone type={'assets'} />
                         </Form.Group>
                     </Col>
 
