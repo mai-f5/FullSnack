@@ -1,6 +1,6 @@
-
-//////////// Static data tables////////////////////////
 const api = () => {
+    //////////////////GET REQUESTS////////////////////////////
+    //-------------------Static Data-----------------------//
     const getDifficultyLevelsList = () => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -69,93 +69,11 @@ const api = () => {
         })
     }
 
-    ///////////////////////////////////////////////////
-
-    const getProjectsReqTechs = projectId => {
-        //query to get projects required techs by id
-        /*
-        select rt.name
-        from required_techs rt join project_tech pt on pt.tech_id = rt.id
-        where pt.project_id = 1;
-     */
-        return Promise.resolve(
-            [
-                { name: 'HTML' },
-                { name: 'CSS' }
-            ]
-        )
-    }
-
-    const getFilteredProjectsListRequiredTechs = projectsIdList => {
-        /**select pt.project_id, rt.name
-        from required_techs rt join project_tech pt on pt.tech_id = rt.id;
-        where pt.project_id in () */
-        return Promise.resolve(
-            [
-                { project_id: 1, name: 'HTML' },
-                { project_id: 1, name: 'CSS' }
-            ]
-        )
-    }
-
-    //for cards
-    const getProjectsMinimalData = (sortBy = 'likesCounter', amount = 20, pageNum = 1, searchTxt = '', difficultyLevel = '', hasAssets = '') => {
+    //---------------------------projects cards---------------------------------//
+    const getProjectsRowData = (sortBy = 'likes', amount = 20, currentPageNum = 1, searchTxt = null, difficultyLevel = null, hasAssets = null, userId = null) => {
         // select *
-        //from projects 
-        //limit <page> * <amount> offset <page-1> * amount orderby <sortBy>
-
-        //where projectname, description includes searchtxt, difficulty_level in, hasAssets in
-        return Promise.resolve(
-            //query to get <amount> projects sorted by <sortBy> //limit 20 - will check pagination like in facebook, added at bottom every scroll
-            //reqired techs will be seperate
-            [
-                { id: 1, user_id: 1, name: 'Recipe\'s Notebook', difficulty_level: 'Medium', likesCounter: 52 }
-            ]
-        )
-    }
-
-
-    const login = (username, password) => {
-        // return users.
-        //     find(user => user.username === username && user.password === password)
-        //query to find this username where users.username = username AND users.password = password and is_active = true// do I want to seperate them
-        return username === 'leebaronx3' && password === 'Lb123456' ? 1 : 'ERR';
-    }
-
-    const getUsersData = userId => {
-        return Promise.resolve(
-            {
-                id: 1,
-                username: 'leebaronx3',
-                email: 'leebaronx3@gmail.com',
-                password: 'Lb123456',
-                birthdate: '26/03/1994',
-                gender_id: 1,
-                occupation: null,
-                profile_img: null,
-            }
-        )
-    }
-
-    const getUsersProjectsList = userId => {
-        return Promise.resolve(
-            //query to get projects minimaldata by user id   (id, name, lvl, hasassets, likes by user_id)
-            [
-                {
-                    id: 1,
-                    user_id: 1,
-                    name: 'Recipe\'s notebook',
-                    difficulty_level: 2,
-                    likes_counter: 2,
-                    assets_src: "assets.com",
-                    timestamp: '2021-06-17 20:14:00',
-                    // requiredTechs: ['HTML', 'CSS']
-                }
-            ]
-        )
-    }
-
-    const getProjectsRowData = projectId => {
+        // from projects 
+        // limit <page> * <amount> offset <page-1> * amount order by <sortBy>
         return Promise.resolve(
             {
                 id: 1,
@@ -168,17 +86,51 @@ const api = () => {
                 github_url: "https://hamuf.github.io/recipes-mockup/#!/my-recipes",
                 timestamp: '2021-06-17 20:14:00',
                 is_visible: true
+            },
+            {
+                id: 4,
+                user_id: 2,
+                name: 'Bank App',
+                difficulty_level: 2,
+                likes_counter: 1,
+                description: "A bank app to transfer money",
+                assets_src: "assets.com",
+                github_url: "https://hamuf.github.io/recipes-mockup/#!/my-recipes",
+                timestamp: '2021-06-17 20:14:00',
+                is_visible: true
             }
         )
     }
 
-    const getProjectsPicturesList = projectId => {
+    const getProjectsReqTechs = projectIdList => {
+        //query to get projects required techs by id in list
+        /**select pt.project_id, rt.name
+        // from required_techs rt join project_tech pt on pt.tech_id = rt.id;
+        // where pt.project_id in () */
         return Promise.resolve(
             [
-                { id: 1, pic_src: 'https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/4e/7b/au-t2-e-5093-pancake-recipe-english_ver_5.jpg' },
-                { id: 2, pic_src: 'https://wgbh.brightspotcdn.com/dims4/default/09cb564/2147483647/strip/true/crop/1359x741+0+0/resize/990x540!/quality/70/?url=https%3A%2F%2Fwgbh.brightspotcdn.com%2Fcb%2F02%2F098fb19f47b9a56d92bc18b8a279%2Fcooking-apps-lead.jpg' },
-
+                { project_id: 1, name: 'HTML' },
+                { project_id: 1, name: 'CSS' }
             ]
+        )
+    }
+
+    const getProjectsLikesCount = projectIdList => {
+        return Promise.resolve(
+            { project_id: 1, likesCount: 2 }
+        )
+    }
+
+    const getProjectsFirstPic = projectIdList => {
+        return Promise.resolve(
+            { id: 1, project_id: 1, pic_src: 'https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/4e/7b/au-t2-e-5093-pancake-recipe-english_ver_5.jpg' }
+        )
+    }
+    //---------------------------specific project---------------------------------//
+    const getProjectsAllPics = projectId => {
+        return Promise.resolve(
+            { id: 1, pic_src: 'https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/4e/7b/au-t2-e-5093-pancake-recipe-english_ver_5.jpg' },
+            { id: 2, pic_src: 'https://wgbh.brightspotcdn.com/dims4/default/09cb564/2147483647/strip/true/crop/1359x741+0+0/resize/990x540!/quality/70/?url=https%3A%2F%2Fwgbh.brightspotcdn.com%2Fcb%2F02%2F098fb19f47b9a56d92bc18b8a279%2Fcooking-apps-lead.jpg' },
         )
     }
 
@@ -193,10 +145,9 @@ const api = () => {
                 body: 'hi i tried to create the toggle buttons but couldnt find the component. please help',
             }
         )
-
     }
 
-    const getThreadsComments = threadId => {
+    const getThreadComments = threadId => {
         return Promise.resolve(
             [
                 {
@@ -214,6 +165,38 @@ const api = () => {
             ]
         )
     }
+    const getUserUsername = projectId => {
+
+        return Promise.resolve(
+            { user_id: 1, username: 'leebaronx3' }
+        )
+    }
+    //---------------------------user data---------------------------------//
+
+    const login = (username, password) => {
+        // return users.
+        //     find(user => user.username === username && user.password === password)
+        //query to find this username where users.username = username AND users.password = password and is_active = true// do I want to seperate them
+        // return username === 'leebaronx3' && password === 'Lb123456' ? 1 : 'ERR';
+        return Promise.resolve(
+            {
+                id: 1,
+                username: 'leebaronx3',
+                email: 'leebaronx3@gmail.com',
+                password: 'Lb123456',
+                birthdate: '26/03/1994',
+                gender_id: 1,
+                occupation: null,
+                profile_img: null,
+            }
+        )
+    }
+
+    const getDidUserLikeProject = userId => {
+        return Promise.resolve(
+            { didLike: true }
+        )
+    }
 
     const getUsersNewNotifications = userId => {
         //query to get notification isread false
@@ -229,72 +212,15 @@ const api = () => {
                     id: 3,
                     acted_user_id: 2,
                     project_id: 1,
-                    text: 'commented on a thread in your project',
+                    type: 3,
                     timestamp: '2020-02-02 12:12:12'
                 }
             ]
         )
     }
 
-    ///////////////////////////
 
-    // const getProjectsFullData = projectId => {
-    //     //maybe wanted final result for each project:
-    //     const hi = {
-    //         id: 1,
-    //         user_id: 1,
-    //         timestamp: '2021-07-07 21:21:21',
-    //         name: 'recipes',
-    //         likes: 2,
-    //         difficultyLevel: 'Medium',
-    //         description: 'ssdf',
-    //         assets_src: 'assets.com',
-    //         git_url: 'github.com/',
-    //         requiredTechs: ['HTML', 'CSS'],
-    //         pictures: ['img.png', 'img2.png'],
-    //         threads:
-    //             [
-    //                 {
-    //                     id: 1,
-    //                     timestamp: '2021-07-08 21:21;21',
-    //                     topic: 'Toggle',
-    //                     body: 'Hi',
-    //                     comments:
-    //                         [
-    //                             { id: 1, user_id: 1, text: 'i\'ll help ya', timestamp: '2021-07-09 21:21:21' },
-    //                             { id: 1, user_id: 1, text: 'i\'ll help ya', timestamp: '2021-07-09 21:21:21' },
-    //                         ]
-    //                 }
-    //             ]
-    //     }
-
-    // }
-
-    // const getUserFullData = UserId => {
-    //     const hi2 = {
-    //         id: 1,
-    //         username: 'leebaronx3',
-    //         email: 'leebaronx3@gmail.com',
-    //         password: 'Lb123456',
-    //         birthdate: '26/03/1994',
-    //         gender_id: 'Female',
-    //         occupation: null,
-    //         profile_img: null,
-    //         //notifications: [
-    //         //                   {id:1, notification_type:1, acted_user_id:2, is_read:0, timestamp:'2021-07-07 21:21:21'}
-    //         //              ]
-    //         // projectsIds: [1, 2, 3, 4],//??? OR
-    //         // projectsMinimalDatas: [
-    //         //     { id: 1, name: 'Recipe\'s Notebook', difficulty_level: 'Medium', likesCounter: 52, required_techs: ['HTML', 'CSS'] }
-    //         // ]
-
-    //     }
-    // }
-
-
-
-    /////////////////////////////////////////////////////////////
-    ///post req
+    //////////////////POST REQUESTS////////////////////////////
     const tempUsersTable = [];
     const tempProjectsTable = [];
     const tempProjectsTechsTable = [];
@@ -302,10 +228,10 @@ const api = () => {
     const tempThreadsTable = [];
     const tempCommentsTable = [];
     const tempNotificationsTable = [];
+    const tempLikesTable = [];
 
     //some of the pushed data, will be set by default via sql
     const addNewProject = projectData => {
-
         projectData.pictures.map(pic => {
             tempPicturesTable.push(
                 { id: tempPicturesTable.length + 1, project_id: tempProjectsTable.length + 1, pic_src: pic }
@@ -330,8 +256,8 @@ const api = () => {
                 git_url: projectData.git_url,
             }
         )
-
     }
+
     const addNewUser = usersData => {
         tempUsersTable.push(
             {
@@ -347,6 +273,16 @@ const api = () => {
             }
         )
     }
+
+    const addLike = (userId, projectId) => {
+        tempLikesTable.push(
+            {
+                user_id: userId,
+                liked_project_id: project_id
+            }
+        )
+    }
+
     const addNewThread = threadData => {
         tempThreadsTable.push(
             {
@@ -382,8 +318,65 @@ const api = () => {
             }
         )
     }
-    /////////////////////////////////////////////////////////////////////
-    //update request?
 
+    /////////////////////////////////////////////////////////////////////
+    //UPDATE REQUESTS
+    //user settings
+    const updateUserData = updatedUserData => {
+        return Promise.resolve(updatedUserData)
+    }
+    //user password
+    const updateUserPassword = updatedPassword => {
+        return Promise.resolve(updatedPassword)
+    }
+    //project row data
+    const updateProjectData = updatedProjectData => {
+        return Promise.resolve(updatedProjectData)
+    }
+    //notification read
+    const updateNotificationsAsRead = userId => {
+        return Promise.resolve(tempNotificationsTable.forEach(notification => {
+            if (!notification.is_read) notification.is_read = true;
+        }))
+    }
+    // hide project
+    const hideProject = projectId => {
+        return Promise.resolve(
+            tempProjectsTable.find(project => project.id === projectId).is_visible = false
+        )
+    }
+    // deactivate user
+    // const deactivateUser = userId => {
+    //     return Promise.resolve(
+    //         tempUsersTable.find(user => user.id === userId).is_active = false
+    //     )
+    // }
+
+
+    /////////////////////////////DELETE REQUESTS///////////////////////////
+    // project required tech
+    const removeReqTech = (projectId, reqTechId) => {
+        delete tempProjectsTechsTable[tempProjectsTechsTable.indexOf(tempProjectsTechsTable.find(row => row.project_id === projectId && row.tech_id === reqTechId))]
+    }
+    // project picture
+    const removePicture = (picId) => {
+        delete tempPicturesTable[tempPicturesTable.indexOf(tempPicturesTable.find(pic => pic.id === picId))]
+    }
+    // user like on project
+    const removeLike = (userId, projectId) => {
+        delete tempLikesTable[tempLikesTable.indexOf(tempLikesTable.find(row => row.user_id === userId && row.liked_project_id === projectId))]
+    }
+    // maybe thread
+    // maybe comment
+    return {
+        getDifficultyLevelsList, getGenderList, getOccupationsList, getRequiredTechsList, getNotificationsTypesList, getProjectsRowData, getProjectsReqTechs, getProjectsLikesCount, getProjectsFirstPic, getProjectsAllPics, getProjectsThreads, getThreadComments, getUserUsername, login, getDidUserLikeProject, getUsersNewNotifications,
+
+        addNewProject, addNewUser, addLike, addNewThread, addNewComment, addNewNotification,
+
+        updateUserData, updateUserPassword, updateProjectData, updateNotificationsAsRead, hideProject,
+
+        removeReqTech, removePicture, removeLike
+    }
 }
-export default api;
+
+export default api();
