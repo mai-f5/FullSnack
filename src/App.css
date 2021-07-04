@@ -211,6 +211,9 @@ header {
 }
 .project-card .card-img-top {
 	border: 1px solid #b2b2b2;
+	min-height: 150px;
+	object-fit: cover;
+	min-width: 100%;
 }
 
 /* FILTER SECTION */
