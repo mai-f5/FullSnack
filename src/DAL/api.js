@@ -2,57 +2,23 @@ const api = () => {
     //////////////////GET REQUESTS////////////////////////////
     //-------------------Static Data-----------------------//
     const getDifficultyLevelsList = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const difficulty_levels = [
-                    { id: 1, name: 'Easy' },
-                    { id: 2, name: 'Medium' },
-                    { id: 3, name: 'Hard' }
-                ];
-                resolve(difficulty_levels)
-            }, 500)
-        })
+        return fetch('http://localhost:3100/staticdata/difficultylevels')
+            .then(res => res.json())
     }
 
     const getGenderList = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const gender = [
-                    { id: 1, name: 'Female' },
-                    { id: 2, name: 'Male' },
-                    { id: 3, name: 'Other' }
-                ];
-                resolve(gender)
-            }, 500)
-        })
+        return fetch('http://localhost:3100/staticdata/gender')
+            .then(res => res.json())
     }
 
     const getOccupationsList = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const occupations = [
-                    { id: 1, name: "Student" },
-                    { id: 2, name: 'Junior Developer' },
-                    { id: 3, name: 'Senior Developer' },
-                    { id: 4, name: 'Other' }
-                ];
-                resolve(occupations)
-            }, 500)
-        })
+        return fetch('http://localhost:3100/staticdata/occupations')
+            .then(res => res.json())
     }
 
     const getRequiredTechsList = () => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const required_techs = [
-                    { id: 1, name: 'HTML' },
-                    { id: 2, name: 'CSS' },
-                    { id: 3, name: 'JavaScript' },
-                    { id: 4, name: 'Python' }
-                ];
-                resolve(required_techs)
-            }, 500)
-        })
+        return fetch('http://localhost:3100/staticdata/requiredtechs')
+            .then(res => res.json())
     }
 
     const getNotificationsTypesList = () => {

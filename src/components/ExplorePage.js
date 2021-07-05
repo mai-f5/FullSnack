@@ -8,7 +8,7 @@ export default function Explore() {
 
     useEffect(() => {
         api.getProjectsRowData().then(data => {
-            setCardsData([...(JSON.parse(data.cardsDataList))])
+            setCardsData([...data])
         })
     }, [])
 

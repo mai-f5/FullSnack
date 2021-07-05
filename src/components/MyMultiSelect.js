@@ -1,24 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
+import api from '../DAL/api'
 
 export default function MyMultiSelect({ type, location }) {
-    const techs = [
-        { value: 1, label: 'HTML' },
-        { value: 2, label: 'CSS' },
-        { value: 3, label: 'JavaScript' },
-    ];
-
-    const difficultyLvls = [
-        { value: 1, label: 'Easy' },
-        { value: 2, label: 'Medium' },
-        { value: 3, label: 'Hard' }
-    ]
 
     const assets = [
         { value: '1', label: 'Has Assets' },
-        { value: '0', label: 'No Assets' },
+        { value: '0', label: 'No Assets' }
     ]
+    const [techs, setTechs] = useState([])
+    const [difficultyLvls, setDifficultyLevels] = useState([])
     const [selected, setSelected] = useState([]);
+    console.log(selected)
+
+    useEffect(() => {
+        api.getRequiredTechsList().then(data => {
+            setTechs([...data])
+        })
+
+        api.getDifficultyLevelsList().then(data => {
+            setDifficultyLevels([...data])
+        })
+    }, [])
 
     const customValueRenderer = (selected, _options) => {
         return selected.length
@@ -37,9 +40,6 @@ export default function MyMultiSelect({ type, location }) {
             hasSelectAll={type === 'tech'}
             disableSearch={type !== 'tech'}
             valueRenderer={customValueRenderer}
-
-
-        // styles={customStyles}
         />
     )
 }
