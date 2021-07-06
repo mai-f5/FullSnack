@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
 import api from '../DAL/api'
 
-export default function MyMultiSelect({ type, location }) {
+export default function MyMultiSelect({ onSelectChange, type, location }) {
 
     const assets = [
         { value: '1', label: 'Has Assets' },
         { value: '0', label: 'No Assets' }
     ]
-    const [techs, setTechs] = useState([])
+    const [reqTechs, setReqTechs] = useState([])
     const [difficultyLvls, setDifficultyLevels] = useState([])
+
     const [selected, setSelected] = useState([]);
-    console.log(selected)
 
     useEffect(() => {
         api.getRequiredTechsList().then(data => {
-            setTechs([...data])
+            setReqTechs([...data])
         })
 
         api.getDifficultyLevelsList().then(data => {
@@ -23,10 +23,14 @@ export default function MyMultiSelect({ type, location }) {
         })
     }, [])
 
+    useEffect(() => {
+        onSelectChange(({ target: { name: type === 'reqTechs' ? 'requiredTechs' : type === 'difficultyLvls' ? 'difficultyLevels' : 'assets', value: selected.map(obj => obj.value) } }))
+    }, [selected])
+
     const customValueRenderer = (selected, _options) => {
         return selected.length
             ? selected.map(({ label }) => label).join(', ')
-            : type === 'tech' ?
+            : type === 'reqTechs' ?
                 location ? 'Select Required Technologies' : 'Required Technologies'
                 : type === 'difficultyLvls' ? 'Difficulty Levels' : 'Assets'
     };
@@ -34,12 +38,15 @@ export default function MyMultiSelect({ type, location }) {
     return (
         <MultiSelect
             className='multi-select mb-3'
-            options={type === 'tech' ? techs : type === 'difficultyLvls' ? difficultyLvls : assets}
+            options={type === 'reqTechs' ? reqTechs : type === 'difficultyLvls' ? difficultyLvls : assets}
             value={selected}
-            onChange={setSelected}
-            hasSelectAll={type === 'tech'}
-            disableSearch={type !== 'tech'}
+            onChange={(e) => {
+                setSelected(e)
+            }}
+            hasSelectAll={type === 'reqTechs'}
+            disableSearch={type !== 'reqTechs'}
             valueRenderer={customValueRenderer}
+            on
         />
     )
 }

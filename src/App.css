@@ -215,6 +215,15 @@ header {
 	object-fit: cover;
 	min-width: 100%;
 }
+.projs-not-found p {
+	font-size: 16pt;
+	font-weight: bold;
+}
+.projs-not-found svg {
+	font-size: 5rem;
+	color: var(--darkest-blue);
+	opacity: 0.5;
+}
 
 /* FILTER SECTION */
 .search input {
