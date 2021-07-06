@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { useLocation, useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
 import MyModal from './MyModal'
@@ -9,13 +9,33 @@ import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import image from '../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
+import api from '../DAL/api';
 
 export default function ProjectDisplay() {
+    const location = useLocation();
+    const { pid } = useParams();
+    const [projectsData, setProjectsData] = useState({})
+
     const pics = [image, image, image]
+
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+
+    useEffect(() => {
+        if (!location.state) {
+            api.getProjectsData({ projectId: pid }).then(data => {
+                console.log(data)
+                console.log({ ...data[0] })
+                // setProjectsData({ ...data[0] })
+            })
+        } else {
+            console.log(location.state)
+            // setProjectsData({ ...location.state })
+        }
+    }, [])
+
 
     const projectsRec = ['HTML', 'CSS', 'JavaScript', 'Python'];
 
@@ -27,13 +47,13 @@ export default function ProjectDisplay() {
 
                     <Row className='ml-2 flex-column'>
                         <div>
-                            <h2 className='mr-5 text-dark d-block d-md-inline'>Recipes notebook</h2>
+                            <h2 className='mr-5 text-dark d-block d-md-inline'>{projectsData.name}</h2>
                             <Button className='rounded-circle text-center mr-2'><BiLike /></Button>
                             <MyModal type='share' />
                             <p className='font-weight-bold d-block mb-3 mt-3 mt-lg-0'>By {'leebaronx3'}</p>
 
                         </div>
-                        <p><BiLike className='mr-3 text-dark' />52 Recommended this project</p>
+                        <p><BiLike className='mr-3 text-dark' />{projectsData.likesCounter} Recommended this project</p>
                     </Row>
                     <Carousel activeIndex={index} onSelect={handleSelect} className='ml-0 col-lg-9 col-sm-12'>
                         {pics.map(pic => {

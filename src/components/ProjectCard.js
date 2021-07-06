@@ -12,7 +12,7 @@ export default function ProjectCard({ ownsProject, data }) {
     return (
         <Col sm={12} md={4} lg={3} className='project-card'>
             <Card className='mb-4 pt-4 pl-4 pr-4 pb-3'>
-                <div onClick={() => history.push('/projectdisplay')}>
+                <div onClick={() => history.push(`/projectdisplay/${data.id}`, data)}>
                     <Card.Img variant="top" src={data.pictures[0] ? data.pictures[0] : image} fluid className='rounded card-img' />
                     <Card.Header className='text-center font-weight-bold border-none p-2'>{data.name}</Card.Header>
 

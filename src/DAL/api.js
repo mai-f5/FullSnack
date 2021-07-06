@@ -36,9 +36,11 @@ const api = () => {
     }
 
     //---------------------------projects cards---------------------------------//
-    const getProjectsRowData = (formData) => {
-
-        return fetch(`http://localhost:3100/explore/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechs}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&user=${formData.userId}`).then(res => res.json())
+    const getProjectsData = (formData) => {
+        if (!formData.projectId) {
+            return fetch(`http://localhost:3100/explore/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechs}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&user=${formData.userId}`).then(res => res.json())
+        }
+        return fetch(`http://localhost:3100/explore/?pid=${formData.projectId}`).then(res => res.json())
     }
 
     const getProjectsReqTechs = projectIdList => {
@@ -308,7 +310,7 @@ const api = () => {
     // maybe thread
     // maybe comment
     return {
-        getDifficultyLevelsList, getGenderList, getOccupationsList, getRequiredTechsList, getNotificationsTypesList, getProjectsRowData, getProjectsReqTechs, getProjectsLikesCount, getProjectsFirstPic, getProjectsAllPics, getProjectsThreads, getThreadComments, getUserUsername, login, getDidUserLikeProject, getUsersNewNotifications,
+        getDifficultyLevelsList, getGenderList, getOccupationsList, getRequiredTechsList, getNotificationsTypesList, getProjectsData, getProjectsReqTechs, getProjectsLikesCount, getProjectsFirstPic, getProjectsAllPics, getProjectsThreads, getThreadComments, getUserUsername, login, getDidUserLikeProject, getUsersNewNotifications,
 
         addNewProject, addNewUser, addLike, addNewThread, addNewComment, addNewNotification,
 
