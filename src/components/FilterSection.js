@@ -14,12 +14,11 @@ export default function FilterSection({ setCardsData }) {
         requiredTechs: [],
         assets: [],
         userId: '',
-        currentPage: 1
+        currentPage: 1,
     })
 
     useEffect(() => {
-        console.log('should fetch')
-        api.getProjectsRowData(filterByData).then(data => {
+        api.getProjectsData(filterByData).then(data => {
             if (typeof data === 'object') {
                 setCardsData([...data])
             } else {

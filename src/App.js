@@ -5,7 +5,6 @@ import {
   Switch,
   Route,
   Redirect,
-  Link
 } from "react-router-dom";
 
 import Homepage from './components/Homepage';
@@ -19,6 +18,7 @@ import ProjectDisplay from './components/ProjectDisplay';
 import './App.css';
 
 function App() {
+
   return (
     <>
 
@@ -29,19 +29,19 @@ function App() {
           <Route path="/home">
             <Homepage />
           </Route>
-          <Route path="/explore">
+          <Route exact path="/explore">
             <ExplorePage />
           </Route>
-          <Route path="/usersproject">
+          <Route path="/usersproject/:uid">
             <UsersProject />
           </Route>
-          <Route path="/settings">
+          <Route path="/settings/:uid">
             <Settings />
           </Route>
-          <Route path="/projectdisplay">
+          <Route path="/projectdisplay/:pid">
             <ProjectDisplay />
           </Route>
-          <Route path="/editproject">
+          <Route path="/editproject/:pid">
             <EditProject />
           </Route>
           <Route path='*'>
