@@ -1,13 +1,25 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useLocation, useParams } from "react-router-dom";
 import { Container, Button, Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap'
 import imgPlaceholder from '../images/img-placeholder.png'
 import MyModal from './MyModal'
 
 export default function Settings() {
+    const location = useLocation();
+    const { uid } = useParams();
+
     const [dataChanged, setDataChanged] = useState(false)
     const [passwordChanged, setPasswordChanged] = useState(false)
     // const [passwordModalOpen, setPasswordModalOpen] = useState(false)
+    const elementRef = useRef();
+
+    useEffect(() => {
+        const divElement = elementRef.current;
+        console.log(divElement); // logs <div>I'm an element</div>
+    }, []);
+
+
     return (
         <Container className='settings mt-5'>
             <h2 className='mb-0 pb-0'><span className='font-weight-normal'>Settings /</span> {'leebaronx3'} </h2>
@@ -61,8 +73,8 @@ export default function Settings() {
                         <Form.Group controlId="profilePic" className='user-profile-img'>
                             <Form.Label className='d-block'>Profile Pic:</Form.Label>
                             <img src={imgPlaceholder} className='img-fluid rounded-circle' />
-                            <Button>Edit</Button>
-                            <Form.File hidden></Form.File>
+                            <Button onClick={(e) => { elementRef.current.click() }}>Edit</Button>
+                            <Form.File hidden ref={elementRef}></Form.File>
                         </Form.Group>
                     </Col>
                 </Form.Row>

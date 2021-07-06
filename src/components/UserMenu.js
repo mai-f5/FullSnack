@@ -19,7 +19,7 @@ export default function UserMenu() {
             <hr className='border-dark' />
             <Nav /*defaultActiveKey="/home"*/ className="flex-column">
                 <Nav.Link onClick={() => history.push('/usersproject')}>My Projects</Nav.Link>
-                <Nav.Link onClick={() => history.push('/settings')}>Settings</Nav.Link>
+                <Nav.Link onClick={() => history.push('/settings/1')}>Settings</Nav.Link>
                 <Nav.Link>Log Out</Nav.Link>
 
             </Nav>
