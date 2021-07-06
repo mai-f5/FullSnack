@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import { Row, Button, Form, FormControl, Container } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Row, Container, Alert } from 'react-bootstrap'
+import { BsSearch } from 'react-icons/bs'
 import ProjectCard from './ProjectCard'
 import FilterSection from './FilterSection'
-import api from '../DAL/api'
+
 export default function Explore() {
     const [cardsData, setCardsData] = useState([])
-
-    useEffect(() => {
-        api.getProjectsRowData().then(data => {
-            setCardsData([...data])
-        })
-    }, [])
 
     return (
         <Container className='mt-5'>
             <h2 >Full Stack Projects</h2>
-            <FilterSection />
+            <FilterSection setCardsData={setCardsData} />
 
             <div className='projectsExplore'>
-                < Row >
-                    {cardsData.map(cardData => < ProjectCard data={cardData} />)}
-                </Row >
+                {cardsData.length > 0 ?
+                    < Row >
+                        {cardsData.map(cardData => <ProjectCard data={cardData} />)}
+                    </Row > :
+                    <div className='text-center projs-not-found'>
+                        <BsSearch className='mt-5 mb-5' />
+                        <p>No Projects Found</p>
+                    </div>
+                }
             </div >
-
         </Container >
     )
 }

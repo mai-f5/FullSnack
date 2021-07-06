@@ -36,39 +36,9 @@ const api = () => {
     }
 
     //---------------------------projects cards---------------------------------//
-    const getProjectsRowData = (sortBy = 'likes', amount = 20, currentPageNum = 1, searchTxt = null, difficultyLevel = null, hasAssets = null, userId = null) => {
-        return fetch('http://localhost:3100/explore')
-            .then(res => res.json())
+    const getProjectsRowData = (formData) => {
 
-        // select *
-        // from projects 
-        // limit <page> * <amount> offset <page-1> * amount order by <sortBy>
-        // return Promise.resolve(
-        //     {
-        //         id: 1,
-        //         user_id: 1,
-        //         name: 'Recipe\'s notebook',
-        //         difficulty_level: 2,
-        //         likes_counter: 2,
-        //         description: "",
-        //         assets_src: "assets.com",
-        //         github_url: "https://hamuf.github.io/recipes-mockup/#!/my-recipes",
-        //         timestamp: '2021-06-17 20:14:00',
-        //         is_visible: true
-        //     },
-        //     {
-        //         id: 4,
-        //         user_id: 2,
-        //         name: 'Bank App',
-        //         difficulty_level: 2,
-        //         likes_counter: 1,
-        //         description: "A bank app to transfer money",
-        //         assets_src: "assets.com",
-        //         github_url: "https://hamuf.github.io/recipes-mockup/#!/my-recipes",
-        //         timestamp: '2021-06-17 20:14:00',
-        //         is_visible: true
-        //     }
-        // )
+        return fetch(`http://localhost:3100/explore/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechs}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&user=${formData.userId}`).then(res => res.json())
     }
 
     const getProjectsReqTechs = projectIdList => {
