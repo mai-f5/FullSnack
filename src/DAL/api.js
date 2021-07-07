@@ -1,4 +1,25 @@
 const api = () => {
+
+    //MULTER EXAMPLE
+
+    ///get user data
+    const getUserData = userId => {
+        return fetch(`http://localhost:3100/users/${userId}`).then(res => res.json())
+    }
+
+    //update user data
+    const updateUserData = updatedUserData => {
+        //console.log(updatedUserData.get('profileImg'))
+        return fetch(`http://localhost:3100/users/${updatedUserData.get('userId')}`, { //fetching by userId that is appended to the formData (updatedUserData)
+            method: 'PUT',
+            body: updatedUserData, //passing formData through body
+        }).then(res => res.json())
+    }
+
+
+
+
+
     //////////////////GET REQUESTS////////////////////////////
     //-------------------Static Data-----------------------//
     const getDifficultyLevelsList = () => {
@@ -262,30 +283,6 @@ const api = () => {
         )
     }
 
-
-
-    ///user get data
-    const getUserData = userId => {
-        return fetch(`http://localhost:3100/users/${userId}`).then(res => res.json())
-    }
-
-
-    /////////////////////////////////////////////////////////////////////
-    //UPDATE REQUESTS
-    //user settings
-    const updateUserData = updatedUserData => {
-        //console.log(updatedUserData.get('profileImg'))
-        return fetch(`http://localhost:3100/users/${updatedUserData.get('userId')}`, {
-            method: 'PUT',
-            body: updatedUserData,
-        }).then(res => res.json())
-    }
-
-
-
-
-
-
     //user password
     const updateUserPassword = updatedPassword => {
         return Promise.resolve(updatedPassword)
@@ -312,7 +309,6 @@ const api = () => {
     //         tempUsersTable.find(user => user.id === userId).is_active = false
     //     )
     // }
-
 
     /////////////////////////////DELETE REQUESTS///////////////////////////
     // project required tech
