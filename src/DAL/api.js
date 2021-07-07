@@ -114,6 +114,8 @@ const api = () => {
     }
     //---------------------------user data---------------------------------//
 
+
+
     const login = (username, password) => {
         // return users.
         //     find(user => user.username === username && user.password === password)
@@ -260,12 +262,30 @@ const api = () => {
         )
     }
 
+
+
+    ///user get data
+    const getUserData = userId => {
+        return fetch(`http://localhost:3100/users/${userId}`).then(res => res.json())
+    }
+
+
     /////////////////////////////////////////////////////////////////////
     //UPDATE REQUESTS
     //user settings
     const updateUserData = updatedUserData => {
-        return Promise.resolve(updatedUserData)
+        //console.log(updatedUserData.get('profileImg'))
+        return fetch(`http://localhost:3100/users/${updatedUserData.get('userId')}`, {
+            method: 'PUT',
+            body: updatedUserData,
+        }).then(res => res.json())
     }
+
+
+
+
+
+
     //user password
     const updateUserPassword = updatedPassword => {
         return Promise.resolve(updatedPassword)
@@ -310,7 +330,7 @@ const api = () => {
     // maybe thread
     // maybe comment
     return {
-        getDifficultyLevelsList, getGenderList, getOccupationsList, getRequiredTechsList, getNotificationsTypesList, getProjectsData, getProjectsReqTechs, getProjectsLikesCount, getProjectsFirstPic, getProjectsAllPics, getProjectsThreads, getThreadComments, getUserUsername, login, getDidUserLikeProject, getUsersNewNotifications,
+        getDifficultyLevelsList, getGenderList, getOccupationsList, getRequiredTechsList, getNotificationsTypesList, getProjectsData, getProjectsReqTechs, getProjectsLikesCount, getProjectsFirstPic, getProjectsAllPics, getProjectsThreads, getThreadComments, getUserUsername, login, getDidUserLikeProject, getUsersNewNotifications, getUserData,
 
         addNewProject, addNewUser, addLike, addNewThread, addNewComment, addNewNotification,
 
