@@ -13,19 +13,17 @@ export default function Settings() {
     //temp for mockup
     const [dataChanged, setDataChanged] = useState(false)
     const [passwordChanged, setPasswordChanged] = useState(false)
-    const [previewedPicture, setPreviewedPicture] = useState(imgPlaceholder)
+
 
     const [userData, setUserData] = useState({})
-
+    const [previewedPicture, setPreviewedPicture] = useState(imgPlaceholder)
     const [imgFile, setImgFile] = useState()
 
     useEffect(() => {
-        api.getUserData(1).then(data => {
-            if (data[0].profile_img) {
-
-                console.log(data[0].profile_img)
-                setPreviewedPicture(`http://localhost:3100/static/${data[0].profile_img}`)
-                // setPreviewedPicture(`https://i.guim.co.uk/img/media/fe1e34da640c5c56ed16f76ce6f994fa9343d09d/0_174_3408_2046/master/3408.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=0d3f33fb6aa6e0154b7713a00454c83d`)
+        api.getUserData(1).then(data => { //passed userId manually for now
+            const userImg = data[0].profile_img
+            if (userImg) {
+                setPreviewedPicture(`http://localhost:3100/static/${userImg}`)
             }
             setUserData({ ...data[0] })
         })
