@@ -1,13 +1,13 @@
 import React from 'react'
 import { Container, Button, Form, Row, ButtonGroup, ToggleButton, Col } from 'react-bootstrap'
 import { FiSave } from 'react-icons/fi'
-import nameTag from '../images/name_tag.svg'
+import nameTag from '../../../images/name_tag.svg'
 import { FiCode } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import { CgImage } from 'react-icons/cg'
-import MyDropzone from './MyDropzone'
-import MyMultiSelect from './MyMultiSelect'
+import MyDropzone from './FormInputs/MyDropzone'
+import MyMultiSelect from '../../General/FilterSection/MyMultiSelect'
 
 export default function EditProject() {
     return (

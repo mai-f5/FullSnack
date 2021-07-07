@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormControl, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 export default function SignIn() {
     return (
@@ -15,9 +15,6 @@ export default function SignIn() {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-
-                {/* <FormControl.Feedback type='invalid'></FormControl.Feedback> */}
-
                 <Button variant="primary" type="submit" className='d-block mx-auto'>
                     Sign in
                 </Button>

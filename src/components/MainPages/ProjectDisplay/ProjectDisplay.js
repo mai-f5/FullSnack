@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 import { useLocation, useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
-import MyModal from './MyModal'
+import MyModal from '../../General/Modal/MyModal'
 import { BiLike, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
-import image from '../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
-import api from '../DAL/api';
+import image from '../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
+import api from '../../../DAL/api'
 
 export default function ProjectDisplay() {
     const location = useLocation();
@@ -59,7 +59,7 @@ export default function ProjectDisplay() {
                         {pics.map(pic => {
                             return (
                                 <Carousel.Item>
-                                    <img className="d-block w-100" src={pic} />
+                                    <img className="d-block w-100" src={pic} alt='project example' />
                                 </Carousel.Item>
                             )
                         })}

@@ -1,16 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import { Container, Row, Button, Form, FormControl } from 'react-bootstrap'
-import ProjectCard from './ProjectCard'
-import imgPlaceholder from '../images/img-placeholder.png'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
-import FilterSection from './FilterSection';
-import EmptyProjectSvg from '../images/development.svg'
+import ProjectCard from '../Explore/ProjectCard/ProjectCard'
+import imgPlaceholder from '../../../images/img-placeholder.png'
+import FilterSection from '../../General/FilterSection/FilterSection';
+import EmptyProjectSvg from '../../../images/development.svg'
 import { useHistory } from 'react-router'
 export default function UsersProject() {
     const [hasProjects, setHasProjects] = useState(true)
@@ -23,7 +17,6 @@ export default function UsersProject() {
             </section>
             <FilterSection />
             {hasProjects && <div className='usersProjects mt-2 '>
-
                 <Row>
                     <ProjectCard ownsProject={true} />
                 </Row>
