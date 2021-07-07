@@ -1,10 +1,10 @@
 
 import { Modal, Button } from 'react-bootstrap'
 import { useState } from 'react';
-import SignUp from './SignUp';
-import PasswordChange from './PasswordChange';
-import NewThread from './Forum/NewThread';
-import ShareProject from './ShareProject';
+import SignUp from './SignUp/SignUp';
+import PasswordChange from './PasswordChange/PasswordChange';
+import ShareProject from './ShareProject/ShareProject';
+import NewThread from '../../MainPages/ProjectDisplay/Forum/ForumForms/NewThread';
 import { BiShareAlt } from 'react-icons/bi'
 function MyModal({ type }) {
     const [show, setShow] = useState(false);

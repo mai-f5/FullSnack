@@ -2,9 +2,9 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { useLocation, useParams } from "react-router-dom";
 import { Container, Button, Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap'
-import imgPlaceholder from '../images/img-placeholder.png'
-import MyModal from './MyModal'
-import api from '../DAL/api'
+import imgPlaceholder from '../../../images/img-placeholder.png'
+import MyModal from '../../General/Modal/MyModal'
+import api from '../../../DAL/api'
 export default function Settings() {
     const location = useLocation();
     const { uid } = useParams();
@@ -97,7 +97,7 @@ export default function Settings() {
                     <Col md={12} lg={4} className='text-center'>
                         <Form.Group controlId="profileImg" className='user-profile-img'>
                             <Form.Label className='d-block'>Profile Pic:</Form.Label>
-                            <img src={previewedPicture} className='img-fluid rounded-circle' />
+                            <img src={previewedPicture} className='img-fluid rounded-circle' alt='user preview' />
                             <Button onClick={(e) => { elementRef.current.click() }}>Edit</Button>
                             <Form.File hidden ref={elementRef} onChange={changeProfileImg} accept='image/*'></Form.File>
                         </Form.Group>

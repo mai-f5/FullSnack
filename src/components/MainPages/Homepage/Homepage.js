@@ -1,10 +1,9 @@
 import React from 'react'
-import { Row, Col, Button, Container } from 'react-bootstrap'
-// import CgTag from 'react-icons'
+import { Row, Col, Container } from 'react-bootstrap'
 import { GrProjects } from "react-icons/gr"
 import { BiDownload } from "react-icons/bi"
 import { BsChatSquareDots } from "react-icons/bs"
-import MyModal from './MyModal'
+import MyModal from '../../General/Modal/MyModal'
 
 
 export default function Homepage() {

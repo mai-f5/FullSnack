@@ -1,16 +1,13 @@
 import React from 'react'
 import { useState } from "react";
 import { Navbar, Nav } from 'react-bootstrap'
-import MyPopover from './MyPopover';
-import MyModal from './MyModal';
+import MyPopover from '../Popover/MyPopover';
+import MyModal from '../Modal/MyModal';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
 } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import logo from '../images/logoSvg.svg';
+import logo from '../../../images/logoSvg.svg';
 
 
 export default function Header() {

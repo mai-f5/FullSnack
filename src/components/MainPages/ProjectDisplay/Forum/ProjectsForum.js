@@ -1,12 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import { Row, Button, Form, FormControl, Accordion, Card } from 'react-bootstrap'
+import { Row, Accordion } from 'react-bootstrap'
 import { HiChatAlt2 } from 'react-icons/hi'
 // import { MdReply } from 'react-icons/md'
-import MyModal from '../MyModal'
+import MyModal from '../../../General/Modal/MyModal'
 
 import ForumThread from './ForumThread'
-import ForumComment from './ForumComment'
 export default function ProjectsForum() {
     const [hasThreads, setHasThreads] = useState(true)
     const [clickedNewThread, setClickedNewThread] = useState(false)

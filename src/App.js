@@ -7,13 +7,13 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import Homepage from './components/Homepage';
-import Header from './components/Header';
-import ExplorePage from './components/ExplorePage';
-import UsersProject from './components/UsersProject';
-import Settings from './components/Settings';
-import EditProject from './components/EditProject';
-import ProjectDisplay from './components/ProjectDisplay';
+import Homepage from './components/MainPages/Homepage/Homepage';
+import Header from './components/General/Header/Header';
+import ExplorePage from './components/MainPages/Explore/ExplorePage';
+// import UsersProject from './components/MainPages/UsersProjects/UsersProject';
+import Settings from './components/MainPages/UserSettings/Settings';
+import EditProject from './components/MainPages/AddEditProject/EditProject';
+import ProjectDisplay from './components/MainPages/ProjectDisplay/ProjectDisplay';
 
 import './App.css';
 
@@ -33,7 +33,7 @@ function App() {
             <ExplorePage />
           </Route>
           <Route path="/usersproject/:uid">
-            <UsersProject />
+            <ExplorePage type='userExplore' />
           </Route>
           <Route path="/settings/:uid">
             <Settings />

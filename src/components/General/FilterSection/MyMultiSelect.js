@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
-import api from '../DAL/api'
+import api from '../../../DAL/api'
 
 export default function MyMultiSelect({ onSelectChange, type, location }) {
 

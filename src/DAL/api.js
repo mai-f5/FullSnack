@@ -196,13 +196,13 @@ const api = () => {
 
     //some of the pushed data, will be set by default via sql
     const addNewProject = projectData => {
-        projectData.pictures.map(pic => {
+        projectData.pictures.forEach(pic => {
             tempPicturesTable.push(
                 { id: tempPicturesTable.length + 1, project_id: tempProjectsTable.length + 1, pic_src: pic }
             )
         });
 
-        projectData.requiredTechs.map(techId => {
+        projectData.requiredTechs.forEach(techId => {
             tempProjectsTechsTable.push(
                 { tech_id: techId, project_id: tempProjectsTable.length + 1 }
             )

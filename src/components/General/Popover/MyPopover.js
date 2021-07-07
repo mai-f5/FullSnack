@@ -1,10 +1,10 @@
 import React from 'react'
-import SignIn from './SignIn'
-import UserMenu from './UserMenu'
+import SignIn from './SignIn/SignIn'
+import UserMenu from './UsersMenu/UserMenu'
 import { OverlayTrigger, Popover } from 'react-bootstrap'
-import { BiBell, BiUser } from 'react-icons/bi'
-import Notifications from './Notifications'
-import userProfileImagePlaceholder from '../images/usersImages/user_id_1/img-placeholder.png'
+import { BiBell } from 'react-icons/bi'
+import Notifications from './Notifications/Notifications'
+import userProfileImagePlaceholder from '../../../images/usersImages/user_id_1/img-placeholder.png'
 import { useState } from 'react'
 export default function MyPopover({ type }) {
     const [notifsCount, setNotifsCount] = useState(2)
@@ -29,7 +29,7 @@ export default function MyPopover({ type }) {
                         {
                             type === 'signin' ? 'Sign In' :
                                 type === 'usermenu' ?
-                                    <img src={userProfileImagePlaceholder} className='header-user-img rounded-circle' />
+                                    <img src={userProfileImagePlaceholder} className='header-user-img rounded-circle' alt='user profile' />
                                     :
                                     <div className='mt-n3'>
                                         <BiBell />
