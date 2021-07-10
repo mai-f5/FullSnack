@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { Container, Button, Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap'
 import imgPlaceholder from '../../../images/img-placeholder.png'
 import MyModal from '../../General/Modal/MyModal'
-import api from '../../../DAL/api'
+import { getUserData, updateUserData, updateUserPassword } from '../../../DAL/users';
 export default function Settings() {
     const location = useLocation();
     const { uid } = useParams();
@@ -20,7 +20,7 @@ export default function Settings() {
     const [imgFile, setImgFile] = useState()
 
     useEffect(() => {
-        api.getUserData(1).then(data => { //passed userId manually for now
+        getUserData(1).then(data => { //passed userId manually for now
             const userImg = data[0].profile_img
             if (userImg) {
                 setPreviewedPicture(`http://localhost:3100/static/${userImg}`)
@@ -36,7 +36,7 @@ export default function Settings() {
         formData.append("userId", '1');
         formData.append('profileImg', imgFile);
         //console.log(formData.get('userId'))
-        api.updateUserData(formData).then(data => console.log(data))
+        updateUserData(formData).then(data => console.log(data))
     }
 
     function changeProfileImg(e) {

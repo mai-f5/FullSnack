@@ -9,7 +9,7 @@ import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import image from '../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
-import api from '../../../DAL/api'
+import { getProjectData } from '../../../DAL/projects';
 
 export default function ProjectDisplay() {
     const location = useLocation();
@@ -25,7 +25,7 @@ export default function ProjectDisplay() {
 
     useEffect(() => {
         if (!location.state) {
-            api.getProjectsData({ projectId: pid }).then(data => {
+            getProjectData({ projectId: pid }).then(data => {
                 console.log(data)
                 console.log({ ...data[0] })
                 // setProjectsData({ ...data[0] })

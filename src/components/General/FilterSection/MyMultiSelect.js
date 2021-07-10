@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
-import api from '../../../DAL/api'
+import { getRequiredTechsList, getDifficultyLevelsList } from '../../../DAL/staticData'
 
 export default function MyMultiSelect({ onSelectChange, type, location }) {
 
@@ -14,11 +14,11 @@ export default function MyMultiSelect({ onSelectChange, type, location }) {
     const [selected, setSelected] = useState([]);
 
     useEffect(() => {
-        api.getRequiredTechsList().then(data => {
+        getRequiredTechsList().then(data => {
             setReqTechs([...data])
         })
 
-        api.getDifficultyLevelsList().then(data => {
+        getDifficultyLevelsList().then(data => {
             setDifficultyLevels([...data])
         })
     }, [])

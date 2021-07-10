@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, FormControl } from 'react-bootstrap'
 import { BiSearch } from 'react-icons/bi'
 import MyMultiSelect from './MyMultiSelect'
-import api from '../../../DAL/api'
+import { getProjectsCardData } from '../../../DAL/projects'
 
 export default function FilterSection({ setCardsData }) {
     const [filterByData, setFilterByData] = useState({
@@ -18,7 +18,7 @@ export default function FilterSection({ setCardsData }) {
     })
 
     useEffect(() => {
-        api.getProjectsData(filterByData).then(data => {
+        getProjectsCardData(filterByData).then(data => {
             if (typeof data === 'object') {
                 setCardsData([...data])
             } else {
