@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar, Nav } from 'react-bootstrap'
 import MyPopover from '../Popover/MyPopover';
 import MyModal from '../Modal/MyModal';
@@ -12,7 +12,16 @@ import logo from '../../../images/logoSvg.svg';
 
 export default function Header() {
     const history = useHistory();
+
     const [logged, setLogged] = useState(false)
+
+    useEffect(() => {
+        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+        if (loggedUser) setLogged(true)
+        else setLogged(false)
+
+    }, [])
+
     return (
         <header>
             <Navbar bg="dark" variant="dark" expand="lg">
