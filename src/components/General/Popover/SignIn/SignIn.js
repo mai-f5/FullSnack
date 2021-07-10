@@ -3,37 +3,51 @@ import { useHistory } from "react-router-dom";
 import { Form, Button, Spinner } from 'react-bootstrap'
 import ErrorMessage from '../../FormComponents/ErrorMsg';
 import { login } from '../../../../DAL/users'
+import validateInput from '../../../../utils/validations'
 
 export default function SignIn() {
     const [disablingLoader, setDisablingLoader] = useState(false)
     const [loginResult, setLoginResult] = useState()
     const [loginData, setLoginData] = useState({
-        username: '',
-        password: ''
+        username: {
+            value: '',
+            error: '',
+        },
+        password: {
+            value: '',
+            error: '',
+        }
     })
     const history = useHistory();
 
-    useEffect(() => {
-        // console.log(loginData)
-    }, [loginData])
+    // useEffect(() => {
+    //     console.log('ERROR INPUT')
+    // }, [loginData.username.error, loginData.password.error])
 
     async function loginSubmit(e) {
         e.preventDefault()
-        setDisablingLoader(true)
-        const loginRes = await login(loginData)
-        setLoginResult(loginRes)
 
-        setDisablingLoader(false)
-        setLoginData({
-            ...loginData,
-            password: ''
-        })
+        if (!loginData.username.error && !loginData.password.error) {
+            setDisablingLoader(true)
+            const loginRes = await login({ username: loginData.username.value, password: loginData.password.value })
+            setLoginResult(loginRes)
 
-        if (typeof loginRes === 'object') {
-            localStorage.setItem("loggedUser", JSON.stringify(loginRes));
-            history.push('/explore');
+            setDisablingLoader(false)
+            setLoginData({
+                ...loginData,
+                password: {
+                    ...loginData['password'],
+                    value: '',
+                }
+            })
+
+            if (typeof loginRes === 'object') {
+                localStorage.setItem("loggedUser", JSON.stringify(loginRes));
+                history.push('/explore');
+            }
+        } else {
+            setLoginResult('Incorrect Username/Password')
         }
-
     }
 
     return (
@@ -44,12 +58,20 @@ export default function SignIn() {
                     <Form.Control
                         type="text"
                         placeholder="Enter Username"
-                        value={loginData.username}
+                        name="username"
+                        value={loginData.username.value}
                         onChange={(e) => {
                             setLoginResult()
-                            setLoginData({ ...loginData, username: e.target.value }
+                            setLoginData({
+                                ...loginData,
+                                username: {
+                                    ...loginData['username'],
+                                    value: e.target.value,
+                                }
+                            }
                             )
                         }}
+                        onBlur={(e) => setLoginData(validateInput(e, loginData))}
                     />
 
                 </Form.Group>
@@ -59,12 +81,20 @@ export default function SignIn() {
                     <Form.Control
                         type="password"
                         placeholder="Password"
-                        value={loginData.password}
+                        name="password"
+                        value={loginData.password.value}
                         onChange={(e) => {
                             setLoginResult()
-                            setLoginData({ ...loginData, password: e.target.value }
+                            setLoginData({
+                                ...loginData,
+                                password: {
+                                    ...loginData['password'],
+                                    value: e.target.value,
+                                }
+                            }
                             )
                         }}
+                        onBlur={(e) => setLoginData(validateInput(e, loginData))}
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit" className='d-block mx-auto' disabled={disablingLoader}>
