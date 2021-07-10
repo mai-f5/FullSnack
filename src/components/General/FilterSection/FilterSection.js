@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Form, FormControl } from 'react-bootstrap'
 import { BiSearch } from 'react-icons/bi'
-import MyMultiSelect from './MyMultiSelect'
+import MyMultiSelect from '../FormComponents/MyMultiSelect'
 import { getProjectsCardData } from '../../../DAL/projects'
 
 export default function FilterSection({ setCardsData }) {

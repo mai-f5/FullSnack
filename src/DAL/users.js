@@ -24,7 +24,7 @@ const updateUserData = async updatedUserData => {
 
 const updateUserPassword = async updatedPasswordData => {
     try {
-        const res = await fetch(`http://localhost:3100/users/${updatedUserData.userId}`, {
+        const res = await fetch(`http://localhost:3100/users/${updatedPasswordData.userId}`, {
             method: 'PUT',
             body: updatedPasswordData,
         })
@@ -39,11 +39,12 @@ const login = async loginData => {
     try {
         const res = await fetch(`http://localhost:3100/users/login`, {
             method: 'POST',
-            body: loginData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginData),
         })
         return await res.json()
     } catch (err) {
-        console.log(err)
+        return "Incorrect Username/Password"
     }
 }
 

@@ -6,8 +6,8 @@ import { FiCode } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import { CgImage } from 'react-icons/cg'
-import MyDropzone from './FormInputs/MyDropzone'
-import MyMultiSelect from '../../General/FilterSection/MyMultiSelect'
+import MyDropzone from '../../General/FormComponents/MyDropzone'
+import MyMultiSelect from '../../General/FormComponents/MyMultiSelect'
 
 export default function EditProject() {
     return (
