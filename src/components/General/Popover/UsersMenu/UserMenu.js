@@ -14,7 +14,13 @@ export default function UserMenu() {
             <Nav /*defaultActiveKey="/home"*/ className="flex-column">
                 <Nav.Link onClick={() => history.push('/usersproject')}>My Projects</Nav.Link>
                 <Nav.Link onClick={() => history.push('/settings/1')}>Settings</Nav.Link>
-                <Nav.Link>Log Out</Nav.Link>
+                <Nav.Link onClick={() => {
+                    localStorage.removeItem('loggedUser')
+                    history.push('/home')
+                    window.location.reload(); //TEMP
+                }
+
+                }>Log Out</Nav.Link>
 
             </Nav>
 
