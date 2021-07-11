@@ -20,12 +20,13 @@ export default function Settings() {
     const [imgFile, setImgFile] = useState()
 
     useEffect(() => {
-        getUserData(1).then(data => { //passed userId manually for now
-            const userImg = data[0].profile_img
+        getUserData(uid).then(data => {
+            const userImg = data.profile_img
+            console.log(userImg)
             if (userImg) {
                 setPreviewedPicture(`http://localhost:3100/static/${userImg}`)
             }
-            setUserData({ ...data[0] })
+            setUserData({ ...data })
         })
     }, [])
 
@@ -33,7 +34,7 @@ export default function Settings() {
     function handleFormSubmit(e) {
         e.preventDefault()
         const formData = new FormData();
-        formData.append("userId", '1');
+        formData.append("userId", uid);
         formData.append('profileImg', imgFile);
         //console.log(formData.get('userId'))
         updateUserData(formData).then(data => console.log(data))
