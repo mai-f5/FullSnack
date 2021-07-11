@@ -3,15 +3,18 @@ import { Row, Container, Button } from 'react-bootstrap'
 import { BsSearch } from 'react-icons/bs'
 import ProjectCard from './ProjectCard/ProjectCard'
 import FilterSection from '../../General/FilterSection/FilterSection'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import EmptyProjectSvg from '../../../images/development.svg'
 export default function Explore({ type }) {
     const history = useHistory();
+    const location = useLocation()
     const [isUsersExplore, setIsUsersExplore] = useState(false)
     const [cardsData, setCardsData] = useState([])
 
+
     useEffect(() => {
-        type === 'userExplore' ? setIsUsersExplore(true) : setIsUsersExplore(false)
+        if (location.state) setIsUsersExplore(true)
+        else setIsUsersExplore(false)
     }, [])
 
 
@@ -19,9 +22,9 @@ export default function Explore({ type }) {
         <Container className='mt-5'>
             <h2 >{!isUsersExplore ? 'Full Stack Projects' : 'My Projects'}</h2>
             {isUsersExplore &&
-                <Button onClick={() => history.push('./editproject')}>+ Add New Project</Button>
+                <Button onClick={() => history.push('./editproject')} className='mb-3'>+ Add New Project</Button>
             }
-            <FilterSection setCardsData={setCardsData} />
+            <FilterSection setCardsData={setCardsData} isUserExplore={location.state} />
 
             <div className='projectsExplore'>
                 {cardsData.length > 0 ?

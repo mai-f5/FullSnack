@@ -5,7 +5,7 @@ import { BiSearch } from 'react-icons/bi'
 import MyMultiSelect from '../FormComponents/MyMultiSelect'
 import { getProjectsCardData } from '../../../DAL/projects'
 
-export default function FilterSection({ setCardsData }) {
+export default function FilterSection({ setCardsData, isUserExplore }) {
     const [filterByData, setFilterByData] = useState({
         sortBy: 'likes',
         amount: 20,
@@ -13,11 +13,17 @@ export default function FilterSection({ setCardsData }) {
         difficultyLevels: [],
         requiredTechs: [],
         assets: [],
-        userId: '',
         currentPage: 1,
+        userId: ''
     })
 
     useEffect(() => {
+        if (isUserExplore) {
+            setFilterByData({
+                ...filterByData,
+                userId: isUserExplore.id,
+            })
+        }
         getProjectsCardData(filterByData).then(data => {
             if (typeof data === 'object') {
                 setCardsData([...data])

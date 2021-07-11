@@ -14,10 +14,13 @@ export default function Header() {
     const history = useHistory();
 
     const [logged, setLogged] = useState(false)
-
+    const [user, setUser] = useState()
     useEffect(() => {
-        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
-        if (loggedUser) setLogged(true)
+        const currUser = JSON.parse(localStorage.getItem("loggedUser"))
+        if (currUser) {
+            setLogged(true)
+            setUser(currUser)
+        }
         else setLogged(false)
 
     }, [])
@@ -54,7 +57,7 @@ export default function Header() {
                             </div>}
 
                             {logged && <div className='d-lg-none'>
-                                <Nav.Link onClick={() => history.push('/usersproject')}>My Projects</Nav.Link>
+                                <Nav.Link onClick={() => history.push(`/explore`, user)}>My Projects</Nav.Link>
                                 <Nav.Link onClick={() => history.push('/settings')}>Settings</Nav.Link>
                                 <Nav.Link onClick={() => setLogged(false)}>Log Out</Nav.Link>
                             </div>}
