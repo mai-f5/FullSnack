@@ -14,7 +14,7 @@ export default function ForumThread({ thread, idx }) {
                     <div className='media-body forum-post'>
                         <h4 className='font-weight-bolder mt-2 mb-0'>{thread.topic}</h4>
                         <div className='d-md-flex justify-content-between w-75 blk-txt'>
-                            <p className='my-1 font-weight-bold'>By {thread.username}</p>
+                            <p className='my-1 font-weight-bold'>By {thread.user.username}</p>
                             <p className='my-1'>{thread.timestamp}</p>
                             <p>
                                 <MdReply className='mr-1 text-dark' />

@@ -10,7 +10,7 @@ export default function ForumComment({ comment }) {
                     <img src={userProfileImagePlaceholder} className='mr-3 forum-user-img rounded-circle d-inline' alt='commenter' />
                     <div className='media-body '>
                         <div className='comment-mdata d-md-flex justify-content-between'>
-                            <p className='m-0 mb-md-2 d-md-inline mr-md-4 blk-txt font-weight-bold'>{comment.username}</p>
+                            <p className='m-0 mb-md-2 d-md-inline mr-md-4 blk-txt font-weight-bold'>{comment.user.username}</p>
                             <p className='m-0 d-md-inline mr-4 blk-txt font-weight-light text-muted'>{comment.timestamp}</p>
                         </div>
                         <p className='mr-4 blk-txt font-weight-normal'>{comment.text}</p>
