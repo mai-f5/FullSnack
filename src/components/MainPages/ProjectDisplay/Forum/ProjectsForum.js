@@ -32,19 +32,18 @@ export default function ProjectsForum({ projectId }) {
                 </section>
                 {load && <div className='text-center'><Spinner animation="border" variant="dark" /></div>}
                 {!load && <div>
-                    <Row className='justify-content-end mr-2  mb-3'>
+                    <Row className='justify-content-end mr-2  mb-2'>
                         <MyModal type='newThread' />
                     </Row>
 
-                    {forumData.length < 1 ? <div className='empty-forum text-center mb-5 p-3 forum-bg'>
+                    {forumData.length < 1 ? <div className='empty-forum text-center mb-5 forum-bg'>
                         <HiChatAlt2 />
                         <p>No Threads were created yet</p>
                     </div>
                         :
-                        <div className='forum-filled bg-light p-3 forum-bg p-2'>
+                        <div className='forum-filled bg-light forum-bg p-2'>
                             <Accordion>
                                 {forumData.map((thread, idx) => {
-                                    console.log(thread)
                                     return <ForumThread thread={thread} idx={idx} />
                                 })}
 

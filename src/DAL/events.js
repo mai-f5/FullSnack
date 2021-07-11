@@ -73,3 +73,5 @@ const removeLike = async (userId, projectId) => {
         console.log(err)
     }
 }
+
+module.exports = { getUsersNewNotifications, updateNotificationsAsRead, addNewNotification, getDidUserLikeProject, addLike, removeLike }

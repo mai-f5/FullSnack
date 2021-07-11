@@ -5,9 +5,27 @@ import { OverlayTrigger, Popover } from 'react-bootstrap'
 import { BiBell } from 'react-icons/bi'
 import Notifications from './Notifications/Notifications'
 import userProfileImagePlaceholder from '../../../images/usersImages/user_id_1/img-placeholder.png'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getUsersNewNotifications } from '../../../DAL/events'
+
 export default function MyPopover({ type }) {
     const [notifsCount, setNotifsCount] = useState(2)
+
+
+    const [notifications, setNotifications] = useState()
+    useEffect(async () => {
+        let data;
+        switch (type) {
+            case 'notifications':
+                data = await getUsersNewNotifications(1)
+                setNotifications([...data])
+                break;
+        }
+
+        // setNotifications([...data])
+    }, [])
+
+
     return (
         <>
             <OverlayTrigger
@@ -19,7 +37,7 @@ export default function MyPopover({ type }) {
                     <Popover id={`popover-positioned-bottom`}>
                         {type === 'signin' ? <SignIn /> :
                             type === 'usermenu' ? <UserMenu /> :
-                                <Notifications />
+                                <Notifications notifications={notifications} />
                         }
                     </Popover>
                 }
@@ -33,7 +51,7 @@ export default function MyPopover({ type }) {
                                     :
                                     <div className='mt-n3'>
                                         <BiBell />
-                                        {notifsCount > 0 ? <div className='notif-badge rounded-circle bg-white text-dark text-center mt-n4 font-weight-bold ml-3'>{2}</div> : null}
+                                        {notifications && notifications.length > 0 ? <div className='notif-badge rounded-circle bg-white text-dark text-center mt-n4 font-weight-bold ml-3'>{notifications.length}</div> : null}
                                     </div>
                         }
                     </button>

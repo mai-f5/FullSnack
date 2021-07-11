@@ -3,18 +3,13 @@ import {
     Link
 } from "react-router-dom";
 
-export default function Notifications() {
-    const newNotifs = [
-        { id: 1, project_id: 1, username: 'xmbaron', text: 'liked your project', is_read: 0, timestamp: '2021-07-07 21:21:21' },
-        { id: 2, project_id: 1, username: 'xmbaron', text: 'posted a new thread on your project', is_read: 0, timestamp: '2021-07-07 21:21:21' },
-
-    ]
+export default function Notifications({ notifications }) {
     return (
         <div className='notification-wrapper m-n2 mb-n3'>
-            {newNotifs.map(notification => {
-                return <Link to="/projectdisplay" >
+            {notifications.map(notification => {
+                return <Link to={`/projectdisplay/${notification.project_id}`} >
                     <p className='p-2 mb-2'>
-                        <span className='font-weight-bold'>{notification.username}</span> {notification.text}
+                        <span className='font-weight-bold'>{notification.acted_user.username}</span> {notification.type.text}
                         <span className='d-block notif-time pt-1 text-dark font-weight-bold'>{notification.timestamp}</span>
                     </p>
                 </Link>
