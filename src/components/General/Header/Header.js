@@ -58,7 +58,7 @@ export default function Header() {
 
                             {logged && <div className='d-lg-none'>
                                 <Nav.Link onClick={() => history.push(`/explore`, user)}>My Projects</Nav.Link>
-                                <Nav.Link onClick={() => history.push('/settings')}>Settings</Nav.Link>
+                                <Nav.Link onClick={() => history.push(`/settings/${user.id}`, user)}>Settings</Nav.Link>
                                 <Nav.Link onClick={() => setLogged(false)}>Log Out</Nav.Link>
                             </div>}
                         </div>

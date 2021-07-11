@@ -43,7 +43,7 @@ export default function SignIn() {
 
             if (typeof loginRes === 'object') {
                 localStorage.setItem("loggedUser", JSON.stringify(loginRes));
-                history.push('/explore');
+                history.push('/explore', loginRes);
                 window.location.reload(); //TEMP
             }
         } else {

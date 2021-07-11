@@ -15,12 +15,12 @@ export default function UserMenu() {
     return (
         <div className='user-menu-wrapper'>
             <p>Signed in as
-                <span className='d-block font-weight-bold'>leebaronx3</span>
+                <span className='d-block font-weight-bold'>{user ? user.username : 'temp'}</span>
             </p>
             <hr className='border-dark' />
             <Nav /*defaultActiveKey="/home"*/ className="flex-column">
                 <Nav.Link onClick={() => history.push('/explore', user)}>My Projects</Nav.Link>
-                <Nav.Link onClick={() => history.push('/settings/1')}>Settings</Nav.Link>
+                <Nav.Link onClick={() => history.push(`/settings/${user.id}`, user)}>Settings</Nav.Link>
                 <Nav.Link onClick={() => {
                     localStorage.removeItem('loggedUser')
                     history.push('/home')

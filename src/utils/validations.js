@@ -5,7 +5,7 @@ const inputsRequirements = {
     },
     password: {
         required: true,
-        pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/
+        pattern: /^(?=.*\d)(?=.*[0-9a-zA-Z])(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/
     },
     passwordConfirm: {
         required: true,
@@ -58,8 +58,7 @@ const validateInput = ({ target: { value, name } }, formData) => {
 
     let newError = '';
     const validations = inputsRequirements[name];
-    console.log(validations)
-
+    console.log(value, validations.pattern.test(value))
     if (!value && validations.required) {
         newError = `${name} is required`;
     } else if (validations.pattern && !validations.pattern.test(value)) {
