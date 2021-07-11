@@ -24,6 +24,9 @@ export default function FilterSection({ setCardsData, isUserExplore }) {
                 userId: isUserExplore.id,
             })
         }
+    }, [])
+
+    useEffect(() => {
         getProjectsCardData(filterByData).then(data => {
             if (typeof data === 'object') {
                 setCardsData([...data])
