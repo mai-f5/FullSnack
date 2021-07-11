@@ -44,7 +44,6 @@ export default function ProjectsForum({ projectId }) {
                         <div className='forum-filled bg-light forum-bg p-2'>
                             <Accordion>
                                 {forumData.map((thread, idx) => {
-                                    console.log(thread)
                                     return <ForumThread thread={thread} idx={idx} />
                                 })}
 
