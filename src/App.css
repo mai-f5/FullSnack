@@ -275,6 +275,9 @@ header {
 	}
 }
 
+.carousel-item {
+	height: 250px;
+}
 /* User's Projects */
 .empty-users-projects svg {
 	font-size: 8rem;
