@@ -19,15 +19,6 @@ export default function FilterSection({ setCardsData, usersDashboard }) {
         userId: context.loggedUser.id
     })
 
-    // useEffect(() => {
-    //     if (usersDashboard.id) {
-    //         setFilterByData({
-    //             ...filterByData,
-    //             userId: ,
-    //         })
-    //     }
-    // }, [])
-
     useEffect(async () => {
         let cards;
         if (usersDashboard) {
