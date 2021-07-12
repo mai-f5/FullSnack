@@ -8,7 +8,6 @@ import { BsBarChart } from 'react-icons/bs'
 import image from '../../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
 export default function ProjectCard({ ownsProject, data }) {
 
-    console.log(data)
     const history = useHistory();
     return (
         <Col sm={12} md={4} lg={3} className='project-card'>

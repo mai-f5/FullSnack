@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import { Form, FormControl } from 'react-bootstrap'
 import { BiSearch } from 'react-icons/bi'
 import MyMultiSelect from '../FormComponents/MyMultiSelect'
-import { getProjectsCardData } from '../../../DAL/projects'
+import { getProjectsCardData, getUsersProjectsCardData } from '../../../DAL/projects'
+import userContext from '../../../utils/AuthContext'
 
-export default function FilterSection({ setCardsData, isUserExplore }) {
+export default function FilterSection({ setCardsData, usersDashboard }) {
+    const context = useContext(userContext)
     const [filterByData, setFilterByData] = useState({
         sortBy: 'likes',
         amount: 20,
@@ -14,27 +16,32 @@ export default function FilterSection({ setCardsData, isUserExplore }) {
         requiredTechs: [],
         assets: [],
         currentPage: 1,
-        userId: ''
+        userId: context.loggedUser.id
     })
 
-    useEffect(() => {
-        if (isUserExplore) {
-            setFilterByData({
-                ...filterByData,
-                userId: isUserExplore.id,
-            })
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (usersDashboard.id) {
+    //         setFilterByData({
+    //             ...filterByData,
+    //             userId: ,
+    //         })
+    //     }
+    // }, [])
 
-    useEffect(() => {
-        getProjectsCardData(filterByData).then(data => {
-            if (typeof data === 'object') {
-                setCardsData([...data])
-            } else {
-                setCardsData([])
-            }
-        })
-    }, [filterByData])
+    useEffect(async () => {
+        let cards;
+        if (usersDashboard) {
+            cards = await getUsersProjectsCardData(filterByData);
+        } else {
+            cards = await getProjectsCardData(filterByData);
+        }
+        if (cards.msg) {
+            setCardsData([])
+        } else {
+            setCardsData([...cards])
+        }
+
+    }, [usersDashboard, filterByData])
 
 
     function onInputChangeHandler({ target: { name, value } }) {

@@ -48,9 +48,9 @@ export default function Header() {
                             </div>}
 
                             {context.loggedUser.id && <div className='d-lg-none'>
-                                <Nav.Link onClick={() => history.push(`/explore`)}>My Projects</Nav.Link>
+                                <Nav.Link onClick={() => history.push(`/usersprojects/${context.loggedUser.id}`)}>My Projects</Nav.Link>
                                 <Nav.Link onClick={() => history.push(`/settings/${context.loggedUser.id}`)}>Settings</Nav.Link>
-                                <Nav.Link onClick={async () => {
+                                <Nav.Link onClick={() => {
                                     Cookies.remove('fsCookie')
                                     context.setLoggedUser({})
                                 }}>Log Out</Nav.Link>
