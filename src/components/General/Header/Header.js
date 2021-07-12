@@ -9,8 +9,9 @@ import {
 import { useHistory } from 'react-router-dom';
 import logo from '../../../images/logoSvg.svg';
 
-
 export default function Header() {
+
+
     const history = useHistory();
 
     const [logged, setLogged] = useState(false)
@@ -22,7 +23,6 @@ export default function Header() {
             setUser(currUser)
         }
         else setLogged(false)
-
     }, [])
 
     return (
