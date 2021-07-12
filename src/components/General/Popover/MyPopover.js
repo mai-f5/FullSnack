@@ -14,11 +14,11 @@ export default function MyPopover({ type }) {
 
     const [notifications, setNotifications] = useState()
     useEffect(async () => {
-        let data;
         switch (type) {
             case 'notifications':
+                let data;
                 data = await getUsersNewNotifications(1)
-                setNotifications([...data])
+                if (data.length > 0) setNotifications([...data])
                 break;
         }
 

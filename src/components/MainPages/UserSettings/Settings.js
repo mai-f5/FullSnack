@@ -24,8 +24,6 @@ export default function Settings() {
         if (!data) {
             <Redirect to='home' />
         }
-
-
         const userImg = data.profile_img
         console.log(userImg)
         if (userImg) {
