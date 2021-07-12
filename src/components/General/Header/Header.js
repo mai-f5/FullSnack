@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from "react";
 import { Navbar, Nav } from 'react-bootstrap'
 import MyPopover from '../Popover/MyPopover';
@@ -8,22 +8,12 @@ import {
 } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import logo from '../../../images/logoSvg.svg';
+import userContext from '../../../utils/AuthContext'
+import cookies from "js-cookies";
 
 export default function Header() {
-
-
+    const context = useContext(userContext)
     const history = useHistory();
-
-    const [logged, setLogged] = useState(false)
-    const [user, setUser] = useState()
-    useEffect(() => {
-        const currUser = JSON.parse(localStorage.getItem("loggedUser"))
-        if (currUser) {
-            setLogged(true)
-            setUser(currUser)
-        }
-        else setLogged(false)
-    }, [])
 
     return (
         <header>
@@ -32,7 +22,7 @@ export default function Header() {
 
                 {/* notifications on small screens - outside of collapsed menu */}
                 <Nav className='d-lg-none'>
-                    {logged && <>
+                    {context.loggedUser.id && <>
                         <MyPopover type='notifications' />
                     </>}
                 </Nav>
@@ -47,7 +37,7 @@ export default function Header() {
 
                         <div className='border-top'>
 
-                            {!logged && <div className='d-lg-none'>
+                            {!context.loggedUser.id && <div className='d-lg-none'>
                                 <div className='my-2'>
                                     <MyModal type='signup-nav' />
                                 </div>
@@ -56,22 +46,26 @@ export default function Header() {
                                 </div>
                             </div>}
 
-                            {logged && <div className='d-lg-none'>
-                                <Nav.Link onClick={() => history.push(`/explore`, user)}>My Projects</Nav.Link>
-                                <Nav.Link onClick={() => history.push(`/settings/${user.id}`, user)}>Settings</Nav.Link>
-                                <Nav.Link onClick={() => setLogged(false)}>Log Out</Nav.Link>
+                            {context.loggedUser.id && <div className='d-lg-none'>
+                                <Nav.Link onClick={() => history.push(`/explore`)}>My Projects</Nav.Link>
+                                <Nav.Link onClick={() => history.push(`/settings/${context.loggedUser.id}`)}>Settings</Nav.Link>
+                                <Nav.Link onClick={() => {
+                                    cookies.removeItem('fsCookieCli')
+                                    context.setLoggedUser({})
+
+                                }}>Log Out</Nav.Link>
                             </div>}
                         </div>
                     </Nav>
 
                     <Nav className='d-none d-lg-block'>
-                        {!logged &&
+                        {!context.loggedUser.id &&
                             <>
                                 <MyModal type='signup-nav' />
                                 <MyPopover type='signin' />
                             </>
                         }
-                        {logged && <>
+                        {context.loggedUser.id && <>
                             <MyPopover type='usermenu' />
                             <MyPopover type='notifications' />
                         </>}

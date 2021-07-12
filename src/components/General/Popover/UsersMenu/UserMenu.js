@@ -1,32 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Nav } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
-
+import cookies from "js-cookies";
+import userContext from '../../../../utils/AuthContext';
 
 export default function UserMenu() {
     const history = useHistory();
-
-    const [user, setUser] = useState()
-    useEffect(() => {
-        const currUser = JSON.parse(localStorage.getItem("loggedUser"))
-        if (currUser) setUser(currUser)
-    }, [])
+    const context = useContext(userContext)
 
     return (
         <div className='user-menu-wrapper'>
             <p>Signed in as
-                <span className='d-block font-weight-bold'>{user ? user.username : 'temp'}</span>
+                <span className='d-block font-weight-bold'>{context.loggedUser.username}</span>
             </p>
             <hr className='border-dark' />
-            <Nav /*defaultActiveKey="/home"*/ className="flex-column">
-                <Nav.Link onClick={() => history.push('/explore', user)}>My Projects</Nav.Link>
-                <Nav.Link onClick={() => history.push(`/settings/${user.id}`, user)}>Settings</Nav.Link>
+            <Nav className="flex-column">
+                <Nav.Link onClick={() => history.push('/explore')}>My Projects</Nav.Link>
+                <Nav.Link onClick={() => history.push(`/settings/${context.loggedUser.id}`)}>Settings</Nav.Link>
                 <Nav.Link onClick={() => {
-                    localStorage.removeItem('loggedUser')
+                    cookies.removeItem('fsCookieCli')
+                    context.setLoggedUser({})
                     history.push('/home')
-                    window.location.reload(); //TEMP
                 }
-
                 }>Log Out</Nav.Link>
 
             </Nav>

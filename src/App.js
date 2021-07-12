@@ -1,20 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { useState, useEffect } from 'react';
+import { getUserData } from './DAL/users';
+import cookies from "js-cookies";
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
-
 import Header from './components/General/Header/Header';
-import cookies from "js-cookies";
-import './App.css';
-import { useState, useEffect } from 'react';
-import userContext from './utils/AuthContext';
 import Routes from './components/MainPages/Routes';
-import { getUserData } from './DAL/users';
+import userContext from './utils/AuthContext';
+import './App.css';
 
 function App() {
 
   const [loggedUser, setLoggedUser] = useState({})
+
   useEffect(async () => {
+    console.log(cookies.getItem('fsCookie'))
     if (cookies.getItem('fsCookieCli')) {
       const uId = cookies.getItem('fsCookieCli')
       const userData = await getUserData(uId)
@@ -22,9 +23,6 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    console.log(loggedUser)
-  }, [loggedUser])
 
   return (
     <>
