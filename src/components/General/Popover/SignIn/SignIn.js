@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect, useContext } from 'react'
+import { Redirect, useHistory } from "react-router-dom";
 import { Form, Button, Spinner } from 'react-bootstrap'
 import ErrorMessage from '../../FormComponents/ErrorMsg';
 import { login } from '../../../../DAL/users'
 import validateInput from '../../../../utils/validations'
+import cookies from "js-cookies";
+import userContext from '../../../../utils/AuthContext';
 
 export default function SignIn() {
     const [disablingLoader, setDisablingLoader] = useState(false)
@@ -19,7 +21,7 @@ export default function SignIn() {
         }
     })
     const history = useHistory();
-
+    const context = useContext(userContext)
     // useEffect(() => {
     //     console.log('ERROR INPUT')
     // }, [loginData.username.error, loginData.password.error])
@@ -41,15 +43,25 @@ export default function SignIn() {
                 }
             })
 
-            if (typeof loginRes === 'object') {
-                localStorage.setItem("loggedUser", JSON.stringify(loginRes));
-                // history.push('/explore', loginRes);
-                window.location.reload(); //TEMP
+            if (loginRes.id) {
+                cookies.setItem('fsCookieCli', loginRes.id)
+                context.setLoggedUser(loginRes);
             }
         } else {
             setLoginResult('Incorrect Username/Password')
         }
     }
+
+
+    const [hasCookie, setHasCookie] = useState(false)
+    useEffect(() => {
+        if (cookies.getItem('fsCookie')) {
+
+        }
+        console.log(cookies.getItem('fsCookie'))
+    }, [])
+
+
 
     return (
         <>
