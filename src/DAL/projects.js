@@ -1,7 +1,16 @@
 //GET
 const getProjectsCardData = async formData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechs}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&userId=${formData.userId}`)
+        const res = await fetch(`http://localhost:3100/projects/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechs}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}`)
+        return await res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const getUsersProjectsCardData = async formData => {
+    try {
+        const res = await fetch(`http://localhost:3100/projects/dashboard/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechs}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&userId=${formData.userId}`, { credentials: 'include' })
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -78,4 +87,4 @@ const removePicture = async pictureId => {
     }
 }
 
-export { getProjectsCardData, getProjectData, updateProjectData, hideProject, addNewProject, removeReqTech, removePicture }
+export { getProjectsCardData, getUsersProjectsCardData, getProjectData, updateProjectData, hideProject, addNewProject, removeReqTech, removePicture }

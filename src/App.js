@@ -24,14 +24,12 @@ function App() {
 
 
   return (
-    <>
-      <userContext.Provider value={{ loggedUser, setLoggedUser }}>
-        <Router>
-          <Header />
-          <Routes />
-        </Router>
-      </userContext.Provider>
-    </>
+    <userContext.Provider value={{ loggedUser, setLoggedUser }}>
+      <Router>
+        <Header />
+        <Routes />
+      </Router>
+    </userContext.Provider>
   );
 }
 

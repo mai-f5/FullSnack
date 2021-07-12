@@ -15,10 +15,9 @@ export default function UserMenu() {
             </p>
             <hr className='border-dark' />
             <Nav className="flex-column">
-                <Nav.Link onClick={() => history.push('/explore')}>My Projects</Nav.Link>
+                <Nav.Link onClick={() => history.push(`/usersprojects/${context.loggedUser.id}`)}>My Projects</Nav.Link>
                 <Nav.Link onClick={() => history.push(`/settings/${context.loggedUser.id}`)}>Settings</Nav.Link>
                 <Nav.Link onClick={() => {
-
                     Cookies.remove('fsCookie')
                     context.setLoggedUser({})
                     history.push('/home')

@@ -43,6 +43,7 @@ const login = async loginData => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData),
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {

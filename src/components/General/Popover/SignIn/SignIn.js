@@ -5,6 +5,7 @@ import ErrorMessage from '../../FormComponents/ErrorMsg';
 import { getUserData, login } from '../../../../DAL/users'
 import { validateInput } from '../../../../utils/validations'
 import userContext from '../../../../utils/AuthContext';
+import Cookies from 'js-cookie';
 
 export default function SignIn() {
     const [disablingLoader, setDisablingLoader] = useState(false)

@@ -21,8 +21,8 @@ export default function Routes() {
             <Route exact path="/explore">
                 <ExplorePage />
             </Route>
-            <Route path="/usersproject/:uid">
-                <ExplorePage type='userExplore' />
+            <Route path="/usersprojects/:uid">
+                <ExplorePage type={'users'} />
             </Route>
             <Route path="/settings/:uid">
                 <Settings />
