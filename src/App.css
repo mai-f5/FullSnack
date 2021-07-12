@@ -34,11 +34,17 @@ h2 {
 	background-color: #061561;
 }
 
+.btn:disabled {
+	background-color: lightgray !important;
+	border: none;
+}
+
 .btn:active {
 	background-color: var(--darkest-blue);
 	border: none;
 	box-shadow: 0 0 0 0.2rem rgb(0 10 58 / 50%) !important;
 }
+
 .btn:focus {
 	background-color: var(--darkest-blue) !important;
 	box-shadow: 0 0 0 0.2rem rgb(0 10 58 / 50%) !important;

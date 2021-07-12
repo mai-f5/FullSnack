@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Row, Col, Container } from 'react-bootstrap'
 import { GrProjects } from "react-icons/gr"
 import { BiDownload } from "react-icons/bi"
 import { BsChatSquareDots } from "react-icons/bs"
 import MyModal from '../../General/Modal/MyModal'
+import userContext from '../../../utils/AuthContext'
 
 
 export default function Homepage() {
+    const context = useContext(userContext)
     return (
         <div className='homepage'>
             <Container fluid>
@@ -57,7 +59,7 @@ export default function Homepage() {
                         </section>
                     </Col>
                 </Row>
-                <MyModal type='signup' />
+                {!context.loggedUser.id && <MyModal type='signup' />}
             </Container>
         </div>
     )
