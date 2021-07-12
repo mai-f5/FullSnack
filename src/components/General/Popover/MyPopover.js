@@ -43,7 +43,7 @@ export default function MyPopover({ type }) {
                 }
             >
                 {
-                    <button className='btn-as-link'>
+                    <button className='btn-as-link' disabled={type === 'notifications' && !notifications ? true : false}>
                         {
                             type === 'signin' ? 'Sign In' :
                                 type === 'usermenu' ?

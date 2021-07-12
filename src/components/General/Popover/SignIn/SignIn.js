@@ -2,14 +2,14 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Redirect, useHistory } from "react-router-dom";
 import { Form, Button, Spinner } from 'react-bootstrap'
 import ErrorMessage from '../../FormComponents/ErrorMsg';
-import { login } from '../../../../DAL/users'
+import { getUserData, login } from '../../../../DAL/users'
 import validateInput from '../../../../utils/validations'
-import cookies from "js-cookies";
+import Cookies from "js-cookie";
 import userContext from '../../../../utils/AuthContext';
 
 export default function SignIn() {
     const [disablingLoader, setDisablingLoader] = useState(false)
-    const [loginResult, setLoginResult] = useState()
+    const [loginResult, setLoginResult] = useState({})
     const [loginData, setLoginData] = useState({
         username: {
             value: '',
@@ -22,9 +22,6 @@ export default function SignIn() {
     })
     const history = useHistory();
     const context = useContext(userContext)
-    // useEffect(() => {
-    //     console.log('ERROR INPUT')
-    // }, [loginData.username.error, loginData.password.error])
 
     async function loginSubmit(e) {
         e.preventDefault()
@@ -33,8 +30,12 @@ export default function SignIn() {
             setDisablingLoader(true)
             const loginRes = await login({ username: loginData.username.value, password: loginData.password.value })
             setLoginResult(loginRes)
-
             setDisablingLoader(false)
+
+            if (loginRes.id) {
+                context.setLoggedUser(loginRes);
+            }
+        } else {
             setLoginData({
                 ...loginData,
                 password: {
@@ -42,26 +43,9 @@ export default function SignIn() {
                     value: '',
                 }
             })
-
-            if (loginRes.id) {
-                cookies.setItem('fsCookieCli', loginRes.id)
-                context.setLoggedUser(loginRes);
-            }
-        } else {
             setLoginResult('Incorrect Username/Password')
         }
     }
-
-
-    const [hasCookie, setHasCookie] = useState(false)
-    useEffect(() => {
-        if (cookies.getItem('fsCookie')) {
-
-        }
-        console.log(cookies.getItem('fsCookie'))
-    }, [])
-
-
 
     return (
         <>
@@ -74,7 +58,7 @@ export default function SignIn() {
                         name="username"
                         value={loginData.username.value}
                         onChange={(e) => {
-                            setLoginResult()
+                            setLoginResult({})
                             setLoginData({
                                 ...loginData,
                                 username: {
@@ -97,7 +81,7 @@ export default function SignIn() {
                         name="password"
                         value={loginData.password.value}
                         onChange={(e) => {
-                            setLoginResult()
+                            setLoginResult({})
                             setLoginData({
                                 ...loginData,
                                 password: {
