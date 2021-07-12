@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
-import { useLocation, useParams } from "react-router-dom";
+import { Redirect, useLocation, useParams } from "react-router-dom";
 import { Container, Button, Form, Row, Col, ButtonGroup, ToggleButton } from 'react-bootstrap'
 import imgPlaceholder from '../../../images/img-placeholder.png'
 import MyModal from '../../General/Modal/MyModal'
@@ -19,15 +19,20 @@ export default function Settings() {
     const [previewedPicture, setPreviewedPicture] = useState(imgPlaceholder)
     const [imgFile, setImgFile] = useState()
 
-    useEffect(() => {
-        getUserData(uid).then(data => {
-            const userImg = data.profile_img
-            console.log(userImg)
-            if (userImg) {
-                setPreviewedPicture(`http://localhost:3100/static/${userImg}`)
-            }
-            setUserData({ ...data })
-        })
+    useEffect(async () => {
+        const data = await getUserData(uid);
+        if (!data) {
+            <Redirect to='home' />
+        }
+
+
+        const userImg = data.profile_img
+        console.log(userImg)
+        if (userImg) {
+            setPreviewedPicture(`http://localhost:3100/static/${userImg}`)
+        }
+        setUserData({ ...data })
+
     }, [])
 
 

@@ -32,9 +32,9 @@ function App() {
           <Route exact path="/explore">
             <ExplorePage />
           </Route>
-          {/* <Route path="/usersproject/:uid">
+          <Route path="/usersproject/:uid">
             <ExplorePage type='userExplore' />
-          </Route> */}
+          </Route>
           <Route path="/settings/:uid">
             <Settings />
           </Route>
