@@ -1,19 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import {  } from 'react-bootstrap'
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
 } from "react-router-dom";
 
-// import Homepage from './components/MainPages/Homepage/Homepage';
 import Header from './components/General/Header/Header';
-// import ExplorePage from './components/MainPages/Explore/ExplorePage';
-// // import UsersProject from './components/MainPages/UsersProjects/UsersProject';
-// import Settings from './components/MainPages/UserSettings/Settings';
-// import EditProject from './components/MainPages/AddEditProject/EditProject';
-// import ProjectDisplay from './components/MainPages/ProjectDisplay/ProjectDisplay';
 import cookies from "js-cookies";
 import './App.css';
 import { useState, useEffect } from 'react';
@@ -44,8 +34,6 @@ function App() {
           <Routes />
         </Router>
       </userContext.Provider>
-
-
     </>
   );
 }
