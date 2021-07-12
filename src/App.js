@@ -15,9 +15,8 @@ function App() {
   const [loggedUser, setLoggedUser] = useState({})
 
   useEffect(async () => {
-    console.log(cookies.getItem('fsCookie'))
-    if (cookies.getItem('fsCookieCli')) {
-      const uId = cookies.getItem('fsCookieCli')
+    if (cookies.getItem('fsCookie')) {
+      const uId = cookies.getItem('fsCookie')
       const userData = await getUserData(uId)
       setLoggedUser(userData)
     }
