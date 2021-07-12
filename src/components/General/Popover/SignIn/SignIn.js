@@ -3,8 +3,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { Form, Button, Spinner } from 'react-bootstrap'
 import ErrorMessage from '../../FormComponents/ErrorMsg';
 import { getUserData, login } from '../../../../DAL/users'
-import validateInput from '../../../../utils/validations'
-import Cookies from "js-cookie";
+import { validateInput } from '../../../../utils/validations'
 import userContext from '../../../../utils/AuthContext';
 
 export default function SignIn() {

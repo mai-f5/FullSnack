@@ -38,13 +38,11 @@ const updateUserPassword = async updatedPasswordData => {
 
 //POST
 const login = async loginData => {
-    console.log(loginData)
     try {
         const res = await fetch(`http://localhost:3100/users/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData),
-            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
@@ -57,7 +55,8 @@ const addNewUser = async newUsersData => {
     try {
         const res = await fetch(`http://localhost:3100/users`, {
             method: 'POST',
-            body: newUsersData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newUsersData),
         })
         return await res.json()
     } catch (err) {

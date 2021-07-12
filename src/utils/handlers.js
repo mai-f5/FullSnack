@@ -1,5 +1,21 @@
-const inputChangeHandler = () => {
-
+const inputChangeHandler = ({ target }, formData) => {
+    return {
+        ...formData,
+        [target.name]: {
+            ...formData[target.name],
+            value: target.value
+        }
+    }
 }
 
-const inputBlurHandler = () => { }
+
+// onChange = {(e) => setSignUpData(prevState => ({
+//     ...prevState,
+//     username: {
+//         ...prevState['username'],
+//         value: e.target.value
+//     }
+// })
+// )}
+
+export { inputChangeHandler }

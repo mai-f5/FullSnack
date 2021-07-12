@@ -13,7 +13,7 @@ const inputsRequirements = {
     },
     email: {
         required: true,
-        pattern: ''
+        pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
     },
     projectName: {
         required: true,
@@ -58,11 +58,14 @@ const validateInput = ({ target: { value, name } }, formData) => {
 
     let newError = '';
     const validations = inputsRequirements[name];
-    console.log(value, validations.pattern.test(value))
     if (!value && validations.required) {
-        newError = `${name} is required`;
+        newError = name === 'passwordConfirm' ? 'password confirmation is required' : `${name} is required`;
     } else if (validations.pattern && !validations.pattern.test(value)) {
         newError = `Invalid ${name} value`;
+    } else if (name === 'passwordConfirm') {
+        if (!comparePasswords(formData.password.value, formData.passwordConfirm.value)) {
+            newError = 'Passwords don\'t match!'
+        }
     }
 
     return {
@@ -75,4 +78,21 @@ const validateInput = ({ target: { value, name } }, formData) => {
     };
 };
 
-export default validateInput;
+function comparePasswords(password, passwordConfirm) {
+    if (password === passwordConfirm) return true;
+    return false;
+}
+
+//Full Form Validation
+function isFormValid(formData) {
+    for (const input in formData) {
+        if (!formData[input].value || formData[input].error) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+export { validateInput, isFormValid };
