@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { useState, useEffect } from "react";
 import { Navbar, Nav } from 'react-bootstrap'
 import MyPopover from '../Popover/MyPopover';
 import MyModal from '../Modal/MyModal';
@@ -9,11 +8,13 @@ import {
 import { useHistory } from 'react-router-dom';
 import logo from '../../../images/logoSvg.svg';
 import userContext from '../../../utils/AuthContext'
-import cookies from "js-cookies";
+import Cookies from "js-cookie";
+
 
 export default function Header() {
     const context = useContext(userContext)
     const history = useHistory();
+
 
     return (
         <header>
@@ -49,10 +50,9 @@ export default function Header() {
                             {context.loggedUser.id && <div className='d-lg-none'>
                                 <Nav.Link onClick={() => history.push(`/explore`)}>My Projects</Nav.Link>
                                 <Nav.Link onClick={() => history.push(`/settings/${context.loggedUser.id}`)}>Settings</Nav.Link>
-                                <Nav.Link onClick={() => {
-                                    cookies.removeItem('fsCookieCli')
+                                <Nav.Link onClick={async () => {
+                                    Cookies.remove('fsCookie')
                                     context.setLoggedUser({})
-
                                 }}>Log Out</Nav.Link>
                             </div>}
                         </div>

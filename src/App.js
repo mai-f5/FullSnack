@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState, useEffect } from 'react';
 import { getUserData } from './DAL/users';
-import cookies from "js-cookies";
+import Cookies from "js-cookie";
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
@@ -15,8 +15,8 @@ function App() {
   const [loggedUser, setLoggedUser] = useState({})
 
   useEffect(async () => {
-    if (cookies.getItem('fsCookie')) {
-      const uId = cookies.getItem('fsCookie')
+    if (Cookies.get('fsCookie')) {
+      const uId = Cookies.get('fsCookie')
       const userData = await getUserData(uId)
       setLoggedUser(userData)
     }

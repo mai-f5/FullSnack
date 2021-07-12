@@ -66,11 +66,4 @@ const addNewUser = async newUsersData => {
 }
 
 
-const logout = async () => {
-    try {
-        const res = await fetch(`http://localhost:3100/users/logout`, { method: 'DELETE', credentials: 'include' })
-    } catch (err) {
-
-    }
-}
 export { getUserData, updateUserData, updateUserPassword, login, addNewUser }

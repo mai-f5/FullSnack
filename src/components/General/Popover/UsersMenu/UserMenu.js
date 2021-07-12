@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Nav } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
-import cookies from "js-cookies";
+import Cookies from "js-cookie";
 import userContext from '../../../../utils/AuthContext';
 
 export default function UserMenu() {
@@ -18,7 +18,8 @@ export default function UserMenu() {
                 <Nav.Link onClick={() => history.push('/explore')}>My Projects</Nav.Link>
                 <Nav.Link onClick={() => history.push(`/settings/${context.loggedUser.id}`)}>Settings</Nav.Link>
                 <Nav.Link onClick={() => {
-                    cookies.removeItem('fsCookieCli')
+
+                    Cookies.remove('fsCookie')
                     context.setLoggedUser({})
                     history.push('/home')
                 }
