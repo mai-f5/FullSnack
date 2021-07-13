@@ -400,6 +400,8 @@ button.forum-post:focus {
 	border-radius: 10px;
 	height: 170px;
 	overflow-y: auto;
+	position: relative;
+	z-index: 1;
 }
 .drag-drop-files svg {
 	color: var(--medium-blue);
@@ -414,13 +416,18 @@ button.forum-post:focus {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	width: 75%;
 }
 
 .file-icon-dnd {
 	font-size: 12pt !important;
 }
 .remove-link {
+	width: 60px;
+	height: 20px;
 	color: red !important;
+	z-index: 111;
+	position: absolute;
 }
 .remove-link:hover,
 .remove-link:active,
@@ -486,4 +493,24 @@ button.forum-post:focus {
 
 .share-btns svg {
 	width: 50px;
+}
+
+/* TOGGLE RB */
+.toggle-rb .btn-outline-success:not(:disabled):not(.disabled).active,
+.toggle-rb .btn-outline-success:not(:disabled):not(.disabled):active,
+.toggle-rb .show > .btn-outline-success.dropdown-toggle {
+	background-color: var(--medium-blue) !important;
+	color: var(--white);
+}
+
+.toggle-rb label {
+	background-color: white !important;
+	border: 1px solid var(--medium-blue) !important;
+	color: var(--medium-blue);
+}
+
+.toggle-rb label:hover {
+	background-color: var(--medium-blue) !important;
+	border: 1px solid var(--white) !important;
+	color: var(--white);
 }

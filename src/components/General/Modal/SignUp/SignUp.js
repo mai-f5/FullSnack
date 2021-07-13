@@ -3,8 +3,8 @@ import { Form, Button } from 'react-bootstrap'
 import { addNewUser, login } from '../../../../DAL/users'
 import { inputChangeHandler } from '../../../../utils/handlers'
 import { validateInput, isFormValid } from '../../../../utils/validations'
-import ErrorMessage from '../../FormComponents/ErrorMsg'
 import userContext from '../../../../utils/AuthContext'
+import TextInput from '../../FormComponents/TextInput'
 export default function SignUp() {
     const context = useContext(userContext)
     const [signUpData, setSignUpData] = useState({
@@ -27,8 +27,6 @@ export default function SignUp() {
     })
     const [isBtnDisabled, setIsBtnDisabled] = useState(true)
     const [blurredOutOfInput, setBlurredOutOfInput] = useState(false)
-
-
     useEffect(() => {
         setIsBtnDisabled(!isFormValid(signUpData))
         setBlurredOutOfInput(false)
@@ -37,7 +35,7 @@ export default function SignUp() {
     async function signUp(e) {
         e.preventDefault();
         if (isFormValid(signUpData)) {
-            const newUser = await addNewUser({
+            await addNewUser({
                 username: signUpData.username.value,
                 email: signUpData.email.value,
                 password: signUpData.password.value
@@ -54,75 +52,68 @@ export default function SignUp() {
             <hr />
             <p>All fields are Required</p>
             <Form onSubmit={signUp}>
+                <TextInput
+                    controlId={'username'}
+                    type={'text'}
+                    label={'Username'}
+                    info={'Must be between 4-12 characters'}
+                    name={'username'}
+                    value={signUpData.username.value}
+                    error={signUpData.username.error}
+                    onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
+                    onBlur={(e) => {
+                        setBlurredOutOfInput(true)
+                        setSignUpData(validateInput(e, signUpData))
+                    }}
+                    placeholder={'Enter Username'}
+                />
 
-                <Form.Group controlId="username">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Text className="text-muted">
-                        Must be between 4-12 characters
-                    </Form.Text>
-                    <Form.Control type="text"
-                        name="username"
-                        value={signUpData.username.value}
-                        onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                        onBlur={(e) => {
-                            setBlurredOutOfInput(true)
-                            setSignUpData(validateInput(e, signUpData))
-                        }}
-                        placeholder="Enter Username" />
-                    <ErrorMessage error={signUpData.username.error} />
-                </Form.Group>
+                <TextInput
+                    controlId={'email'}
+                    type={'email'}
+                    label={'Email'}
+                    info={'Must be a valid email address'}
+                    name={'email'}
+                    value={signUpData.email.value}
+                    error={signUpData.email.error}
+                    onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
+                    onBlur={(e) => {
+                        setBlurredOutOfInput(true)
+                        setSignUpData(validateInput(e, signUpData))
+                    }}
+                    placeholder={'Enter email'}
+                />
+                <TextInput
+                    controlId={'password'}
+                    type={'password'}
+                    label={'Password'}
+                    info={'Must be between 8-16 characters, At least 1 letter and 1 number'}
+                    name={'password'}
+                    value={signUpData.password.value}
+                    error={signUpData.password.error}
+                    onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
+                    onBlur={(e) => {
+                        setBlurredOutOfInput(true)
+                        setSignUpData(validateInput(e, signUpData))
+                    }}
+                    placeholder={'Enter password'}
+                />
 
-                <Form.Group controlId="email">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Text className="text-muted">
-                        Must be a valid email address
-                    </Form.Text>
-                    <Form.Control type="email"
-                        name="email"
-                        value={signUpData.email.value}
-                        onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                        onBlur={(e) => {
-                            setBlurredOutOfInput(true)
-                            setSignUpData(validateInput(e, signUpData))
-                        }}
-                        placeholder="Enter email" />
-                    <ErrorMessage error={signUpData.email.error} />
-                </Form.Group>
-
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Text className="text-muted">
-                        Must be between 8-16 characters, At least 1 letter and 1 number
-                    </Form.Text>
-                    <Form.Control type="password"
-                        name="password"
-                        value={signUpData.password.value}
-                        onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                        onBlur={(e) => {
-                            setBlurredOutOfInput(true)
-                            setSignUpData(validateInput(e, signUpData))
-                        }}
-                        placeholder="Password" />
-                    <ErrorMessage error={signUpData.password.error} />
-                </Form.Group>
-
-
-                <Form.Group controlId="passwordConfirm">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Text className="text-muted">
-                        Must match password
-                    </Form.Text>
-                    <Form.Control type="password"
-                        name="passwordConfirm"
-                        value={signUpData.passwordConfirm.value}
-                        onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                        onBlur={(e) => {
-                            setBlurredOutOfInput(true)
-                            setSignUpData(validateInput(e, signUpData))
-                        }}
-                        placeholder="Enter password again" />
-                    <ErrorMessage error={signUpData.passwordConfirm.error} />
-                </Form.Group>
+                <TextInput
+                    controlId={'passwordConfirm'}
+                    type={'password'}
+                    label={'Confirm Password'}
+                    info={'Must match entered password'}
+                    name={'passwordConfirm'}
+                    value={signUpData.passwordConfirm.value}
+                    error={signUpData.passwordConfirm.error}
+                    onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
+                    onBlur={(e) => {
+                        setBlurredOutOfInput(true)
+                        setSignUpData(validateInput(e, signUpData))
+                    }}
+                    placeholder={'Enter password'}
+                />
 
                 <Button variant="primary" type="submit" className='d-block mx-auto' disabled={isBtnDisabled}>
                     Join

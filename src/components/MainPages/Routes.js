@@ -22,7 +22,7 @@ export default function Routes() {
                 <ExplorePage />
             </Route>
             <Route path="/usersprojects/:uid">
-                <ExplorePage type={'users'} />
+                <ExplorePage type='users' />
             </Route>
             <Route path="/settings/:uid">
                 <Settings />
