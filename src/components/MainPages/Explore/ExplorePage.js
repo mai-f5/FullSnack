@@ -29,7 +29,7 @@ export default function Explore({ type }) {
         <Container className='mt-5'>
             <h2 >{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
             {isUsersDashboard &&
-                <Button onClick={() => history.push('/editproject')} className='mb-3'>+ Add New Project</Button>
+                <Button onClick={() => history.push('/editproject/new')} className='mb-3'>+ Add New Project</Button>
             }
             <FilterSection setCardsData={setCardsData} usersDashboard={isUsersDashboard} />
 
@@ -46,7 +46,7 @@ export default function Explore({ type }) {
                         <p>No projects created yet.<br />
                             Go ahead and create your first project!
                         </p>
-                        <Button onClick={() => history.push('/editproject')}>+ Add your first project</Button>
+                        <Button onClick={() => history.push('/editproject/new')}>+ Add your first project</Button>
                     </div>
                 }
             </div >

@@ -13,7 +13,6 @@ export default function MyDropzone({ type }) {
 
     const [hasFiles, setHasFiles] = useState(false)  /*TEMP */
 
-
     return (
         <div className="drag-drop-files">
             <Dropzone onDrop={handleDrop}>
@@ -27,7 +26,7 @@ export default function MyDropzone({ type }) {
                                 <p>or drag and drop files here</p>
                             </div>}
                             {hasFiles && <div>
-                                {type === 'images' ? <ul className='dnd-ul text-left'>
+                                {type === 'pictures' ? <ul className='dnd-ul text-left'>
                                     {files.map((file, idx) => <li key={idx} className='d-flex'>
                                         <AiOutlineFile className='mr-2' /><span className='file-name-dnd mr-2'>{file[0].name}</span>
                                         <span key={`remove-${idx}`}><Button className='btn-as-link p-0 m-0 remove-link font-weight-light'>remove</Button></span>

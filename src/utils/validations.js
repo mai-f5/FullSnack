@@ -15,41 +15,36 @@ const inputsRequirements = {
         required: true,
         pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
     },
-    projectName: {
+    name: {
         required: true,
-        pattern: ''
+        pattern: /^[\s\S]{4,20}$/
     },
     difficultyLevel: {
         required: true,
-        pattern: ''
     },
-    requiredTechnologies: {
+    requiredTechs: {
         required: true,
-        pattern: ''
     },
     githubLink: {
         required: false,
-        pattern: ''
+        pattern: /^([A-Za-z0-9]+@|http(|s)\:\/\/)([A-Za-z0-9.]+(:\d+)?)(?::|\/)([\d\/\w.-]+?)(\.git)?$/i
     },
-    projectDescription: {
+    description: {
         required: false,
+    },
+    pictures: {
+        required: true,
         pattern: ''
     },
-    projectPictures: {
-        required: false,
-        pattern: ''
-    },
-    projectAssets: {
+    assetsSrc: {
         required: false,
         pattern: ''
     },
     topic: {
         required: true,
-        pattern: ''
     },
     comment: {
         required: true,
-        pattern: ''
     }
 }
 
