@@ -6,7 +6,7 @@ import MyMultiSelect from '../FormComponents/MyMultiSelect'
 import { getProjectsCardData, getUsersProjectsCardData } from '../../../DAL/projects'
 import userContext from '../../../utils/AuthContext'
 
-export default function FilterSection({ setCardsData, usersDashboard }) {
+export default function FilterSection({ setCardsData, usersDashboard, setLoader }) {
     const context = useContext(userContext)
     const [filterByData, setFilterByData] = useState({
         sortBy: 'likes',
@@ -21,6 +21,7 @@ export default function FilterSection({ setCardsData, usersDashboard }) {
 
     useEffect(async () => {
         let cards;
+        // setLoader(true)
         if (usersDashboard) {
             cards = await getUsersProjectsCardData(filterByData);
         } else {
@@ -30,8 +31,8 @@ export default function FilterSection({ setCardsData, usersDashboard }) {
             setCardsData([])
         } else {
             setCardsData([...cards])
+            setLoader(false)
         }
-
     }, [usersDashboard, filterByData])
 
 

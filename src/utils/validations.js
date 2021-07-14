@@ -27,7 +27,7 @@ const inputsRequirements = {
     },
     githubLink: {
         required: false,
-        pattern: /^([A-Za-z0-9]+@|http(|s)\:\/\/)([A-Za-z0-9.]+(:\d+)?)(?::|\/)([\d\/\w.-]+?)(\.git)?$/i
+        pattern: /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
     },
     description: {
         required: false,
@@ -81,7 +81,8 @@ function comparePasswords(password, passwordConfirm) {
 //Full Form Validation
 function isFormValid(formData) {
     for (const input in formData) {
-        if (!formData[input].value || formData[input].error) {
+        if (input === 'userId') break;
+        if (inputsRequirements[input].required && formData[input].error.includes('is required')) {
             return false;
         }
     }

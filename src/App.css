@@ -422,13 +422,18 @@ button.forum-post:focus {
 .file-icon-dnd {
 	font-size: 12pt !important;
 }
+
 .remove-link {
+	color: red !important;
+}
+.multiple-files-remove {
 	width: 60px;
 	height: 20px;
-	color: red !important;
+	display: inline-block;
 	z-index: 111;
 	position: absolute;
 }
+
 .remove-link:hover,
 .remove-link:active,
 .remove-link:focus {

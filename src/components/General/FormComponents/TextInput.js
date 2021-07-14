@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 import ErrorMsg from './ErrorMsg'
 
-export default function TextInput({ controlId, type, icon, label, info, isRequired, name, value, error, onChange, onBlur, placeholder, as, rows, maxLength }) {
+export default function TextInput({ controlId, type, icon, label, info, isRequired, name, value, error, onChange, onBlur, placeholder, as, rows, maxLength, defaultValue }) {
     return (
         <Form.Group controlId={controlId}>
             <Form.Label>
@@ -24,6 +24,7 @@ export default function TextInput({ controlId, type, icon, label, info, isRequir
                 rows={rows}
                 as={as}
                 maxLength={maxLength}
+                defaultValue={defaultValue}
             />
             <ErrorMsg error={error} />
         </Form.Group>

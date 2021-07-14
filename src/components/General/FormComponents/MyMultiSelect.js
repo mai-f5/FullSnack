@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
 import { getRequiredTechsList, getDifficultyLevelsList } from '../../../DAL/staticData'
 
-export default function MyMultiSelect({ onSelectChange, type, location }) {
+export default function MyMultiSelect({ onSelectChange, type, location, checkedValues }) {
 
     const assets = [
         { value: '1', label: 'Has Assets' },
@@ -21,6 +21,7 @@ export default function MyMultiSelect({ onSelectChange, type, location }) {
         getDifficultyLevelsList().then(data => {
             setDifficultyLevels([...data])
         })
+        if (type === 'reqTechs' && location) { setSelected(checkedValues) }
     }, [])
 
     useEffect(() => {
