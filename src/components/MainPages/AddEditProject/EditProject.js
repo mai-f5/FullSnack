@@ -111,10 +111,18 @@ export default function EditProject({ isNew }) {
         const projectFormData = new FormData()
         for (const input in projectData) {
             if (input === 'userId') projectFormData.append(input, projectData[input])
+            // else if (input === 'pictures' || input === 'assetsSrc') break; //TEMP
             else projectFormData.append(input, projectData[input].value)
         }
-        if (pid === 'new') await addNewProject(projectFormData)
-        else await updateProjectData(projectFormData)
+        let projectsId;
+        if (pid === 'new') {
+            projectsId = await addNewProject(projectFormData)
+        }
+        else {
+            await updateProjectData(projectFormData)
+            projectsId = pid
+        }
+        history.push(`/projectdisplay/${projectsId.id}`)
     }
 
     return (
