@@ -106,23 +106,30 @@ export default function EditProject({ isNew }) {
         setBlurredOutOfInput(false)
     }, [blurredOutOfInput])
 
+
+    useEffect(() => {
+        console.log(projectData);
+    }, [projectData])
+
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const projectFormData = new FormData()
         for (const input in projectData) {
-            if (input === 'userId') projectFormData.append(input, projectData[input])
+            if (input === 'userId' || input === 'id') projectFormData.append(input, projectData[input])
             // else if (input === 'pictures' || input === 'assetsSrc') break; //TEMP
             else projectFormData.append(input, projectData[input].value)
         }
         let projectsId;
         if (pid === 'new') {
-            projectsId = await addNewProject(projectFormData)
+            const newProject = await addNewProject(projectFormData)
+            projectsId = newProject.id
         }
         else {
+            projectFormData.append("id", pid)
             await updateProjectData(projectFormData)
             projectsId = pid
         }
-        history.push(`/projectdisplay/${projectsId.id}`)
+        history.push(`/projectdisplay/${projectsId}`)
     }
 
     return (

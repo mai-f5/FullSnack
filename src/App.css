@@ -122,7 +122,7 @@ header {
 	position: sticky;
 	top: 0;
 	width: 100%;
-	z-index: 2;
+	z-index: 222;
 }
 
 .header-user-img {
@@ -231,6 +231,12 @@ header {
 	opacity: 0.5;
 }
 
+.project-card .btn-as-link:hover,
+.project-card .btn-as-link:active,
+.project-card .btn-as-link:focus {
+	color: var(--black) !important;
+}
+
 /* FILTER SECTION */
 .search input {
 	padding-right: 40px;
@@ -330,7 +336,7 @@ header {
 }
 
 .button-zindex {
-	z-index: 222;
+	z-index: 1;
 }
 
 button.forum-post:hover,
@@ -427,10 +433,6 @@ button.forum-post:focus {
 	color: red !important;
 }
 .multiple-files-remove {
-	width: 60px;
-	height: 20px;
-	display: inline-block;
-	z-index: 111;
 	position: absolute;
 }
 
@@ -518,4 +520,9 @@ button.forum-post:focus {
 	background-color: var(--medium-blue) !important;
 	border: 1px solid var(--white) !important;
 	color: var(--white);
+}
+
+/* REMOVE WARNING */
+.bg-secondary {
+	background-color: lightgray !important;
 }
