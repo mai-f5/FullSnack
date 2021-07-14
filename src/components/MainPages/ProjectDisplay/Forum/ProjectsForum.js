@@ -11,15 +11,18 @@ export default function ProjectsForum({ projectId }) {
 
     const [clickedNewThread, setClickedNewThread] = useState(false)
 
-    const [forumData, setForumData] = useState()
+    const [forumData, setForumData] = useState([])
     const [load, setLoad] = useState(true)
 
     useEffect(async () => {
-        const data = await getProjectsThreadsComments(projectId)
-        setForumData([...data])
-    }, [])
+        if (projectId) {
+            const forum = await getProjectsThreadsComments(projectId)
+            setForumData([...forum])
+        }
+    }, [projectId])
 
     useEffect(() => {
+        console.log(forumData)
         if (forumData) setLoad(false)
     }, [forumData])
 
