@@ -32,6 +32,7 @@ const updateProjectData = async updatedProjectData => {
         const res = await fetch(`http://localhost:3100/projects`, {
             method: 'PUT',
             body: updatedProjectData,
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
@@ -43,6 +44,7 @@ const hideProject = async projectId => {
     try {
         const res = await fetch(`http://localhost:3100/projects/${projectId}/remove`, {
             method: 'PUT',
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
@@ -52,15 +54,18 @@ const hideProject = async projectId => {
 
 //POST
 const addNewProject = async newProjectData => {
+    console.log(newProjectData.get('userId'))
     try {
         const res = await fetch(`http://localhost:3100/projects`, {
             method: 'POST',
             body: newProjectData,
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
         console.log(err)
     }
+
 }
 
 
@@ -69,6 +74,7 @@ const removeReqTech = async (projectId, reqTechId) => {
     try {
         const res = await fetch(`http://localhost:3100/projects/remove/requiredtech/${projectId}/${reqTechId}`, {
             method: 'DELETE',
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
@@ -80,6 +86,7 @@ const removePicture = async pictureId => {
     try {
         const res = await fetch(`http://localhost:3100/projects/remove/picture/${pictureId}`, {
             method: 'DELETE',
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {

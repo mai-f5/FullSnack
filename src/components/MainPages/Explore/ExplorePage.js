@@ -4,17 +4,17 @@ import { BsSearch } from 'react-icons/bs'
 import ProjectCard from './ProjectCard/ProjectCard'
 import FilterSection from '../../General/FilterSection/FilterSection'
 import { useHistory, useParams } from 'react-router'
-import { Redirect } from 'react-router-dom'
 import EmptyProjectSvg from '../../../images/development.svg'
+import MySpinner from '../../General/MySpinner'
 import userContext from '../../../utils/AuthContext'
 export default function Explore({ type }) {
     const context = useContext(userContext)
     const { uid } = useParams();
     const history = useHistory();
+    const [load, setLoad] = useState(true)
     const [cardsData, setCardsData] = useState([])
     const [isUsersDashboard, setIsUsersDashboard] = useState(false)
 
-    console.log(uid, context.loggedUser.id)
     useEffect(() => {
         if (uid && context.loggedUser.id && uid == context.loggedUser.id) {
             setIsUsersDashboard(true)
@@ -31,12 +31,12 @@ export default function Explore({ type }) {
             {isUsersDashboard &&
                 <Button onClick={() => history.push('/editproject/new')} className='mb-3'>+ Add New Project</Button>
             }
-            <FilterSection setCardsData={setCardsData} usersDashboard={isUsersDashboard} />
-
-            <div className='projectsExplore'>
+            <FilterSection setCardsData={setCardsData} usersDashboard={isUsersDashboard} setLoader={setLoad} />
+            {load && <MySpinner />}
+            {!load && <div className='projectsExplore'>
                 {cardsData.length > 0 ?
                     < Row >
-                        {cardsData.map(cardData => <ProjectCard data={cardData} />)}
+                        {cardsData.map(cardData => <ProjectCard data={cardData} ownsProject={isUsersDashboard} />)}
                     </Row > :
                     !isUsersDashboard ? <div className='text-center projs-not-found'>
                         <BsSearch className='mt-5 mb-5' />
@@ -49,7 +49,8 @@ export default function Explore({ type }) {
                         <Button onClick={() => history.push('/editproject/new')}>+ Add your first project</Button>
                     </div>
                 }
-            </div >
+            </div >}
+
         </Container >
     )
 }

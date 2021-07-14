@@ -24,7 +24,7 @@ export default function ProjectCard({ ownsProject, data }) {
                     </ListGroup>
                 </div>
                 {ownsProject && <Card.Body className='d-flex justify-content-between pb-0 pt-2'>
-                    <Button className='button-zindex' onClick={() => history.push('./editproject')} >Edit</Button>
+                    <Button className='button-zindex' onClick={() => history.push(`/editproject/${data.id}`, data)} >Edit</Button>
                     <button className='btn-as-link text-dark button-zindex'><BiTrash /></button>
                 </Card.Body>}
             </Card>

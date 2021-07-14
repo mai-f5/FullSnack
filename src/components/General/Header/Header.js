@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import MyPopover from '../Popover/MyPopover';
 import MyModal from '../Modal/MyModal';
@@ -9,12 +9,19 @@ import { useHistory } from 'react-router-dom';
 import logo from '../../../images/logoSvg.svg';
 import userContext from '../../../utils/AuthContext'
 import Cookies from "js-cookie";
-
+import { getUserData } from '../../../DAL/users';
 
 export default function Header() {
     const context = useContext(userContext)
     const history = useHistory();
 
+    // useEffect(async () => {
+    //     if (Cookies.get('fsCookie') && (!context.loggedUser || !context.loggedUser.id)) {
+    //         const uId = Cookies.get('fsCookie')
+    //         const userData = await getUserData(uId)
+    //         context.setLoggedUser(userData)
+    //     }
+    // }, [])
 
     return (
         <header>

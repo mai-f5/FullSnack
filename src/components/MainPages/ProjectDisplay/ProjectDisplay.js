@@ -10,6 +10,7 @@ import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import image from '../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
 import { getProjectData } from '../../../DAL/projects';
+import MySpinner from '../../General/MySpinner';
 
 export default function ProjectDisplay() {
     const location = useLocation();
@@ -40,7 +41,7 @@ export default function ProjectDisplay() {
     return (
 
         <Container fluid className='projectDisplay text-left'>
-            {load ? load && <div className='text-center'><Spinner animation="border" variant="dark" /></div> :
+            {load ? <MySpinner /> :
                 <Row>
                     <Col lg='6' md='12' className='px-3 pt-3 px-md-4 pt-md-4 px-lg-5 pt-lg-5 right-side-display'>
 
