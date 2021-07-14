@@ -14,6 +14,7 @@ export default function Explore({ type }) {
     const [load, setLoad] = useState(true)
     const [cardsData, setCardsData] = useState([])
     const [isUsersDashboard, setIsUsersDashboard] = useState(false)
+    const [rerender, setRerender] = useState(true)
 
     useEffect(() => {
         if (uid && context.loggedUser.id && uid == context.loggedUser.id) {
@@ -25,18 +26,22 @@ export default function Explore({ type }) {
     }, [type])
 
 
+    function onProjectRemove() {
+        setRerender(!rerender)
+    }
+
     return (
         <Container className='mt-5'>
             <h2 >{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
             {isUsersDashboard &&
                 <Button onClick={() => history.push('/editproject/new')} className='mb-3'>+ Add New Project</Button>
             }
-            <FilterSection setCardsData={setCardsData} usersDashboard={isUsersDashboard} setLoader={setLoad} />
+            <FilterSection setCardsData={setCardsData} usersDashboard={isUsersDashboard} setLoader={setLoad} rerender={rerender} />
             {load && <MySpinner />}
             {!load && <div className='projectsExplore'>
                 {cardsData.length > 0 ?
                     < Row >
-                        {cardsData.map(cardData => <ProjectCard data={cardData} ownsProject={isUsersDashboard} />)}
+                        {cardsData.map(cardData => <ProjectCard data={cardData} ownsProject={isUsersDashboard} invokeExploreRerender={onProjectRemove} />)}
                     </Row > :
                     !isUsersDashboard ? <div className='text-center projs-not-found'>
                         <BsSearch className='mt-5 mb-5' />

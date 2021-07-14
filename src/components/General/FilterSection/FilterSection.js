@@ -6,7 +6,7 @@ import MyMultiSelect from '../FormComponents/MyMultiSelect'
 import { getProjectsCardData, getUsersProjectsCardData } from '../../../DAL/projects'
 import userContext from '../../../utils/AuthContext'
 
-export default function FilterSection({ setCardsData, usersDashboard, setLoader }) {
+export default function FilterSection({ setCardsData, usersDashboard, setLoader, rerender }) {
     const context = useContext(userContext)
     const [filterByData, setFilterByData] = useState({
         sortBy: 'likes',
@@ -33,7 +33,7 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader 
             setCardsData([...cards])
             setLoader(false)
         }
-    }, [usersDashboard, filterByData])
+    }, [usersDashboard, filterByData, rerender])
 
 
     function onInputChangeHandler({ target: { name, value } }) {

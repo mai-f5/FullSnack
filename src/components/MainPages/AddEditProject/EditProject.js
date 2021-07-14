@@ -106,6 +106,11 @@ export default function EditProject({ isNew }) {
         setBlurredOutOfInput(false)
     }, [blurredOutOfInput])
 
+
+    useEffect(() => {
+        console.log(projectData);
+    }, [projectData])
+
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const projectFormData = new FormData()
@@ -117,16 +122,12 @@ export default function EditProject({ isNew }) {
         let projectsId;
         if (pid === 'new') {
             const newProject = await addNewProject(projectFormData)
-            console.log(newProject)
             projectsId = newProject.id
         }
         else {
             projectFormData.append("id", pid)
-            console.log(projectFormData.get('name'))
-            console.log(projectFormData.get('id'))
             await updateProjectData(projectFormData)
             projectsId = pid
-            console.log(projectsId)
         }
         history.push(`/projectdisplay/${projectsId}`)
     }

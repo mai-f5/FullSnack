@@ -16,7 +16,7 @@ export default function MyMultiSelect({ onSelectChange, type, location, checkedV
     useEffect(() => {
         getRequiredTechsList().then(data => {
             setReqTechs([...data])
-        })
+        }, [])
 
         getDifficultyLevelsList().then(data => {
             setDifficultyLevels([...data])

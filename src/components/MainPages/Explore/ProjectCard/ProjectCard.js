@@ -6,7 +6,8 @@ import { FiCode } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { BsBarChart } from 'react-icons/bs'
 import image from '../../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
-export default function ProjectCard({ ownsProject, data }) {
+import MyModal from '../../../General/Modal/MyModal'
+export default function ProjectCard({ ownsProject, data, invokeExploreRerender }) {
 
     const history = useHistory();
     return (
@@ -25,7 +26,7 @@ export default function ProjectCard({ ownsProject, data }) {
                 </div>
                 {ownsProject && <Card.Body className='d-flex justify-content-between pb-0 pt-2'>
                     <Button className='button-zindex' onClick={() => history.push(`/editproject/${data.id}`, data)} >Edit</Button>
-                    <button className='btn-as-link text-dark button-zindex'><BiTrash /></button>
+                    <MyModal type='delete' removeType='Project' removeName={data.name} removableId={data.id} invokeExploreRerender={invokeExploreRerender} />
                 </Card.Body>}
             </Card>
         </Col>

@@ -40,9 +40,9 @@ const updateProjectData = async updatedProjectData => {
     }
 }
 
-const hideProject = async projectId => {
+const hideProject = async (projectId, userId) => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/${projectId}/remove`, {
+        const res = await fetch(`http://localhost:3100/projects/${projectId}/${userId}/remove`, {
             method: 'PUT',
             credentials: 'include'
         })
