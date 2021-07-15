@@ -30,7 +30,7 @@ export default function ForumThread({ thread, idx }) {
                 <div className='thread-body py-3 pl-5 pr-3 border border-dark rounded font-weight-normal'>
                     {thread.body}
                 </div>
-                {thread.comments.map(comment => <ForumComment comment={comment} />)}
+                {thread.comments.map((comment, idx) => <ForumComment key={idx} comment={comment} />)}
                 <div className='insert-new-comment'>
                     <NewComment />
                 </div>

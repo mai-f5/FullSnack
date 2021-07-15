@@ -17,9 +17,9 @@ export default function MyPopover({ type }) {
         const data = await getUsersNewNotifications(context.loggedUser.id)
         if (data.length > 0) setNotifications([...data])
         else {
-            setTimeout(() => {
-                setNotifications([])
-            }, 30000)
+            // setTimeout(() => {
+            setNotifications([])
+            // }, 30000)
         }
     }
 
@@ -31,9 +31,9 @@ export default function MyPopover({ type }) {
         }
     }, [updateNotifs])
 
-    setInterval(() => {
-        fetchNotifications()
-    }, 1000 * 60 * 5)
+    // setInterval(() => {
+    //     fetchNotifications()
+    // }, 1000 * 60 * 5)
 
     const handleNotifications = async () => {
         await updateNotificationsAsRead(context.loggedUser.id)

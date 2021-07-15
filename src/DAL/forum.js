@@ -13,7 +13,9 @@ const addNewThread = async newThreadData => {
     try {
         const res = await fetch(`http://localhost:3100/forum/thread`, {
             method: 'POST',
-            body: newThreadData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newThreadData),
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
