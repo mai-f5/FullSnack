@@ -5,26 +5,33 @@ import { OverlayTrigger, Popover } from 'react-bootstrap'
 import { BiBell } from 'react-icons/bi'
 import Notifications from './Notifications/Notifications'
 import userProfileImagePlaceholder from '../../../images/usersImages/user_id_1/img-placeholder.png'
-import { useState, useEffect } from 'react'
-import { getUsersNewNotifications } from '../../../DAL/events'
-
+import { useState, useEffect, useContext } from 'react'
+import { getUsersNewNotifications, updateNotificationsAsRead } from '../../../DAL/events'
+import userContext from '../../../utils/AuthContext'
 export default function MyPopover({ type }) {
-    const [notifsCount, setNotifsCount] = useState(2)
-
-
-    const [notifications, setNotifications] = useState()
+    const context = useContext(userContext);
+    const [notifications, setNotifications] = useState([])
+    const [updateNotifs, setUpdateNotifs] = useState(false)
     useEffect(async () => {
         switch (type) {
             case 'notifications':
-                let data;
-                data = await getUsersNewNotifications(1)
+                const data = await getUsersNewNotifications(context.loggedUser.id)
+                console.log(data)
+                console.log(updateNotifs)
                 if (data.length > 0) setNotifications([...data])
+                else {
+                    setTimeout(() => {
+                        setNotifications([])
+                    }, 30000)
+                }
                 break;
         }
+    }, [updateNotifs])
 
-        // setNotifications([...data])
-    }, [])
-
+    const handleNotifications = async () => {
+        await updateNotificationsAsRead(context.loggedUser.id)
+        setUpdateNotifs(!updateNotifs)
+    }
 
     return (
         <>
@@ -43,7 +50,9 @@ export default function MyPopover({ type }) {
                 }
             >
                 {
-                    <button className='btn-as-link' disabled={type === 'notifications' && !notifications ? true : false}>
+                    <button className='btn-as-link' disabled={type === 'notifications' && notifications.length < 1 ? true : false} onClick={(e) => {
+                        if (type === 'notifications') handleNotifications()
+                    }}>
                         {
                             type === 'signin' ? 'Sign In' :
                                 type === 'usermenu' ?
@@ -51,7 +60,7 @@ export default function MyPopover({ type }) {
                                     :
                                     <div className='mt-n3'>
                                         <BiBell />
-                                        {notifications && notifications.length > 0 ? <div className='notif-badge rounded-circle bg-white text-dark text-center mt-n4 font-weight-bold ml-3'>{notifications.length}</div> : null}
+                                        {notifications.length > 0 ? <div className='notif-badge rounded-circle bg-white text-dark text-center mt-n4 font-weight-bold ml-3'>{notifications.length}</div> : null}
                                     </div>
                         }
                     </button>

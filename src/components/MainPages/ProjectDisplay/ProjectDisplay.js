@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Carousel, Spinner } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
@@ -10,11 +10,12 @@ import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import image from '../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
 import { getProjectData } from '../../../DAL/projects';
+import { addLike, addNewNotification, getDidUserLikeProject, removeLike } from '../../../DAL/events'
 import MySpinner from '../../General/MySpinner';
-
+import userContext from '../../../utils/AuthContext';
 
 export default function ProjectDisplay() {
-    // const location = useLocation();
+    const context = useContext(userContext)
     const { pid } = useParams();
     const [projectsData, setProjectsData] = useState({
         id: '',
@@ -31,6 +32,7 @@ export default function ProjectDisplay() {
             id: ''
         }
     })
+    const [didUserLike, setDidUserLike] = useState(false);
     const [load, setLoad] = useState(true)
 
     const [index, setIndex] = useState(0);
@@ -55,13 +57,30 @@ export default function ProjectDisplay() {
                 id: project.user.id
             }
         })
-    }, [])
+    }, [didUserLike])
+
+    useEffect(async () => {
+        if (context.loggedUser.id && projectsData.id) {
+            const didUserLikeRes = await getDidUserLikeProject(context.loggedUser.id, projectsData.id);
+            setDidUserLike(didUserLikeRes)
+        }
+    }, [context.loggedUser, projectsData])
 
     useEffect(() => {
         console.log(projectsData)
         if (projectsData) setLoad(false)
     }, [projectsData])
 
+    async function handleLikeBtnClick() {
+        if (didUserLike) {
+            await removeLike(context.loggedUser.id, projectsData.id)
+            setDidUserLike(false)
+        } else {
+            await addLike({ userId: context.loggedUser.id, projectId: projectsData.id })
+            setDidUserLike(true)
+            if (context.loggedUser.id !== projectsData.user.id) await addNewNotification({ type_id: 2, acted_user_id: context.loggedUser.id, notified_user_id: projectsData.user.id, project_id: projectsData.id })
+        }
+    }
     return (
 
         <Container fluid className='projectDisplay text-left'>
@@ -72,7 +91,7 @@ export default function ProjectDisplay() {
                     <Row className='ml-2 flex-column'>
                         <div>
                             <h2 className='mr-5 text-dark d-block d-md-inline'>{projectsData.name}</h2>
-                            <Button className='rounded-circle text-center mr-2'><BiLike /></Button>
+                            <Button className={`like-share-icon rounded-circle text-center mr-2 ${didUserLike ? 'clicked-like' : ''}`} onMouseDown={(e) => e.preventDefault()} onClick={handleLikeBtnClick}><BiLike /></Button>
                             <MyModal type='share' />
                             <p className='font-weight-bold d-block mb-3 mt-3 mt-lg-0'>By {projectsData.user.username}</p>
 

@@ -8,7 +8,7 @@ import { BsBarChart } from 'react-icons/bs'
 import image from '../../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
 import MyModal from '../../../General/Modal/MyModal'
 export default function ProjectCard({ ownsProject, data, invokeExploreRerender }) {
-
+    console.log(data)
     const history = useHistory();
     return (
         <Col sm={12} md={4} lg={3} className='project-card'>
@@ -19,7 +19,7 @@ export default function ProjectCard({ ownsProject, data, invokeExploreRerender }
 
                     <ListGroup variant="flush">
                         <ListGroup.Item><FiCode className='mr-3' />{data.project_required_tech_id.map(tech => tech.name).join(', ')}</ListGroup.Item>
-                        <ListGroup.Item><GrAttachment className='mr-3' />Assets {data.assets ? 'Included' : 'Not Included'}</ListGroup.Item>
+                        <ListGroup.Item><GrAttachment className='mr-3' />Assets {data.assets_src ? 'Included' : 'Not Included'}</ListGroup.Item>
                         <ListGroup.Item><BsBarChart className='mr-3' />{data.difficulty_level.name}</ListGroup.Item>
                         <ListGroup.Item><BiLike className='mr-3' />{data.liked_project_id.length} Recommended</ListGroup.Item>
                     </ListGroup>

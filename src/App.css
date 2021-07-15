@@ -267,6 +267,10 @@ header {
 	font-size: 1rem;
 	height: 1.2rem;
 }
+
+.projectDisplay .like-share-icon svg {
+	margin-bottom: 3px;
+}
 .projectInfo path,
 .projectInfo svg {
 	color: var(--medium-blue) !important;
@@ -290,6 +294,21 @@ header {
 .carousel-item {
 	height: 250px;
 }
+.like-share-icon,
+.like-share-icon:focus,
+.like-share-icon:active,
+.like-share-icon:hover {
+	box-shadow: none !important;
+}
+
+.clicked-like,
+.clicked-like:focus,
+.clicked-like:active,
+.clicked-like:hover {
+	background-color: #000520;
+	box-shadow: none !important;
+}
+
 /* User's Projects */
 .empty-users-projects svg {
 	font-size: 8rem;
