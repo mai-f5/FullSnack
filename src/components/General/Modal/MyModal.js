@@ -7,7 +7,7 @@ import ShareProject from './ShareProject/ShareProject';
 import NewThread from '../../MainPages/ProjectDisplay/Forum/ForumForms/NewThread';
 import { BiShareAlt, BiTrash } from 'react-icons/bi'
 import RemoveWarning from './RemoveWarning/RemoveWarning';
-function MyModal({ type, removeType, removeName, removableId, removeableFilesArr, removeableFile, prevFilesArr, getNewFilesArr, invokeExploreRerender }) {
+function MyModal({ type, removeType, removeName, removableId, removeableFilesArr, removeableFile, prevFilesArr, getNewFilesArr, invokeRerender, relevantData }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -38,8 +38,8 @@ function MyModal({ type, removeType, removeName, removableId, removeableFilesArr
                 {type.includes('signup') ? <SignUp /> :
                     type === 'share' ? <ShareProject /> :
                         type === 'password' ? <PasswordChange /> : type === 'newThread' ?
-                            <NewThread /> : type === 'delete' || type === 'removeFile' ?
-                                <RemoveWarning type={removeType} name={removeName} close={handleClose} id={removableId} filesArr={removeableFilesArr} file={removeableFile} prevFilesArr={prevFilesArr} getNewFilesArr={getNewFilesArr} invokeExploreRerender={invokeExploreRerender} />
+                            <NewThread relevantData={relevantData} close={handleClose} invokeRerender={invokeRerender} /> : type === 'delete' || type === 'removeFile' ?
+                                <RemoveWarning type={removeType} name={removeName} close={handleClose} id={removableId} filesArr={removeableFilesArr} file={removeableFile} prevFilesArr={prevFilesArr} getNewFilesArr={getNewFilesArr} invokeExploreRerender={invokeRerender} />
                                 : null}
 
             </Modal>

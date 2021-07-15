@@ -42,6 +42,10 @@ const inputsRequirements = {
     },
     topic: {
         required: true,
+        pattern: /^.{2,75}$/
+    },
+    body: {
+        pattern: /^.{0,500}$/
     },
     comment: {
         required: true,

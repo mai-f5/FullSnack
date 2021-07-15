@@ -152,7 +152,7 @@ export default function ProjectDisplay() {
                     </Row>
                 </Col>
                 <Col lg='6' md='12' className='p-3 p-md-4 p-lg-5'>
-                    <ProjectsForum projectId={projectsData.id} />
+                    <ProjectsForum projectData={projectsData} />
                 </Col>
             </Row>}
         </Container >
