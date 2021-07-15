@@ -15,14 +15,6 @@ export default function Header() {
     const context = useContext(userContext)
     const history = useHistory();
 
-    // useEffect(async () => {
-    //     if (Cookies.get('fsCookie') && (!context.loggedUser || !context.loggedUser.id)) {
-    //         const uId = Cookies.get('fsCookie')
-    //         const userData = await getUserData(uId)
-    //         context.setLoggedUser(userData)
-    //     }
-    // }, [])
-
     return (
         <header>
             <Navbar bg="dark" variant="dark" expand="lg">

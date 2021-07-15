@@ -20,7 +20,7 @@ function MyModal({ type, removeType, removeName, removableId, removeableFilesArr
             {/*add close button */}
             {type === 'signup-nav' ? <button onClick={handleShow} className='btn-as-link'>Sign Up</button> :
                 type === 'share' ?
-                    <Button onClick={handleShow} className='rounded-circle text-center ml-2'><BiShareAlt /></Button>
+                    <Button onMouseDown={(e) => e.preventDefault()} onClick={handleShow} className='like-share-icon rounded-circle text-center ml-2'><BiShareAlt /></Button>
                     : type === 'delete' ? <button onClick={handleShow} className='btn-as-link text-dark button-zindex'><BiTrash /></button> : type === 'removeFile' ?
                         <Button className={removeFilesClasses} onClick={(e) => {
                             handleShow(e)

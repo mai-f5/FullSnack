@@ -41,9 +41,9 @@ const login = async loginData => {
     try {
         const res = await fetch(`http://localhost:3100/users/login`, {
             method: 'POST',
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData),
-            credentials: 'include'
         })
         return await res.json()
     } catch (err) {

@@ -3,7 +3,11 @@
 //GET
 const getUsersNewNotifications = async userId => {
     try {
-        const res = await fetch(`http://localhost:3100/events/notifications/${userId}`)
+        const res = await fetch(`http://localhost:3100/events/notifications/${userId}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        })
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -15,6 +19,7 @@ const updateNotificationsAsRead = async userId => {
     try {
         const res = await fetch(`http://localhost:3100/events/notifications/${userId}`, {
             method: 'PUT',
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
@@ -24,10 +29,12 @@ const updateNotificationsAsRead = async userId => {
 
 //POST
 const addNewNotification = async newNotificationData => {
+    console.log(newNotificationData)
     try {
         const res = await fetch(`http://localhost:3100/events/notifications`, {
             method: 'POST',
-            body: newNotificationData,
+            body: JSON.stringify(newNotificationData),
+            headers: { 'Content-Type': 'application/json' }
         })
         return await res.json()
     } catch (err) {
@@ -42,7 +49,10 @@ const addNewNotification = async newNotificationData => {
 //GET
 const getDidUserLikeProject = async (userId, projectId) => {
     try {
-        const res = await fetch(`http://localhost:3100/events/likes/${userId}/${projectId}`)
+        const res = await fetch(`http://localhost:3100/events/likes/${userId}/${projectId}`, {
+            method: 'GET',
+            credentials: 'include'
+        })
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -51,10 +61,13 @@ const getDidUserLikeProject = async (userId, projectId) => {
 
 //POST
 const addLike = async newLikeData => {
+    console.log('events dal', newLikeData)
     try {
         const res = await fetch(`http://localhost:3100/events/likes`, {
             method: 'POST',
-            body: newLikeData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newLikeData),
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
@@ -66,7 +79,8 @@ const addLike = async newLikeData => {
 const removeLike = async (userId, projectId) => {
     try {
         const res = await fetch(`http://localhost:3100/events/likes/${userId}/${projectId}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {
