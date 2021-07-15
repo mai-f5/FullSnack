@@ -12,21 +12,28 @@ export default function MyPopover({ type }) {
     const context = useContext(userContext);
     const [notifications, setNotifications] = useState([])
     const [updateNotifs, setUpdateNotifs] = useState(false)
+
+    async function fetchNotifications() {
+        const data = await getUsersNewNotifications(context.loggedUser.id)
+        if (data.length > 0) setNotifications([...data])
+        else {
+            setTimeout(() => {
+                setNotifications([])
+            }, 30000)
+        }
+    }
+
     useEffect(async () => {
         switch (type) {
             case 'notifications':
-                const data = await getUsersNewNotifications(context.loggedUser.id)
-                console.log(data)
-                console.log(updateNotifs)
-                if (data.length > 0) setNotifications([...data])
-                else {
-                    setTimeout(() => {
-                        setNotifications([])
-                    }, 30000)
-                }
+                fetchNotifications()
                 break;
         }
     }, [updateNotifs])
+
+    setInterval(() => {
+        fetchNotifications()
+    }, 1000 * 60 * 5)
 
     const handleNotifications = async () => {
         await updateNotificationsAsRead(context.loggedUser.id)
