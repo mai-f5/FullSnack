@@ -18,18 +18,18 @@ function ToggleRb({ name, onRbChange, checkedValue }) {
     return (
         <div className='toggle-rb'>
             <ButtonGroup >
-                {options.map((radio, idx) => (
+                {options.map((radio, idx) => ( //value-label / id-name
                     <ToggleButton
                         key={idx}
                         id={`radio-${idx}`}
                         type="radio"
                         variant="outline-success"
                         name={name}
-                        value={radio.value}
-                        checked={checkedValue === radio.value.toString()}
+                        value={name === 'gender' ? radio.id : radio.value}
+                        checked={+checkedValue === (name === 'gender' ? radio.id : radio.value)}
                         onChange={(e) => onRbChange(e)}
                     >
-                        {radio.label}
+                        {radio.label || radio.name}
                     </ToggleButton>
                 ))}
             </ButtonGroup>

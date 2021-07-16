@@ -1,5 +1,5 @@
 import { Button, CloseButton } from 'react-bootstrap'
-import { removeFileHandler } from '../../../../utils/handlers'
+import { removeHandler } from '../../../../utils/handlers'
 import React from 'react'
 import { useContext } from 'react'
 import userContext from '../../../../utils/AuthContext'
@@ -8,7 +8,7 @@ export default function RemoveWarning({ type, name, close, id, prevFilesArr, fil
     const context = useContext(userContext)
     async function handlePromise() {
 
-        const result = await removeFileHandler(type, id, prevFilesArr, file, context.loggedUser.id)
+        const result = await removeHandler(type, id, prevFilesArr, file, context.loggedUser.id)
         if (result instanceof Array && type !== 'Project') getNewFilesArr(result)
     }
 

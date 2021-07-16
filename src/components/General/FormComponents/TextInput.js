@@ -29,7 +29,7 @@ export default function TextInput({ controlId, type, icon, label, info, info2, i
                 maxLength={maxLength}
                 defaultValue={defaultValue}
             />
-            <ErrorMsg error={error} />
+            {error ? <ErrorMsg error={error} /> : null}
         </Form.Group>
 
     )
