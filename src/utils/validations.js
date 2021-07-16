@@ -47,9 +47,6 @@ const inputsRequirements = {
     body: {
         pattern: /^.{0,500}$/
     },
-    comment: {
-        required: true,
-    }
 }
 
 
