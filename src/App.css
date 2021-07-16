@@ -233,7 +233,10 @@ header {
 
 .project-card .btn-as-link:hover,
 .project-card .btn-as-link:active,
-.project-card .btn-as-link:focus {
+.project-card .btn-as-link:focus,
+.comment-send-btn:hover,
+.comment-send-btn:active,
+.comment-send-btn:focus {
 	color: var(--black) !important;
 }
 
