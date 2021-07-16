@@ -7,6 +7,7 @@ import { getProjectsThreadsComments } from '../../../../DAL/forum';
 
 import ForumThread from './ForumThread'
 export default function ProjectsForum({ projectData }) {
+    console.log(projectData)
 
     const [forumData, setForumData] = useState([])
     const [load, setLoad] = useState(true)
@@ -14,10 +15,11 @@ export default function ProjectsForum({ projectData }) {
 
     useEffect(async () => {
         if (projectData.id) {
+            setLoad(true)
             const forum = await getProjectsThreadsComments(projectData.id)
+            console.log(forum)
             setForumData([...forum])
         }
-        console.log(rerender)
     }, [projectData.id, rerender])
 
     useEffect(() => {
@@ -49,9 +51,8 @@ export default function ProjectsForum({ projectData }) {
                         <div className='forum-filled bg-light forum-bg p-2'>
                             <Accordion>
                                 {forumData.map((thread, idx) => {
-                                    return <ForumThread thread={thread} idx={idx} />
+                                    return <ForumThread thread={thread} idx={idx} projectOwnerId={projectData.user.id} invokeRerender={reloadForum} />
                                 })}
-
                             </Accordion>
                         </div>
                     }

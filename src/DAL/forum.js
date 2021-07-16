@@ -27,7 +27,9 @@ const addNewComment = async newCommentData => {
     try {
         const res = await fetch(`http://localhost:3100/forum/comment`, {
             method: 'POST',
-            body: newCommentData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newCommentData),
+            credentials: 'include'
         })
         return await res.json()
     } catch (err) {

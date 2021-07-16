@@ -5,7 +5,7 @@ import ForumComment from './ForumComment'
 import userProfileImagePlaceholder from '../../../../images/usersImages/user_id_1/img-placeholder.png'
 import NewComment from './ForumForms/CommentTextEditor/NewComment'
 
-export default function ForumThread({ thread, idx }) {
+export default function ForumThread({ thread, idx, projectOwnerId, invokeRerender }) {
     return (<Card>
         <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey={idx.toString()} className='btn-as-link text-dark forum-post w-100'>
@@ -32,7 +32,7 @@ export default function ForumThread({ thread, idx }) {
                 </div>
                 {thread.comments.map((comment, idx) => <ForumComment key={idx} comment={comment} />)}
                 <div className='insert-new-comment'>
-                    <NewComment />
+                    <NewComment relevantData={{ threadId: thread.id, threadOwnerId: thread.user_id, projectOwnerId: projectOwnerId, projectId: thread.project_id }} invokeRerender={invokeRerender} />
                 </div>
             </Card.Body>
 

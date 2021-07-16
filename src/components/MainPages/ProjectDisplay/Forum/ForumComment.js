@@ -1,5 +1,7 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import userProfileImagePlaceholder from '../../../../images/usersImages/user_id_1/img-placeholder.png'
 
 export default function ForumComment({ comment }) {
@@ -13,7 +15,13 @@ export default function ForumComment({ comment }) {
                             <p className='m-0 mb-md-2 d-md-inline mr-md-4 blk-txt font-weight-bold'>{comment.user.username}</p>
                             <p className='m-0 d-md-inline mr-4 blk-txt font-weight-light text-muted'>{comment.timestamp}</p>
                         </div>
-                        <p className='mr-4 blk-txt font-weight-normal'>{comment.text}</p>
+                        <div className='mr-4 blk-txt font-weight-normal'>
+                            <Editor
+                                editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(comment.text)))} readOnly={true}
+                                toolbarHidden
+                            />
+
+                        </div>
                     </div>
                 </div>
             </Card.Body>

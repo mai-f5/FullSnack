@@ -1,9 +1,49 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { MdSend } from 'react-icons/md'
-export default function AddCommentBtn() {
+import { Button } from 'react-bootstrap'
+import { addNewComment } from '../../../../../../DAL/forum'
+import { addNewNotification } from '../../../../../../DAL/events'
+import userContext from '../../../../../../utils/AuthContext'
+export default function AddCommentBtn({ comment, threadRelevantData, returnError, invokeRerender }) {
+    const context = useContext(userContext)
+
+    const validateCommentBlocks = () => {
+        let hasText = false;
+        if (comment.blocks) {
+            for (const block of comment.blocks) {
+                if (block.text) {
+                    hasText = true;
+                }
+            }
+        }
+        return hasText;
+    }
+
+    const onSendComment = async (e) => {
+        if (validateCommentBlocks()) {
+            await addNewComment({
+                user_id: context.loggedUser.id,
+                thread_id: threadRelevantData.threadId,
+                text: JSON.stringify(comment)
+            })
+
+            if (context.loggedUser.id !== threadRelevantData.threadOwnerId) {
+                await addNewNotification({ type_id: 4, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.threadOwnerId, project_id: threadRelevantData.projectId })
+            }
+
+            if (threadRelevantData.threadOwnerId !== threadRelevantData.projectOwnerId && context.loggedUser.id !== threadRelevantData.projectOwnerId) {
+                await addNewNotification({ type_id: 3, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.projectOwnerId, project_id: threadRelevantData.projectId })
+            }
+
+            invokeRerender()
+        } else {
+            returnError()
+        }
+    }
+
     return (
-        <div>
+        <Button className='btn-as-link comment-send-btn text-dark' onClick={onSendComment}>
             <MdSend />
-        </div>
+        </Button>
     )
 }
