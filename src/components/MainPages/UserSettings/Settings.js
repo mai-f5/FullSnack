@@ -15,25 +15,11 @@ export default function Settings() {
 
     const context = useContext(userContext)
     const history = useHistory();
+    const elementRef = useRef();
     if (!context.loggedUser.id) {
         history.push('/home');
     }
-
     const [occuptations, setOccupations] = useState([])
-
-    useEffect(async () => {
-        const occupationsOptions = await getOccupationsList()
-        setOccupations([...occupationsOptions])
-    }, [])
-
-
-    // const { uid } = useParams();
-    const elementRef = useRef();
-
-    //temp for mockup
-    const [dataChanged, setDataChanged] = useState(false)
-    const [passwordChanged, setPasswordChanged] = useState(false)
-    console.log(context.loggedUser)
     const [userData, setUserData] = useState({
         userId: {
             value: context.loggedUser.id
@@ -55,14 +41,21 @@ export default function Settings() {
             value: context.loggedUser.profile_img
         }
     })
+    const [previewedPicture, setPreviewedPicture] = useState(`http://localhost:3100/public/${userData.profileImg.value}`)
+    const [imgFile, setImgFile] = useState('')
+
+    useEffect(async () => {
+        const occupationsOptions = await getOccupationsList()
+        setOccupations([...occupationsOptions])
+    }, [])
+
+    //temp for mockup
+    const [dataChanged, setDataChanged] = useState(false)
+    const [passwordChanged, setPasswordChanged] = useState(false)
 
     useEffect(() => {
         console.log(userData)
     }, [userData])
-
-    const [previewedPicture, setPreviewedPicture] = useState(`http://localhost:3100/public/${userData.profileImg.value}`)
-    const [imgFile, setImgFile] = useState('')
-
 
     async function handleFormSubmit(e) {
         e.preventDefault()
@@ -76,7 +69,6 @@ export default function Settings() {
                 formData.append(input, userData[input].value)
             }
         }
-        console.log(formData.get('profileImg'))
         const res = await updateUserData(formData)
         const updatedUser = await getUserData(context.loggedUser.id)
         context.setLoggedUser(updatedUser)
@@ -88,6 +80,9 @@ export default function Settings() {
         setImgFile(e.target.files[0])
     }
 
+    function updatePasswordResponse() {
+        setPasswordChanged(true)
+    }
     return (
         <Container className='settings mt-5'>
             <h2 className='mb-0 pb-0'><span className='font-weight-normal'>Settings /</span> {context.loggedUser.username} </h2>
@@ -112,7 +107,7 @@ export default function Settings() {
 
 
                         <div className='mb-5'>
-                            <MyModal type='password' />
+                            <MyModal type='password' updatePasswordResponse={updatePasswordResponse} />
                             {passwordChanged && <small className='text-success d-block'>Password changed successfully!</small>}
                         </div>
                     </Col>

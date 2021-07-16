@@ -11,6 +11,7 @@ const getUserData = async userId => {
 
 //PUT
 const updateUserData = async updatedUserData => {
+    console.log('also gets called?!')
     try {
         const res = await fetch(`http://localhost:3100/users/${updatedUserData.get('userId')}`, {
             method: 'PUT',
@@ -25,9 +26,10 @@ const updateUserData = async updatedUserData => {
 
 const updateUserPassword = async updatedPasswordData => {
     try {
-        const res = await fetch(`http://localhost:3100/users/${updatedPasswordData.userId}`, {
+        const res = await fetch(`http://localhost:3100/users/password/${updatedPasswordData.userId}`, {
             method: 'PUT',
-            body: updatedPasswordData,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatedPasswordData),
             credentials: 'include'
         })
         return await res.json()
