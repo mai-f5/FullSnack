@@ -4,16 +4,16 @@ import React from 'react'
 import { useContext } from 'react'
 import userContext from '../../../../utils/AuthContext'
 
-export default function RemoveWarning({ type, name, close, id, prevFilesArr, file, getNewFilesArr, invokeExploreRerender }) {
+export default function RemoveWarning({ type, name, close, id, idx, prevFilesArr, file, getNewFilesArr, invokeExploreRerender }) {
     const context = useContext(userContext)
     async function handlePromise() {
 
-        const result = await removeHandler(type, id, prevFilesArr, file, context.loggedUser.id)
+        const result = await removeHandler(type, id, idx, prevFilesArr, file, context.loggedUser.id)
         if (result instanceof Array && type !== 'Project') getNewFilesArr(result)
     }
 
     return (
-        <div className='remove-warning'><CloseButton onClick={close} />
+        <div className='remove-warning'>
             <p className='mb-5 font-weight-bold'>Are you sure you want to remove '{name}'?<br />
                 This cannot be undone
             </p>

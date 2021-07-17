@@ -1,7 +1,7 @@
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import userProfileImagePlaceholder from '../../../../../../images/usersImages/user_id_1/img-placeholder.png'
+import userProfileImagePlaceholder from '../../../../../../images/img-placeholder.png'
 import React from 'react'
 import AddCommentBtn from './AddCommentBtn'
 import { useState } from 'react';

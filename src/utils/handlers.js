@@ -10,25 +10,27 @@ const inputChangeHandler = ({ target }, formData) => {
     }
 }
 
-const removeHandler = async (type, id, filesArr = [], file = null, userId) => {
+const removeHandler = async (type, id, idx, filesArr = [], file = null, userId) => {
     switch (type) {
         case 'Project':
             const hideRes = await hideProject(id, userId)
-            console.log('hide res', hideRes)
             return hideRes;
 
         case 'File': //assetsSrc
             return [];
 
         case 'Picture':
-            if (typeof file !== 'string') {
-                filesArr.splice(id, 1)
+            if (!file.pic_src) {
+                filesArr.splice(idx, 1)
                 return filesArr;
-            }
-
-            else {
-                const removePicRes = await removePicture(id)
-                return removePicRes;
+            } else {
+                try {
+                    const removePicRes = await removePicture({ userId: userId, picId: id })
+                    filesArr.splice(idx, 1)
+                    return filesArr;
+                } catch (err) {
+                    console.log(err)
+                }
             }
     }
 }

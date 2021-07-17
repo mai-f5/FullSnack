@@ -8,8 +8,7 @@ import { BiLike, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
-import image from '../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
-import { getProjectData } from '../../../DAL/projects';
+import { getFile, getProjectData } from '../../../DAL/projects';
 import { addLike, addNewNotification, getDidUserLikeProject, removeLike } from '../../../DAL/events'
 import MySpinner from '../../General/MySpinner';
 import userContext from '../../../utils/AuthContext';
@@ -102,7 +101,7 @@ export default function ProjectDisplay() {
                         {projectsData.pictures.map(pic => {
                             return (
                                 <Carousel.Item>
-                                    <img className="d-block w-100" src={pic.pic_src} alt='project example' />
+                                    <img className="d-block w-100" src={`http://localhost:3100/public/${pic}`} alt='project example' />
                                 </Carousel.Item>
                             )
                         })}
@@ -141,7 +140,7 @@ export default function ProjectDisplay() {
                                 <GrAttachment className='mr-3' />
                                 <div>
                                     <h3 className='text-dark'>Project's Assets</h3>
-                                    <a href={`${projectsData.assetSrc}`} download>{projectsData.name} Assets <BiDownload className='ml-1' /></a>
+                                    <a href={`http://localhost:3100/projects/download/${projectsData.assetsSrc.split('/')[1]}`} >{projectsData.name} Assets <BiDownload className='ml-1' /></a>
                                 </div>
                             </div>}
                             {projectsData.githubLink && <div className='d-flex mt-3'>

@@ -2,7 +2,7 @@ import React from 'react'
 import { MdReply } from 'react-icons/md'
 import { Card, Accordion, Button } from 'react-bootstrap'
 import ForumComment from './ForumComment'
-import userProfileImagePlaceholder from '../../../../images/usersImages/user_id_1/img-placeholder.png'
+import userProfileImagePlaceholder from '../../../../images/img-placeholder.png'
 import NewComment from './ForumForms/CommentTextEditor/NewComment'
 
 export default function ForumThread({ thread, idx, projectOwnerId, invokeRerender }) {
