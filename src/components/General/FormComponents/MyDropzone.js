@@ -7,7 +7,6 @@ import { Button } from 'react-bootstrap'
 export default function MyDropzone({ name, insertedFiles, onFileUpload }) {
     const initalFilesState = insertedFiles || [];
     const [files, setFiles] = useState(initalFilesState);
-    console.log(files)
 
     const handleDrop = acceptedFiles => {
         if (name === 'assetsSrc' && files.length > 0) return

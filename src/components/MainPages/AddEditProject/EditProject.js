@@ -86,7 +86,7 @@ export default function EditProject({ isNew }) {
                     error: ''
                 },
                 requiredTechs: {
-                    value: projectData.project_required_tech_id.map(tech => { return { id: tech.id, label: tech.name } }),
+                    value: projectData.project_required_tech_id.map(tech => { return { value: tech.id, label: tech.name } }),
                     error: ''
                 },
                 assetsSrc: {
@@ -130,7 +130,7 @@ export default function EditProject({ isNew }) {
                     if (typeof pic === 'string') projectFormData.append(input, pic.pic_src)
                     else projectFormData.append(input, pic)
                 })
-            } //TEMP
+            }
 
             else projectFormData.append(input, projectData[input].value)
         }
@@ -165,7 +165,6 @@ export default function EditProject({ isNew }) {
                                 isRequired={true}
                                 name='name'
                                 value={projectData.name.value}
-                                defaultValue={projectData.name.value}
                                 error={projectData.name.error}
                                 onChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
                                 onBlur={(e) => {

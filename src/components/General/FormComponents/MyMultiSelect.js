@@ -3,7 +3,6 @@ import MultiSelect from 'react-multi-select-component'
 import { getRequiredTechsList, getDifficultyLevelsList } from '../../../DAL/staticData'
 
 export default function MyMultiSelect({ onSelectChange, type, location, checkedValues }) {
-
     const assets = [
         { value: '1', label: 'Has Assets' },
         { value: '0', label: 'No Assets' }
