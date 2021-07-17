@@ -123,15 +123,17 @@ export default function Settings() {
                                 onRbChange={(e) => setUserData(inputChangeHandler(e, userData))} />
                         </Form.Group>
 
-                        <TextInput
-                            controlId="birthdate"
-                            label="Birthdate:"
-                            type="date"
-                            name="birthdate"
-                            value={userData.birthdate.value}
-                            onChange={(e) => setUserData(inputChangeHandler(e, userData))} />
-
+                        <div className='mb-5'>
+                            <TextInput
+                                controlId="birthdate"
+                                label="Birthdate:"
+                                type="date"
+                                name="birthdate"
+                                value={userData.birthdate.value}
+                                onChange={(e) => setUserData(inputChangeHandler(e, userData))} />
+                        </div>
                         <Form.Group controlId="occupationSelect">
+                            <Form.Label>Occupation:</Form.Label>
                             <Form.Control as="select" name='occupation' value={userData.occupation.value} onChange={(e) => setUserData(inputChangeHandler(e, userData))}>
                                 <option value={null} selected>Select occupation</option>
                                 {occuptations.map((occupation, idx) => <option key={idx} value={occupation.id} selected={occupation.id === context.loggedUser.occupation_id}>{occupation.name}</option>)}

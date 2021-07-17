@@ -20,6 +20,10 @@ body {
 }
 
 /* GENERAL */
+a,
+a:hover {
+	color: var(--black);
+}
 h2 {
 	font-weight: 900;
 	font-size: 1.5rem;

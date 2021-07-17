@@ -2,7 +2,8 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
-import userProfileImagePlaceholder from '../../../../images/usersImages/user_id_1/img-placeholder.png'
+import userProfileImagePlaceholder from '../../../../images/img-placeholder.png'
+
 
 export default function ForumComment({ comment }) {
     return (

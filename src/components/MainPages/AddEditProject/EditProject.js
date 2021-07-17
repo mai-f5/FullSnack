@@ -67,13 +67,14 @@ export default function EditProject({ isNew }) {
         if (pid !== 'new') {
             const projectData = await getProjectData(pid)
             setProjectData({
+
                 userId: context.loggedUser.id,
                 name: {
                     value: projectData.name,
                     error: ''
                 },
                 difficultyLevel: {
-                    value: projectData.difficulty_level_id.toString(),
+                    value: projectData.difficulty_level_id,
                     error: ''
                 },
                 githubLink: {
@@ -115,8 +116,22 @@ export default function EditProject({ isNew }) {
         e.preventDefault()
         const projectFormData = new FormData()
         for (const input in projectData) {
-            if (input === 'userId' || input === 'id') projectFormData.append(input, projectData[input])
-            // else if (input === 'pictures' || input === 'assetsSrc') break; //TEMP
+            if (input === 'userId') projectFormData.append(input, projectData[input])
+
+            else if (input === 'assetsSrc') {
+                if (typeof projectData[input].value === 'string') {
+                    projectFormData.append(input, projectData[input].value)
+                } else {
+                    if (projectData[input].value.length > 0) projectFormData.append(input, projectData[input].value[0])
+                    else projectFormData.append(input, '')
+                }
+            } else if (input === 'pictures') {
+                projectData.pictures.value.forEach(pic => {
+                    if (typeof pic === 'string') projectFormData.append(input, pic.pic_src)
+                    else projectFormData.append(input, pic)
+                })
+            } //TEMP
+
             else projectFormData.append(input, projectData[input].value)
         }
         let projectsId;
@@ -142,13 +157,13 @@ export default function EditProject({ isNew }) {
                         <Col className='mr-md-5' sm={12} md={5} lg={3}>
 
                             <TextInput
-                                controlId={'projectName'}
-                                type={'text'}
+                                controlId='projectName'
+                                type='text'
                                 icon={<img src={nameTag} alt='name tag icon' className='name-svg mr-2' />}
-                                label={'Project Name:'}
-                                info={'Must be between 2-20 characters'}
+                                label='Project Name:'
+                                info='Must be between 2-20 characters'
                                 isRequired={true}
-                                name={'name'}
+                                name='name'
                                 value={projectData.name.value}
                                 defaultValue={projectData.name.value}
                                 error={projectData.name.error}
@@ -157,7 +172,7 @@ export default function EditProject({ isNew }) {
                                     setBlurredOutOfInput(true)
                                     setProjectData(validateInput(e, projectData))
                                 }}
-                                placeholder={'Project Name'}
+                                placeholder='Project Name'
                                 maxLength={20}
                             />
 
@@ -179,10 +194,10 @@ export default function EditProject({ isNew }) {
 
 
                             <Form.Group controlId="requiredTechSelect" className='mr-2'>
-                                <Form.Label><FiCode className='mr-2 text-dark' />Required Technologies</Form.Label>
+                                <Form.Label><FiCode className='mr-2 text-dark' />Required Technologies:</Form.Label>
                                 <MyMultiSelect
-                                    type={'reqTechs'}
-                                    location={'edit'}
+                                    type='reqTechs'
+                                    location='edit'
                                     onSelectChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
                                     checkedValues={projectData.requiredTechs.value} />
                                 <ErrorMessage error={projectData.requiredTechs.error} />
@@ -192,13 +207,12 @@ export default function EditProject({ isNew }) {
 
                         <Col className='border-right border-dark pr-3 mr-4 mt-4' sm={12} md={5} lg={4}>
                             <TextInput
-                                controlId={'githubLink'}
-                                type={'text'}
+                                controlId='githubLink'
+                                type='text'
                                 icon={<GrGithub className='mr-2 text-dark' />}
-                                label={'Github Link:'}
-                                info={''}
+                                label='Github Link:'
                                 isRequired={false}
-                                name={'githubLink'}
+                                name='githubLink'
                                 value={projectData.githubLink.value}
                                 error={projectData.githubLink.error}
                                 onChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
@@ -206,17 +220,15 @@ export default function EditProject({ isNew }) {
                                     setBlurredOutOfInput(true)
                                     setProjectData(validateInput(e, projectData))
                                 }}
-                                placeholder={'Github Link'} />
+                                placeholder='Github Link' />
 
 
                             <TextInput
-                                controlId={'description'}
-                                type={''}
+                                controlId='description'
                                 icon={<BsBook className='mr-2 text-dark' />}
-                                label={'Project Description:'}
-                                info={''}
+                                label='Project Description:'
                                 isRequired={false}
-                                name={'description'}
+                                name='description'
                                 value={projectData.description.value}
                                 error={projectData.description.error}
                                 onChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
@@ -224,7 +236,7 @@ export default function EditProject({ isNew }) {
                                     setBlurredOutOfInput(true)
                                     setProjectData(validateInput(e, projectData))
                                 }}
-                                placeholder={'Project description... Explain to the users what they should expect'}
+                                placeholder='Project description... Explain to the users what they should expect'
                                 as="textarea"
                                 rows={4}
                                 maxLength={200}

@@ -5,7 +5,7 @@ import { BiTrash, BiLike } from 'react-icons/bi'
 import { FiCode } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { BsBarChart } from 'react-icons/bs'
-import image from '../../../../images/usersImages/user_id_1/projectsImages/1/homepage.PNG'
+import image from '../../../../images/img-placeholder.png'
 import MyModal from '../../../General/Modal/MyModal'
 export default function ProjectCard({ ownsProject, data, invokeExploreRerender }) {
     console.log(data)
@@ -14,7 +14,11 @@ export default function ProjectCard({ ownsProject, data, invokeExploreRerender }
         <Col sm={12} md={4} lg={3} className='project-card'>
             <Card className='mb-4 pt-4 pl-4 pr-4 pb-3'>
                 <div onClick={() => history.push(`/projectdisplay/${data.id}`, data)}>
-                    <Card.Img variant="top" src={data.projects_pictures[0] ? data.projects_pictures[0].pic_src : image} fluid className='rounded card-img' />
+                    <Card.Img variant="top"
+                        src={data.projects_pictures.length > 0 ?
+                            data.projects_pictures[0].pic_src.includes('http') ? data.projects_pictures[0]
+                                : `http://localhost:3100/public/${data.projects_pictures[0].pic_src}`
+                            : image} />
                     <Card.Header className='text-center font-weight-bold border-none p-2'>{data.name}</Card.Header>
 
                     <ListGroup variant="flush">

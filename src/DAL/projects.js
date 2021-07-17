@@ -82,10 +82,12 @@ const removeReqTech = async (projectId, reqTechId) => {
     }
 }
 
-const removePicture = async pictureId => {
+const removePicture = async removePicData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/remove/picture/${pictureId}`, {
+        const res = await fetch(`http://localhost:3100/projects/remove/picture/${removePicData.picId}`, {
             method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(removePicData),
             credentials: 'include'
         })
         return await res.json()
