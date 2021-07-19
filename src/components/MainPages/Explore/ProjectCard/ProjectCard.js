@@ -12,12 +12,15 @@ export default function ProjectCard({ ownsProject, data, invokeExploreRerender }
     return (
         <Col sm={12} md={4} lg={3} className='project-card'>
             <Card className='mb-4 pt-4 pl-4 pr-4 pb-3'>
-                <div onClick={() => history.push(`/projectdisplay/${data.id}`, data)}>
-                    <Card.Img variant="top"
-                        src={data.projects_pictures.length > 0 ?
-                            data.projects_pictures[0].pic_src.includes('http') ? data.projects_pictures[0]
-                                : `http://localhost:3100/public/${data.projects_pictures[0].pic_src}`
-                            : image} />
+                <div>
+                    <div className='image-overlay'>
+                        <Card.Img variant="top"
+                            src={data.projects_pictures.length > 0 ?
+                                data.projects_pictures[0].pic_src.includes('http') ? data.projects_pictures[0]
+                                    : `http://localhost:3100/public/${data.projects_pictures[0].pic_src}`
+                                : image}
+                            onClick={() => history.push(`/projectdisplay/${data.id}`, data)} />
+                    </div>
                     <Card.Header className='text-center font-weight-bold border-none p-2'>{data.name}</Card.Header>
 
                     <ListGroup variant="flush">
@@ -29,7 +32,7 @@ export default function ProjectCard({ ownsProject, data, invokeExploreRerender }
                 </div>
                 {ownsProject && <Card.Body className='d-flex justify-content-between pb-0 pt-2'>
                     <Button className='button-zindex' onClick={() => history.push(`/editproject/${data.id}`, data)} >Edit</Button>
-                    <MyModal type='delete' removeType='Project' removeName={data.name} removableId={data.id} invokeExploreRerender={invokeExploreRerender} />
+                    <MyModal type='delete' removeType='Project' removeName={data.name} removableId={data.id} invokeRerender={invokeExploreRerender} />
                 </Card.Body>}
             </Card>
         </Col>

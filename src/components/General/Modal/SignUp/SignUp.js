@@ -8,6 +8,7 @@ import TextInput from '../../FormComponents/TextInput'
 export default function SignUp() {
     const context = useContext(userContext)
     const [disableBtn, setDisableBtn] = useState(true)
+    const [returnedErr, setReturnedErr] = useState('')
     const [signUpData, setSignUpData] = useState({
         username: {
             value: '',
@@ -34,12 +35,18 @@ export default function SignUp() {
     async function signUp(e) {
         e.preventDefault();
         if (isFormValid(signUpData)) {
-            await addNewUser({
+
+            const signUpRes = await addNewUser({
                 username: signUpData.username.value,
                 email: signUpData.email.value,
                 password: signUpData.password.value
             })
-            context.setLoggedUser(await login({ username: signUpData.username.value, password: signUpData.password.value }))
+            if (signUpRes.id) {
+                context.setLoggedUser(await login({ username: signUpData.username.value, password: signUpData.password.value }))
+            } else {
+                setReturnedErr('Username/Email Address already taken')
+                setDisableBtn(true)
+            }
         }
     }
 
@@ -48,6 +55,7 @@ export default function SignUp() {
             <h2>Sign Up</h2>
             <hr />
             <p>All fields are Required</p>
+
             <Form onSubmit={signUp}>
                 <TextInput
                     controlId={'username'}
@@ -99,7 +107,7 @@ export default function SignUp() {
                     onBlur={(e) => setSignUpData(validateInput(e, signUpData))}
                     placeholder={'Enter password'}
                 />
-
+                {returnedErr && <p className='text-danger'>{returnedErr}</p>}
                 <Button variant="primary" type="submit" className='d-block mx-auto' disabled={disableBtn}>
                     Join
                 </Button>

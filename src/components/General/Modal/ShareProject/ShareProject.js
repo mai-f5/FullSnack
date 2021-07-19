@@ -5,8 +5,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiCopy } from 'react-icons/fi'
 
 
-export default function ShareProject() {
-    const link = 'https://github.com';
+export default function ShareProject({ projectId }) {
+    console.log(projectId)
+    const link = `http://localhost:3000/projectdisplay/${projectId}`;
     return (
         <div className='share-project'>
             <h2>Share Project</h2>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
 import { getRequiredTechsList, getDifficultyLevelsList } from '../../../DAL/staticData'
 
-export default function MyMultiSelect({ onSelectChange, type, location, checkedValues, onSelectBlur }) {
+export default function MyMultiSelect({ onSelectChange, onChange, type, location, checkedValues, onSelectBlur }) {
     const assets = [
         { value: '1', label: 'Has Assets' },
         { value: '0', label: 'No Assets' }
@@ -51,6 +51,9 @@ export default function MyMultiSelect({ onSelectChange, type, location, checkedV
             value={selected}
             onChange={(e) => {
                 setSelected(e)
+                if (location) {
+                    onChange()
+                }
             }}
 
             hasSelectAll={type === 'requiredTechnologies'}

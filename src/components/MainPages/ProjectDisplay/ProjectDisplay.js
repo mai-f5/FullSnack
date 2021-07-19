@@ -39,34 +39,37 @@ export default function ProjectDisplay() {
         setIndex(selectedIndex);
     };
 
-    useEffect(async () => {
-        const project = await getProjectData(pid)
-        setProjectsData({
-            id: project.id,
-            name: project.name,
-            likesCounter: project.liked_project_id.length,
-            difficultyLevel: project.difficulty_level.name,
-            requiredTechs: project.project_required_tech_id.map(tech => tech.name),
-            description: project.description,
-            githubLink: project.github_url,
-            assetsSrc: project.assets_src,
-            pictures: project.projects_pictures.map(pic => pic.pic_src),
-            user: {
-                username: project.user.username,
-                id: project.user.id
-            }
-        })
-    }, [didUserLike])
+    useEffect(() => {
+        (async () => {
+            const project = await getProjectData(pid)
+            setProjectsData({
+                id: project.id,
+                name: project.name,
+                likesCounter: project.liked_project_id.length,
+                difficultyLevel: project.difficulty_level.name,
+                requiredTechs: project.project_required_tech_id.map(tech => tech.name),
+                description: project.description,
+                githubLink: project.github_url,
+                assetsSrc: project.assets_src,
+                pictures: project.projects_pictures.map(pic => pic.pic_src),
+                user: {
+                    username: project.user.username,
+                    id: project.user.id
+                }
+            })
+        })();
+    }, [])
 
-    useEffect(async () => {
-        if (context.loggedUser.id && projectsData.id) {
-            const didUserLikeRes = await getDidUserLikeProject(context.loggedUser.id, projectsData.id);
-            setDidUserLike(didUserLikeRes)
-        }
+    useEffect(() => {
+        (async () => {
+            if (context.loggedUser.id && projectsData.id) {
+                const didUserLikeRes = await getDidUserLikeProject(context.loggedUser.id, projectsData.id);
+                setDidUserLike(didUserLikeRes)
+            }
+        })();
     }, [context.loggedUser, projectsData])
 
     useEffect(() => {
-        console.log(projectsData)
         if (projectsData) setLoad(false)
     }, [projectsData])
 
@@ -91,7 +94,7 @@ export default function ProjectDisplay() {
                         <div>
                             <h2 className='mr-5 text-dark d-block d-md-inline'>{projectsData.name}</h2>
                             <Button className={`like-share-icon rounded-circle text-center mr-2 ${didUserLike ? 'clicked-like' : ''}`} onMouseDown={(e) => e.preventDefault()} onClick={handleLikeBtnClick}><BiLike /></Button>
-                            <MyModal type='share' />
+                            <MyModal type='share' projectId={pid} />
                             <p className='font-weight-bold d-block mb-3 mt-3 mt-lg-0'>By {projectsData.user.username}</p>
 
                         </div>

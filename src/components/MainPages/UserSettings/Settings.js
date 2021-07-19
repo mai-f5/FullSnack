@@ -20,6 +20,7 @@ export default function Settings() {
 
     const [loader, setLoader] = useState(false)
     const [disableBtn, setDisableBtn] = useState(true)
+    const [madeChanges, setMadeChanges] = useState(false)
     const [passwordChanged, setPasswordChanged] = useState(false)
     const [dataChangedRes, setDataChangedRes] = useState({})
 
@@ -65,7 +66,7 @@ export default function Settings() {
     }, [])
 
     useEffect(() => {
-        setDisableBtn(!isFormValid(userData))
+        if (madeChanges) setDisableBtn(!isFormValid(userData))
     }, [userData])
 
     function changeProfileImg(e) {
@@ -125,9 +126,9 @@ export default function Settings() {
                             name='email'
                             value={userData.email.value}
                             error={userData.email.error || dataChangedRes.msg && dataChangedRes.msg.includes('success') ? '' : dataChangedRes.msg}
-
                             onChange={(e) => {
                                 setUserData(inputChangeHandler(e, userData))
+                                setMadeChanges(true)
                             }}
                             onBlur={(e) => setUserData(validateInput(e, userData))
                             }
@@ -150,6 +151,7 @@ export default function Settings() {
                                 checkedValue={userData.gender.value}
                                 onRbChange={(e) => {
                                     setUserData(inputChangeHandler(e, userData))
+                                    setMadeChanges(true)
                                 }}
                             />
                         </Form.Group>
@@ -163,6 +165,7 @@ export default function Settings() {
                                 value={userData.birthdate.value}
                                 onChange={(e) => {
                                     setUserData(inputChangeHandler(e, userData))
+                                    setMadeChanges(true)
                                 }}
                             />
                         </div>
@@ -174,6 +177,7 @@ export default function Settings() {
                                 value={userData.occupation.value}
                                 onChange={(e) => {
                                     setUserData(inputChangeHandler(e, userData))
+                                    setMadeChanges(true)
                                 }}
                             >
                                 <option value={null} selected>Select occupation</option>
@@ -197,6 +201,7 @@ export default function Settings() {
                             <Button onClick={(e) => { elementRef.current.click() }}>Edit</Button>
                             <Form.File hidden ref={elementRef} onChange={(e) => {
                                 changeProfileImg(e)
+                                setMadeChanges(true)
                             }} accept='image/*'></Form.File>
                         </Form.Group>
                     </Col>

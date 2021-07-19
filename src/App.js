@@ -14,12 +14,14 @@ function App() {
 
   const [loggedUser, setLoggedUser] = useState({})
 
-  useEffect(async () => {
-    if (Cookies.get('fsCookie')) {
-      const uId = Cookies.get('fsCookie')
-      const userData = await getUserData(uId)
-      setLoggedUser(userData)
-    }
+  useEffect(() => {
+    (async () => {
+      if (Cookies.get('fsCookie')) {
+        const uId = Cookies.get('fsCookie')
+        const userData = await getUserData(uId)
+        setLoggedUser(userData)
+      }
+    })();
   }, [])
 
 
