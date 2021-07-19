@@ -44,7 +44,8 @@ export default function NewThread({ relevantData, close, invokeRerender }) {
 
     return (
         <div className='new-thread-form'>
-            <h4>New Thread</h4>
+            <h4 className='font-weight-bold text-center'>New Thread</h4>
+            <hr />
             <Form onSubmit={onPostThread}>
                 <TextInput controlId="thread"
                     label="Topic:"

@@ -14,10 +14,14 @@ export default function MyPopover({ type }) {
     const context = useContext(userContext);
     const [notifications, setNotifications] = useState([])
     const [updateNotifs, setUpdateNotifs] = useState(false)
+
+
     async function fetchNotifications() {
-        const data = await getUsersNewNotifications(context.loggedUser.id)
-        if (data.length > 0) setNotifications([...data])
-        else setNotifications([])
+        if (context.loggedUser.id) {
+            const data = await getUsersNewNotifications(context.loggedUser.id)
+            if (data.length > 0) setNotifications([...data])
+            else setNotifications([])
+        }
     }
 
     useEffect(() => {
@@ -50,7 +54,6 @@ export default function MyPopover({ type }) {
                 onExit={(e) => {
                     if (type === 'notifications') markNotificationsAsRead()
                 }}
-                onHide={(e) => { }}
                 overlay={
                     <Popover id={`popover-positioned-bottom`}>
                         {type === 'signin' ? <SignIn /> :

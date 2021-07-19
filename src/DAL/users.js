@@ -61,9 +61,11 @@ const addNewUser = async newUsersData => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newUsersData),
         })
+        // console.log(res)
         return await res.json()
     } catch (err) {
         console.log(err)
+        return err
     }
 }
 

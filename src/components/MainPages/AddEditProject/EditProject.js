@@ -26,6 +26,7 @@ export default function EditProject() {
     }
     const [disableBtn, setDisableBtn] = useState(true)
     const [loader, setLoader] = useState(true)
+    const [madeChanges, setMadeChanges] = useState(false)
     const { pid } = useParams();
     const [projectData, setProjectData] = useState({})
 
@@ -67,10 +68,14 @@ export default function EditProject() {
             setLoader(false)
         })();
     }, [])
+    const setChangesTrue = () => {
+        setMadeChanges(true)
+    }
 
     useEffect(() => {
-        setDisableBtn(!isFormValid(projectData))
-    }, [projectData])
+        console.log(madeChanges)
+        if (madeChanges) setDisableBtn(!isFormValid(projectData))
+    }, [projectData, madeChanges])
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
@@ -128,7 +133,10 @@ export default function EditProject() {
                                 name='name'
                                 value={projectData.name.value}
                                 error={projectData.name.error}
-                                onChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                onChange={(e) => {
+                                    setProjectData(inputChangeHandler(e, projectData))
+                                    setMadeChanges(true)
+                                }}
                                 onBlur={(e) => setProjectData(validateInput(e, projectData))}
                                 placeholder='Project Name'
                                 maxLength={20}
@@ -146,7 +154,10 @@ export default function EditProject() {
                                 < ToggleRb
                                     name='difficultyLevel'
                                     checkedValue={projectData.difficultyLevel.value}
-                                    onRbChange={(e) => setProjectData(inputChangeHandler(e, projectData))} />
+                                    onRbChange={(e) => {
+                                        setProjectData(inputChangeHandler(e, projectData))
+                                        setMadeChanges(true)
+                                    }} />
                                 <ErrorMessage error={projectData.difficultyLevel.error} />
                             </Form.Group>
 
@@ -157,8 +168,11 @@ export default function EditProject() {
                                 <MyMultiSelect
                                     type='requiredTechnologies'
                                     location='edit'
-                                    onSelectChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                    onSelectChange={(e) => {
+                                        setProjectData(inputChangeHandler(e, projectData))
+                                    }}
                                     onSelectBlur={(e) => setProjectData(validateInput(e, projectData))}
+                                    onChange={setChangesTrue}
                                     checkedValues={projectData.requiredTechnologies.value} />
 
                             </Form.Group>
@@ -175,7 +189,10 @@ export default function EditProject() {
                                 name='githubLink'
                                 value={projectData.githubLink.value}
                                 error={projectData.githubLink.error}
-                                onChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                onChange={(e) => {
+                                    setProjectData(inputChangeHandler(e, projectData))
+                                    setMadeChanges(true)
+                                }}
                                 onBlur={(e) => setProjectData(validateInput(e, projectData))}
                                 placeholder='Github Link' />
 
@@ -188,7 +205,10 @@ export default function EditProject() {
                                 name='description'
                                 value={projectData.description.value}
                                 error={projectData.description.error}
-                                onChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                onChange={(e) => {
+                                    setProjectData(inputChangeHandler(e, projectData))
+                                    setMadeChanges(true)
+                                }}
                                 onBlur={(e) => setProjectData(validateInput(e, projectData))}
                                 placeholder='Project description... Explain to the users what they should expect'
                                 as="textarea"
@@ -206,7 +226,10 @@ export default function EditProject() {
                                 <MyDropzone
                                     name='pictures'
                                     insertedFiles={projectData.pictures.value}
-                                    onFileUpload={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                    onFileUpload={(e) => {
+                                        setProjectData(inputChangeHandler(e, projectData))
+                                    }}
+                                    onChange={setChangesTrue}
                                     onInputValidation={(e) => setProjectData(validateInput(e, projectData))}
                                 />
 
@@ -218,7 +241,10 @@ export default function EditProject() {
                                 <MyDropzone
                                     name='assetsSrc'
                                     insertedFiles={projectData.assetsSrc.value}
-                                    onFileUpload={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                    onFileUpload={(e) => {
+                                        setProjectData(inputChangeHandler(e, projectData))
+                                    }}
+                                    onChange={setChangesTrue}
                                 />
 
                             </Form.Group>
