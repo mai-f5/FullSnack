@@ -17,7 +17,7 @@ import { validateInput, isFormValid } from '../../../utils/validations'
 import { addNewProject, getProjectData, updateProjectData } from '../../../DAL/projects'
 import userContext from '../../../utils/AuthContext'
 
-export default function EditProject({ isNew }) {
+export default function EditProject() {
 
     const context = useContext(userContext)
     const history = useHistory();
@@ -26,88 +26,50 @@ export default function EditProject({ isNew }) {
     }
     const [disableBtn, setDisableBtn] = useState(true)
     const [loader, setLoader] = useState(true)
-
-    //if new project
-    const [projectData, setProjectData] = useState({
-        userId: context.loggedUser.id,
-        name: {
-            value: '',
-            error: ''
-        },
-        difficultyLevel: {
-            value: '',
-            error: ''
-        },
-        githubLink: {
-            value: '',
-            error: ''
-        },
-        description: {
-            value: '',
-            error: ''
-        },
-        requiredTechs: {
-            value: [],
-            error: ''
-        },
-        assetsSrc: {
-            value: '',
-            error: ''
-        },
-        pictures: {
-            value: [],
-            error: ''
-        },
-    })
-
-    //if editing
     const { pid } = useParams();
-    useEffect(async () => {
-        if (pid !== 'new') {
+    const [projectData, setProjectData] = useState({})
+
+    useEffect(() => {
+        (async () => {
+            setLoader(true)
             const fetchedProjectData = await getProjectData(pid)
             setProjectData({
                 userId: context.loggedUser.id,
                 name: {
-                    value: fetchedProjectData.name,
+                    value: fetchedProjectData ? fetchedProjectData.name : '',
                     error: ''
                 },
                 difficultyLevel: {
-                    value: fetchedProjectData.difficulty_level_id,
+                    value: fetchedProjectData ? fetchedProjectData.difficulty_level_id : '',
                     error: ''
                 },
                 githubLink: {
-                    value: fetchedProjectData.github_url || '',
+                    value: fetchedProjectData ? fetchedProjectData.github_url : '',
                     error: ''
                 },
                 description: {
-                    value: fetchedProjectData.description || '',
+                    value: fetchedProjectData ? fetchedProjectData.description : '',
                     error: ''
                 },
-                requiredTechs: {
-                    value: fetchedProjectData.project_required_tech_id.map(tech => { return { value: tech.id, label: tech.name } }),
+                requiredTechnologies: {
+                    value: fetchedProjectData ? fetchedProjectData.project_required_tech_id.map(tech => { return { value: tech.id, label: tech.name } }) : [],
                     error: ''
                 },
                 assetsSrc: {
-                    value: fetchedProjectData.assets_src || '',
+                    value: fetchedProjectData ? fetchedProjectData.assets_src : '',
                     error: ''
                 },
                 pictures: {
-                    value: fetchedProjectData.projects_pictures,
+                    value: fetchedProjectData ? fetchedProjectData.projects_pictures : [],
                     error: ''
                 },
             })
-        }
-        setLoader(false)
+            setLoader(false)
+        })();
     }, [])
 
     useEffect(() => {
         setDisableBtn(!isFormValid(projectData))
-        console.log(projectData)
-    }, [projectData])
-
-
-    useEffect(() => {
-        console.log(projectData);
     }, [projectData])
 
     const handleFormSubmit = async (e) => {
@@ -191,12 +153,13 @@ export default function EditProject({ isNew }) {
 
                             <Form.Group controlId="requiredTechSelect" className='mr-2'>
                                 <Form.Label><FiCode className='mr-2 text-dark' />Required Technologies:</Form.Label>
-                                <ErrorMessage error={projectData.requiredTechs.error} />
+                                <ErrorMessage error={projectData.requiredTechnologies.error} />
                                 <MyMultiSelect
-                                    type='reqTechs'
+                                    type='requiredTechnologies'
                                     location='edit'
-                                    onSelectChange={(e) => setProjectData(validateInput(e, projectData))}
-                                    checkedValues={projectData.requiredTechs.value} />
+                                    onSelectChange={(e) => setProjectData(inputChangeHandler(e, projectData))}
+                                    onSelectBlur={(e) => setProjectData(validateInput(e, projectData))}
+                                    checkedValues={projectData.requiredTechnologies.value} />
 
                             </Form.Group>
                         </Col>
