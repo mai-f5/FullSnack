@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import TextInput from '../../FormComponents/TextInput';
 import ErrorMessage from '../../FormComponents/ErrorMsg';
 import MySpinner from '../../MySpinner'
 import { inputChangeHandler } from '../../../../utils/handlers';
-import { validateInput } from '../../../../utils/validations'
+import { validateInput, isFormValid } from '../../../../utils/validations'
 import { login } from '../../../../DAL/users'
 import userContext from '../../../../utils/AuthContext';
 
 export default function SignIn() {
-    const [disablingLoader, setDisablingLoader] = useState(false)
-    const [loginResult, setLoginResult] = useState({})
+    const [loader, setLoader] = useState(false)
+    const [disableBtn, setDisableBtn] = useState(true)
     const [loginData, setLoginData] = useState({
         username: {
             value: '',
@@ -22,16 +22,20 @@ export default function SignIn() {
         }
     })
 
+    const [loginResult, setLoginResult] = useState({})
     const context = useContext(userContext)
+
+    useEffect(() => {
+        setDisableBtn(!isFormValid(loginData))
+    }, [loginData])
 
     async function loginSubmit(e) {
         e.preventDefault()
-
-        if (!loginData.username.error && !loginData.password.error) {
-            setDisablingLoader(true)
+        if (isFormValid(loginData)) {
+            setLoader(true)
             const loginRes = await login({ username: loginData.username.value, password: loginData.password.value })
             setLoginResult(loginRes)
-            setDisablingLoader(false)
+            setLoader(false)
 
             if (loginRes.id) {
                 context.setLoggedUser(loginRes);
@@ -52,9 +56,12 @@ export default function SignIn() {
         <>
             <Form onSubmit={loginSubmit}>
                 <TextInput controlId='username'
+                    label="Username"
                     type='text'
                     placeholder='Enter Username'
-                    name='username' value={loginData.username.value}
+                    name='username'
+                    value={loginData.username.value}
+                    error={loginData.username.error}
                     onChange={(e) => {
                         setLoginResult({})
                         setLoginData(inputChangeHandler(e, loginData))
@@ -62,20 +69,23 @@ export default function SignIn() {
                     onBlur={(e) => setLoginData(validateInput(e, loginData))} />
 
                 <TextInput controlId="password"
+                    label="Password"
                     type="password"
                     placeholder="Password"
                     name="password"
+                    value={loginData.password.value}
+                    error={loginData.password.error}
                     onChange={(e) => {
                         setLoginResult({})
                         setLoginData(inputChangeHandler(e, loginData))
                     }}
                     onBlur={(e) => setLoginData(validateInput(e, loginData))} />
 
-                <Button variant="primary" type="submit" className='d-block mx-auto' disabled={disablingLoader}>
+                <Button variant="primary" type="submit" className='d-block mx-auto' disabled={disableBtn}>
                     Sign in
                 </Button>
                 {typeof loginResult === 'string' ? <ErrorMessage error={loginResult} /> : null}
-                {disablingLoader && <MySpinner />}
+                {loader && <MySpinner />}
             </Form>
         </>
     )

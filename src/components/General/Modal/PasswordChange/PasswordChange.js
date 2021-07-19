@@ -5,10 +5,12 @@ import userContext from '../../../../utils/AuthContext'
 import { inputChangeHandler } from '../../../../utils/handlers'
 import { isFormValid, validateInput } from '../../../../utils/validations'
 import { updateUserPassword } from '../../../../DAL/users'
-import ErrorMessage from '../../FormComponents/ErrorMsg'
+import MySpinner from '../../MySpinner'
 
 export default function PasswordChange({ close, updatePasswordResponse }) {
     const context = useContext(userContext)
+    const [loader, setLoader] = useState(false)
+    const [disableBtn, setDisableBtn] = useState(true)
     const [passwordData, setPasswordData] = useState({
         oldPassword: {
             value: '',
@@ -24,31 +26,36 @@ export default function PasswordChange({ close, updatePasswordResponse }) {
         }
     })
 
+    useEffect(() => {
+        setDisableBtn(!isFormValid(passwordData))
+    }, [passwordData])
+
     async function onPasswordChangeSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
-
-        // if (isFormValid(passwordData)) {
-        const serverRes = await updateUserPassword({
-            userId: context.loggedUser.id,
-            oldPassword: passwordData.oldPassword.value,
-            newPassword: passwordData.passwordConfirm.value
-        })
-        console.log(serverRes)
-        if (!serverRes.changed) {
-            setPasswordData({
-                ...passwordData,
-                oldPassword: {
-                    ...passwordData.oldPassword,
-                    error: "Incorrect password"
-                }
+        setLoader(true)
+        if (isFormValid(passwordData)) {
+            const serverRes = await updateUserPassword({
+                userId: context.loggedUser.id,
+                oldPassword: passwordData.oldPassword.value,
+                newPassword: passwordData.passwordConfirm.value
             })
-        } else {
-            updatePasswordResponse()
-            close()
+            setLoader(false)
+            if (!serverRes.changed) {
+                setPasswordData({
+                    ...passwordData,
+                    oldPassword: {
+                        ...passwordData.oldPassword,
+                        error: "Incorrect password"
+                    }
+                })
+            } else {
+                updatePasswordResponse()
+                close()
+            }
         }
-        // }
     }
+
     return (
         <div>
             <h2>Password Change</h2>
@@ -60,8 +67,10 @@ export default function PasswordChange({ close, updatePasswordResponse }) {
                     type="password"
                     name='oldPassword'
                     value={passwordData.oldPassword.value}
+                    error={passwordData.oldPassword.error}
                     onChange={(e) => setPasswordData(inputChangeHandler(e, passwordData))}
-                    error={passwordData.oldPassword.error} />
+                    onBlur={(e) => setPasswordData(validateInput(e, passwordData))}
+                />
 
                 <TextInput
                     controlId="password"
@@ -71,10 +80,7 @@ export default function PasswordChange({ close, updatePasswordResponse }) {
                     name='password'
                     value={passwordData.password.value}
                     onChange={(e) => setPasswordData(inputChangeHandler(e, passwordData))}
-                    onBlur={(e) => {
-                        // setBlurredOutOfInput(true)
-                        setPasswordData(validateInput(e, passwordData))
-                    }}
+                    onBlur={(e) => setPasswordData(validateInput(e, passwordData))}
                     error={passwordData.password.error} />
 
                 <TextInput
@@ -85,13 +91,12 @@ export default function PasswordChange({ close, updatePasswordResponse }) {
                     name='passwordConfirm'
                     value={passwordData.passwordConfirm.value}
                     onChange={(e) => setPasswordData(inputChangeHandler(e, passwordData))}
-                    onBlur={(e) => {
-                        // setBlurredOutOfInput(true)
-                        setPasswordData(validateInput(e, passwordData))
-                    }}
+                    onBlur={(e) => setPasswordData(validateInput(e, passwordData))}
                     error={passwordData.passwordConfirm.error} />
 
-                <Button type='submit'>Save Changes</Button> <Button onClick={close}>Cancel</Button>
+                <Button type='submit' disabled={disableBtn}>Save Changes</Button>
+                <Button onClick={close}>Cancel</Button>
+                {loader && <MySpinner />}
             </Form>
 
         </div>

@@ -1,6 +1,6 @@
 function ErrorMessage({ error }) {
-    return <p className='text-center mt-2'>
-        <small id="errorMsg" className="text-danger">
+    return <p className='text-left ml-1 m-0 p-0'>
+        <small id="errorMsg" className="text-danger ">
             {error}
         </small>
     </p>

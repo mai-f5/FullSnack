@@ -7,6 +7,7 @@ import userContext from '../../../../utils/AuthContext'
 import TextInput from '../../FormComponents/TextInput'
 export default function SignUp() {
     const context = useContext(userContext)
+    const [disableBtn, setDisableBtn] = useState(true)
     const [signUpData, setSignUpData] = useState({
         username: {
             value: '',
@@ -25,12 +26,10 @@ export default function SignUp() {
             error: ''
         }
     })
-    const [isBtnDisabled, setIsBtnDisabled] = useState(true)
-    const [blurredOutOfInput, setBlurredOutOfInput] = useState(false)
+
     useEffect(() => {
-        setIsBtnDisabled(!isFormValid(signUpData))
-        setBlurredOutOfInput(false)
-    }, [blurredOutOfInput])
+        setDisableBtn(!isFormValid(signUpData))
+    }, [signUpData])
 
     async function signUp(e) {
         e.preventDefault();
@@ -40,11 +39,9 @@ export default function SignUp() {
                 email: signUpData.email.value,
                 password: signUpData.password.value
             })
-
             context.setLoggedUser(await login({ username: signUpData.username.value, password: signUpData.password.value }))
         }
     }
-
 
     return (
         <>
@@ -61,10 +58,7 @@ export default function SignUp() {
                     value={signUpData.username.value}
                     error={signUpData.username.error}
                     onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                    onBlur={(e) => {
-                        setBlurredOutOfInput(true)
-                        setSignUpData(validateInput(e, signUpData))
-                    }}
+                    onBlur={(e) => setSignUpData(validateInput(e, signUpData))}
                     placeholder={'Enter Username'}
                 />
 
@@ -77,10 +71,7 @@ export default function SignUp() {
                     value={signUpData.email.value}
                     error={signUpData.email.error}
                     onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                    onBlur={(e) => {
-                        setBlurredOutOfInput(true)
-                        setSignUpData(validateInput(e, signUpData))
-                    }}
+                    onBlur={(e) => setSignUpData(validateInput(e, signUpData))}
                     placeholder={'Enter email'}
                 />
                 <TextInput
@@ -92,10 +83,7 @@ export default function SignUp() {
                     value={signUpData.password.value}
                     error={signUpData.password.error}
                     onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                    onBlur={(e) => {
-                        setBlurredOutOfInput(true)
-                        setSignUpData(validateInput(e, signUpData))
-                    }}
+                    onBlur={(e) => setSignUpData(validateInput(e, signUpData))}
                     placeholder={'Enter password'}
                 />
 
@@ -108,14 +96,11 @@ export default function SignUp() {
                     value={signUpData.passwordConfirm.value}
                     error={signUpData.passwordConfirm.error}
                     onChange={(e) => setSignUpData(inputChangeHandler(e, signUpData))}
-                    onBlur={(e) => {
-                        setBlurredOutOfInput(true)
-                        setSignUpData(validateInput(e, signUpData))
-                    }}
+                    onBlur={(e) => setSignUpData(validateInput(e, signUpData))}
                     placeholder={'Enter password'}
                 />
 
-                <Button variant="primary" type="submit" className='d-block mx-auto' disabled={isBtnDisabled}>
+                <Button variant="primary" type="submit" className='d-block mx-auto' disabled={disableBtn}>
                     Join
                 </Button>
             </Form>
