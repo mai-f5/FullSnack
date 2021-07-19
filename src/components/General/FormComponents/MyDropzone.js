@@ -4,7 +4,7 @@ import MyModal from '../Modal/MyModal'
 import { BiDownload } from 'react-icons/bi'
 import { AiOutlineFile } from 'react-icons/ai'
 import { Button } from 'react-bootstrap'
-export default function MyDropzone({ name, insertedFiles, onFileUpload }) {
+export default function MyDropzone({ name, insertedFiles, onFileUpload, onInputValidation }) {
     const initalFilesState = insertedFiles || [];
     const [files, setFiles] = useState(initalFilesState);
 
@@ -14,7 +14,11 @@ export default function MyDropzone({ name, insertedFiles, onFileUpload }) {
     };
 
     useEffect(() => {
-        onFileUpload(({ target: { name: name, value: typeof files !== 'string' ? [...files] : files } }))
+        onFileUpload({ target: { name: name, value: typeof files !== 'string' ? [...files] : files } })
+        if (name === 'pictures') {
+            onInputValidation(({ target: { name: name, value: files } }))
+        }
+        console.log('changing')
     }, [files])
 
     const removeFiles = newFilesArr => {

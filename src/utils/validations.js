@@ -11,6 +11,9 @@ const inputsRequirements = {
         required: true,
         pattern: ''
     },
+    oldPassword: {
+        required: true,
+    },
     email: {
         required: true,
         pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -47,20 +50,39 @@ const inputsRequirements = {
     body: {
         pattern: /^.{0,500}$/
     },
+    gender: {
+        required: false
+    },
+    birthdate: {
+        required: false
+    },
+    occupation: {
+        required: false
+    },
+    profileImg: {
+        required: false
+    }
 }
 
 
 const validateInput = ({ target: { value, name } }, formData) => {
-
     let newError = '';
     const validations = inputsRequirements[name];
     if (!value && validations.required) {
-        newError = name === 'passwordConfirm' ? 'password confirmation is required' : `${name} is required`;
+
+        newError = `${splitCamelCase(name)} is required`;
     } else if (validations.pattern && !validations.pattern.test(value)) {
         newError = `Invalid ${name} value`;
-    } else if (name === 'passwordConfirm') {
+    }
+    else if (('passwordConfirm' in formData)
+        && (name === 'passwordConfirm' || name === 'password')
+        && (formData.password.value && formData.passwordConfirm.value)) {
         if (!comparePasswords(formData.password.value, formData.passwordConfirm.value)) {
             newError = 'Passwords don\'t match!'
+        }
+    } else if (name === 'pictures' || (name === 'requiredTechs' && 'pictures' in formData)) {
+        if (value.length < 1) {
+            newError = `at least 1 ${splitCamelCase(name)} is required`
         }
     }
 
@@ -74,20 +96,31 @@ const validateInput = ({ target: { value, name } }, formData) => {
     };
 };
 
+
+//Full Form Validation
+function isFormValid(formData) {
+    for (const input in formData) {
+        if (input === 'userId') continue;
+        if ((inputsRequirements[input].required && !formData[input].value) || formData[input].error) {
+            return false;
+        }
+    }
+    return true;
+}
+
 function comparePasswords(password, passwordConfirm) {
     if (password === passwordConfirm) return true;
     return false;
 }
 
-//Full Form Validation
-function isFormValid(formData) {
-    for (const input in formData) {
-        if (input === 'userId') break;
-        if (inputsRequirements[input].required && formData[input].error.includes('is required')) {
-            return false;
+function splitCamelCase(name) {
+    for (const letter of name) {
+        if (letter === letter.toUpperCase()) {
+            const words = name.split(letter)
+            return `${words[0]} ${letter.toLowerCase()}${words[1]}`
         }
     }
-    return true;
+    return name;
 }
 
 

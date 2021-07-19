@@ -18,6 +18,7 @@ export default function TextInput({ controlId, type, icon, label, info, info2, i
             {isRequired && <Form.Text className="text-muted">
                 Required
             </Form.Text>}
+            {error ? <ErrorMsg error={error} /> : null}
             <Form.Control type={type}
                 name={name}
                 value={value}
@@ -29,7 +30,7 @@ export default function TextInput({ controlId, type, icon, label, info, info2, i
                 maxLength={maxLength}
                 defaultValue={defaultValue}
             />
-            {error ? <ErrorMsg error={error} /> : null}
+
         </Form.Group>
 
     )
