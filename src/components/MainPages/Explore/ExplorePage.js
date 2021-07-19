@@ -41,7 +41,7 @@ export default function Explore({ type }) {
             {!load && <div className='projectsExplore'>
                 {cardsData.length > 0 ?
                     < Row >
-                        {cardsData.map(cardData => <ProjectCard data={cardData} ownsProject={isUsersDashboard} invokeExploreRerender={onProjectRemove} />)}
+                        {cardsData.map((cardData, idx) => <ProjectCard key={idx} data={cardData} ownsProject={isUsersDashboard} invokeExploreRerender={onProjectRemove} />)}
                     </Row > :
                     !isUsersDashboard ? <div className='text-center projs-not-found'>
                         <BsSearch className='mt-5 mb-5' />

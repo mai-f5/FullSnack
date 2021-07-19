@@ -59,7 +59,7 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
                 <Form.Row className='col-12'>
                     <p className='mr-4 font-weight-bold'>Filter By</p>
                     <div className='mr-2'>
-                        <MyMultiSelect type='reqTechs' onSelectChange={onInputChangeHandler} />
+                        <MyMultiSelect type='requiredTechnologies' onSelectChange={onInputChangeHandler} />
                     </div>
                     <div className='mr-2'>
                         <MyMultiSelect type='difficultyLvls' onSelectChange={onInputChangeHandler} />

@@ -25,12 +25,11 @@ const inputsRequirements = {
     difficultyLevel: {
         required: true,
     },
-    requiredTechs: {
+    requiredTechnologies: {
         required: true,
     },
     githubLink: {
         required: false,
-        pattern: /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
     },
     description: {
         required: false,
@@ -80,9 +79,10 @@ const validateInput = ({ target: { value, name } }, formData) => {
         if (!comparePasswords(formData.password.value, formData.passwordConfirm.value)) {
             newError = 'Passwords don\'t match!'
         }
-    } else if (name === 'pictures' || (name === 'requiredTechs' && 'pictures' in formData)) {
+    } else if (name === 'pictures' || (name === 'requiredTechnologies')) {
+        console.log(name, formData, 'pictures' in formData, formData.name.value != '')
         if (value.length < 1) {
-            newError = `at least 1 ${splitCamelCase(name)} is required`
+            newError = `at least 1 ${name === 'pictures' ? 'image' : 'technology'} is required`
         }
     }
 
@@ -96,12 +96,11 @@ const validateInput = ({ target: { value, name } }, formData) => {
     };
 };
 
-
 //Full Form Validation
 function isFormValid(formData) {
     for (const input in formData) {
         if (input === 'userId') continue;
-        if ((inputsRequirements[input].required && !formData[input].value) || formData[input].error) {
+        if ((inputsRequirements[input].required && (!formData[input].value || formData[input].value.length < 1)) || formData[input].error) {
             return false;
         }
     }
@@ -122,7 +121,6 @@ function splitCamelCase(name) {
     }
     return name;
 }
-
 
 
 export { validateInput, isFormValid };

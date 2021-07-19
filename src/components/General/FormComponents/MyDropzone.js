@@ -10,6 +10,7 @@ export default function MyDropzone({ name, insertedFiles, onFileUpload, onInputV
 
     const handleDrop = acceptedFiles => {
         if (name === 'assetsSrc' && files.length > 0) return
+        else if (name === 'pictures' && files.length === 10) return
         setFiles([...files, ...acceptedFiles])
     };
 
@@ -18,7 +19,6 @@ export default function MyDropzone({ name, insertedFiles, onFileUpload, onInputV
         if (name === 'pictures') {
             onInputValidation(({ target: { name: name, value: files } }))
         }
-        console.log('changing')
     }, [files])
 
     const removeFiles = newFilesArr => {
@@ -27,7 +27,7 @@ export default function MyDropzone({ name, insertedFiles, onFileUpload, onInputV
     return (
         <div className="drag-drop-files">
             <Dropzone onDrop={handleDrop}
-                accept={name === 'pictures' ? 'image/*' : ''}
+                accept={name === 'pictures' ? 'image/*' : ".zip,.rar,.7zip"}
             >
                 {({ getRootProps, getInputProps }) => (
                     <div {...getRootProps({ className: "dropzone" })}>

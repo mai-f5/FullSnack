@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import MultiSelect from 'react-multi-select-component'
 import { getRequiredTechsList, getDifficultyLevelsList } from '../../../DAL/staticData'
 
-export default function MyMultiSelect({ onSelectChange, type, location, checkedValues }) {
+export default function MyMultiSelect({ onSelectChange, type, location, checkedValues, onSelectBlur }) {
     const assets = [
         { value: '1', label: 'Has Assets' },
         { value: '0', label: 'No Assets' }
     ]
-    const [reqTechs, setReqTechs] = useState([])
+    const [requiredTechnologies, setReqTechs] = useState([])
     const [difficultyLvls, setDifficultyLevels] = useState([])
 
     const [selected, setSelected] = useState([]);
@@ -20,17 +20,26 @@ export default function MyMultiSelect({ onSelectChange, type, location, checkedV
         getDifficultyLevelsList().then(data => {
             setDifficultyLevels([...data])
         })
-        if (type === 'reqTechs' && location) { setSelected(checkedValues) }
+        if (type === 'requiredTechnologies' && location) { setSelected(checkedValues) }
     }, [])
 
     useEffect(() => {
-        onSelectChange(({ target: { name: type === 'reqTechs' ? 'requiredTechs' : type === 'difficultyLvls' ? 'difficultyLevels' : 'assets', value: selected.map(obj => obj.value) } }))
+        onSelectChange(({ target: { name: type === 'requiredTechnologies' ? 'requiredTechnologies' : type === 'difficultyLvls' ? 'difficultyLevels' : 'assets', value: selected.map(obj => obj.value) } }))
     }, [selected])
+
+
+    function validateSelection(e) {
+        if (!e) {
+            if (type === 'requiredTechnologies' && location) {
+                onSelectBlur(({ target: { name: 'requiredTechnologies', value: selected.map(obj => obj.value) } }))
+            }
+        }
+    }
 
     const customValueRenderer = (selected, _options) => {
         return selected.length
             ? selected.map(({ label }) => label).join(', ')
-            : type === 'reqTechs' ?
+            : type === 'requiredTechnologies' ?
                 location ? 'Select Required Technologies' : 'Required Technologies'
                 : type === 'difficultyLvls' ? 'Difficulty Levels' : 'Assets'
     };
@@ -38,15 +47,17 @@ export default function MyMultiSelect({ onSelectChange, type, location, checkedV
     return (
         <MultiSelect
             className='multi-select mb-3'
-            options={type === 'reqTechs' ? reqTechs : type === 'difficultyLvls' ? difficultyLvls : assets}
+            options={type === 'requiredTechnologies' ? requiredTechnologies : type === 'difficultyLvls' ? difficultyLvls : assets}
             value={selected}
             onChange={(e) => {
                 setSelected(e)
             }}
-            hasSelectAll={type === 'reqTechs'}
-            disableSearch={type !== 'reqTechs'}
+
+            hasSelectAll={type === 'requiredTechnologies'}
+            disableSearch={type !== 'requiredTechnologies'}
             valueRenderer={customValueRenderer}
-            on
+            onMenuToggle={validateSelection}
+
         />
     )
 }
