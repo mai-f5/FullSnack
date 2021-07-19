@@ -9,34 +9,34 @@ import { useState, useEffect, useContext } from 'react'
 import { getUsersNewNotifications, updateNotificationsAsRead } from '../../../DAL/events'
 import userContext from '../../../utils/AuthContext'
 export default function MyPopover({ type }) {
+    const NOTIFICATIONS_INTERVAL_DURATION = 1000 * 60;
+
     const context = useContext(userContext);
     const [notifications, setNotifications] = useState([])
     const [updateNotifs, setUpdateNotifs] = useState(false)
-
     async function fetchNotifications() {
         const data = await getUsersNewNotifications(context.loggedUser.id)
         if (data.length > 0) setNotifications([...data])
-        else {
-            // setTimeout(() => {
-            setNotifications([])
-            // }, 30000)
-        }
+        else setNotifications([])
     }
 
-    useEffect(async () => {
-        switch (type) {
-            case 'notifications':
-                fetchNotifications()
-                break;
+    useEffect(() => {
+        if (type === 'notifications') fetchNotifications()
+    }, [])
+
+    useEffect(() => {
+        const notificationsTimer = setInterval(() => {
+            fetchNotifications();
+        }, NOTIFICATIONS_INTERVAL_DURATION)
+
+        return () => {
+            clearInterval(notificationsTimer)
         }
     }, [updateNotifs])
 
-    // setInterval(() => {
-    //     fetchNotifications()
-    // }, 1000 * 60 * 5)
-
-    const handleNotifications = async () => {
+    const markNotificationsAsRead = async () => {
         await updateNotificationsAsRead(context.loggedUser.id)
+        fetchNotifications();
         setUpdateNotifs(!updateNotifs)
     }
 
@@ -47,6 +47,10 @@ export default function MyPopover({ type }) {
                 key='bottom'
                 placement='bottom'
                 rootClose
+                onExit={(e) => {
+                    if (type === 'notifications') markNotificationsAsRead()
+                }}
+                onHide={(e) => { }}
                 overlay={
                     <Popover id={`popover-positioned-bottom`}>
                         {type === 'signin' ? <SignIn /> :
@@ -58,7 +62,6 @@ export default function MyPopover({ type }) {
             >
                 {
                     <button className='btn-as-link' disabled={type === 'notifications' && notifications.length < 1 ? true : false} onClick={(e) => {
-                        if (type === 'notifications') handleNotifications()
                     }}>
                         {
                             type === 'signin' ? 'Sign In' :
