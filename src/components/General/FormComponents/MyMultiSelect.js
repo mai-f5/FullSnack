@@ -45,7 +45,7 @@ export default function MyMultiSelect({ onSelectChange, onChange, type, location
 
     return (
         <MultiSelect
-            className='multi-select mb-3 w-100'
+            className='multi-select mb-3'
             options={type === 'requiredTechnologies' ? requiredTechnologies : type === 'difficultyLvls' ? difficultyLvls : assets}
             value={selected}
             onChange={(e) => {

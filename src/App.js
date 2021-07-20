@@ -9,7 +9,7 @@ import Header from './components/General/Header/Header';
 import Routes from './components/MainPages/Routes';
 import userContext from './utils/AuthContext';
 import './App.css';
-import Footer from './components/General/Footer/Footer';
+// import Footer from './components/General/Footer/Footer';
 
 function App() {
 
