@@ -1,7 +1,7 @@
 //GET
 const getProjectsCardData = async formData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}`)
+        const res = await fetch(`http://localhost:3100/projects/explore?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -10,7 +10,12 @@ const getProjectsCardData = async formData => {
 
 const getUsersProjectsCardData = async formData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/dashboard/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&userId=${formData.userId}`, { credentials: 'include' })
+        const res = await fetch(`http://localhost:3100/projects/dashboard/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&userId=${formData.userId}`,
+            {
+                method: 'GET',
+                credentials: 'include'
+
+            })
         return await res.json()
     } catch (err) {
         console.log(err)

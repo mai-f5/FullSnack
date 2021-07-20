@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
 import MyModal from '../../General/Modal/MyModal'
@@ -157,7 +157,11 @@ export default function ProjectDisplay() {
                             </div>}
                             {projectsData.githubLink && <div className='d-flex mt-3'>
                                 <GrGithub className='mr-3' />
-                                <h3 className='text-dark'><a className='text-dark' href={`${projectsData.githubLink}`}>{`${projectsData.name}`}'s Repository<FiExternalLink className='pl-1' /></a></h3>
+                                <h3 className='text-dark'>
+                                    <a target={'_blank'} className='text-dark' rel="noopener noreferrer"
+                                        href={`${projectsData.githubLink}`}>
+                                        {`${projectsData.name}`}'s Repository<FiExternalLink className='pl-1' />
+                                    </a></h3>
                             </div>}
                         </Col>
                     </Row>
