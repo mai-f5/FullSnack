@@ -132,7 +132,7 @@ export default function Settings() {
                             label='Email'
                             name='email'
                             value={userData.email.value}
-                            error={userData.email.error || dataChangedRes.msg && dataChangedRes.msg.includes('success') ? '' : dataChangedRes.msg}
+                            error={userData.email.error || (dataChangedRes.msg && dataChangedRes.msg.includes('success') ? '' : dataChangedRes.msg)}
                             onChange={(e) => {
                                 setUserData(inputChangeHandler(e, userData))
                                 setMadeChanges(true)

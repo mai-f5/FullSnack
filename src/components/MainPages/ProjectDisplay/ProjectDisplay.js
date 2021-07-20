@@ -1,14 +1,14 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
-import { Redirect, useHistory, useLocation, useParams } from "react-router-dom";
-import { Container, Row, Col, Button, Carousel, Spinner } from 'react-bootstrap'
+import { useParams } from "react-router-dom";
+import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
 import MyModal from '../../General/Modal/MyModal'
 import { BiLike, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
-import { getFile, getProjectData } from '../../../DAL/projects';
+import { getProjectData } from '../../../DAL/projects';
 import { addLike, addNewNotification, getDidUserLikeProject, removeLike } from '../../../DAL/events'
 import MySpinner from '../../General/MySpinner';
 import userContext from '../../../utils/AuthContext';

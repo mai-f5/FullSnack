@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { Card, Col, ListGroup, Button } from 'react-bootstrap'
-import { BiTrash, BiLike } from 'react-icons/bi'
+import { BiLike } from 'react-icons/bi'
 import { FiCode } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { BsBarChart } from 'react-icons/bs'

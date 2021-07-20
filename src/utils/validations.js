@@ -9,7 +9,6 @@ const inputsRequirements = {
     },
     passwordConfirm: {
         required: true,
-        pattern: ''
     },
     oldPassword: {
         required: true,
@@ -36,11 +35,9 @@ const inputsRequirements = {
     },
     pictures: {
         required: true,
-        pattern: ''
     },
     assetsSrc: {
         required: false,
-        pattern: ''
     },
     topic: {
         required: true,
@@ -80,7 +77,7 @@ const validateInput = ({ target: { value, name } }, formData) => {
             newError = 'Passwords don\'t match!'
         }
     } else if (name === 'pictures' || (name === 'requiredTechnologies')) {
-        console.log(name, formData, 'pictures' in formData, formData.name.value != '')
+        console.log(name, formData, 'pictures' in formData, formData.name.value !== '')
         if (value.length < 1) {
             newError = `at least 1 ${name === 'pictures' ? 'image' : 'technology'} is required`
         }

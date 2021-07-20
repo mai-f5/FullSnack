@@ -25,13 +25,18 @@ const removeHandler = async (type, id, idx, filesArr = [], file = null, userId) 
                 return filesArr;
             } else {
                 try {
-                    const removePicRes = await removePicture({ userId: userId, picId: id })
+                    await removePicture({ userId: userId, picId: id })
                     filesArr.splice(idx, 1)
                     return filesArr;
                 } catch (err) {
                     console.log(err)
                 }
             }
+            break;
+
+        default:
+            console.log('an error has occured - reached default case in removeHandler');
+            break;
     }
 }
 

@@ -5,6 +5,7 @@ import { BiSearch } from 'react-icons/bi'
 import MyMultiSelect from '../FormComponents/MyMultiSelect'
 import { getProjectsCardData, getUsersProjectsCardData } from '../../../DAL/projects'
 import userContext from '../../../utils/AuthContext'
+import { Redirect, useHistory } from 'react-router-dom'
 
 export default function FilterSection({ setCardsData, usersDashboard, setLoader, rerender }) {
     const context = useContext(userContext)
@@ -34,6 +35,7 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
                 setLoader(false)
             }
         })();
+
     }, [usersDashboard, filterByData, rerender])
 
 

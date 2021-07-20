@@ -8,6 +8,7 @@ import EmptyProjectSvg from '../../../images/development.svg'
 import MySpinner from '../../General/MySpinner'
 import userContext from '../../../utils/AuthContext'
 export default function Explore({ type }) {
+
     const context = useContext(userContext)
     const { uid } = useParams();
     const history = useHistory();
@@ -17,7 +18,8 @@ export default function Explore({ type }) {
     const [rerender, setRerender] = useState(true)
 
     useEffect(() => {
-        if (uid && context.loggedUser.id && uid == context.loggedUser.id) {
+        console.log(type, uid, context.loggedUser.id)
+        if (uid && context.loggedUser.id && uid === context.loggedUser.id) {
             setIsUsersDashboard(true)
         } else {
             setIsUsersDashboard(false);

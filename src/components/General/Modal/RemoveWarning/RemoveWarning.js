@@ -1,4 +1,4 @@
-import { Button, CloseButton } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { removeHandler } from '../../../../utils/handlers'
 import React from 'react'
 import { useContext } from 'react'

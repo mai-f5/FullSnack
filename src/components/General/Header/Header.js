@@ -38,7 +38,7 @@ export default function Header() {
                             </p>
                         </div>
 
-                        <Nav.Link className='ml-lg-4'><Link to='/explore' >Explore</Link></Nav.Link>
+                        <Link className='ml-lg-4' to='/explore' >Explore</Link>
 
                         <div className='border-top'>
 

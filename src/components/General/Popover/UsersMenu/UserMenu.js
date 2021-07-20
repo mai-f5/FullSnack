@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Nav } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 import Cookies from "js-cookie";
