@@ -8,12 +8,12 @@ import { useState, useEffect, useContext } from 'react'
 import { getUsersNewNotifications, updateNotificationsAsRead } from '../../../DAL/events'
 import userContext from '../../../utils/AuthContext'
 export default function MyPopover({ type }) {
-    const NOTIFICATIONS_INTERVAL_DURATION = 1000 * 60;
 
+    const NOTIFICATIONS_INTERVAL_DURATION = 1000 * 10;
     const context = useContext(userContext);
     const [notifications, setNotifications] = useState([])
     const [updateNotifs, setUpdateNotifs] = useState(false)
-
+    const [notificationsInterval, setNotificationsInterval] = useState('')
 
     async function fetchNotifications() {
         if (context.loggedUser.id) {
@@ -24,16 +24,15 @@ export default function MyPopover({ type }) {
     }
 
     useEffect(() => {
-        if (type === 'notifications') fetchNotifications()
-    }, [])
-
-    useEffect(() => {
-        const notificationsTimer = setInterval(() => {
-            fetchNotifications();
-        }, NOTIFICATIONS_INTERVAL_DURATION)
-
-        return () => {
-            clearInterval(notificationsTimer)
+        if (type === 'notifications') {
+            setNotificationsInterval(
+                setInterval(() => {
+                    fetchNotifications();
+                }, NOTIFICATIONS_INTERVAL_DURATION)
+            )
+            return () => {
+                return clearInterval(notificationsInterval)
+            }
         }
     }, [updateNotifs])
 

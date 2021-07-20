@@ -24,6 +24,7 @@ export default function EditProject() {
     if (!context.loggedUser.id) {
         history.push('/home');
     }
+
     const [disableBtn, setDisableBtn] = useState(true)
     const [loader, setLoader] = useState(true)
     const [madeChanges, setMadeChanges] = useState(false)
@@ -33,39 +34,41 @@ export default function EditProject() {
     useEffect(() => {
         (async () => {
             setLoader(true)
-            const fetchedProjectData = await getProjectData(pid)
-            setProjectData({
-                userId: context.loggedUser.id,
-                name: {
-                    value: fetchedProjectData ? fetchedProjectData.name : '',
-                    error: ''
-                },
-                difficultyLevel: {
-                    value: fetchedProjectData ? fetchedProjectData.difficulty_level_id : '',
-                    error: ''
-                },
-                githubLink: {
-                    value: fetchedProjectData ? fetchedProjectData.github_url : '',
-                    error: ''
-                },
-                description: {
-                    value: fetchedProjectData ? fetchedProjectData.description : '',
-                    error: ''
-                },
-                requiredTechnologies: {
-                    value: fetchedProjectData ? fetchedProjectData.project_required_tech_id.map(tech => { return { value: tech.id, label: tech.name } }) : [],
-                    error: ''
-                },
-                assetsSrc: {
-                    value: fetchedProjectData ? fetchedProjectData.assets_src : '',
-                    error: ''
-                },
-                pictures: {
-                    value: fetchedProjectData ? fetchedProjectData.projects_pictures : [],
-                    error: ''
-                },
-            })
-            setLoader(false)
+            if (context.loggedUser.id) {
+                const fetchedProjectData = await getProjectData(pid)
+                setProjectData({
+                    userId: context.loggedUser.id,
+                    name: {
+                        value: fetchedProjectData ? fetchedProjectData.name : '',
+                        error: ''
+                    },
+                    difficultyLevel: {
+                        value: fetchedProjectData ? fetchedProjectData.difficulty_level_id : '',
+                        error: ''
+                    },
+                    githubLink: {
+                        value: fetchedProjectData ? fetchedProjectData.github_url : '',
+                        error: ''
+                    },
+                    description: {
+                        value: fetchedProjectData ? fetchedProjectData.description : '',
+                        error: ''
+                    },
+                    requiredTechnologies: {
+                        value: fetchedProjectData ? fetchedProjectData.project_required_tech_id.map(tech => { return { value: tech.id, label: tech.name } }) : [],
+                        error: ''
+                    },
+                    assetsSrc: {
+                        value: fetchedProjectData ? fetchedProjectData.assets_src : '',
+                        error: ''
+                    },
+                    pictures: {
+                        value: fetchedProjectData ? fetchedProjectData.projects_pictures : [],
+                        error: ''
+                    },
+                })
+                setLoader(false)
+            }
         })();
     }, [])
     const setChangesTrue = () => {
@@ -73,7 +76,6 @@ export default function EditProject() {
     }
 
     useEffect(() => {
-        console.log(madeChanges)
         if (madeChanges) setDisableBtn(!isFormValid(projectData))
     }, [projectData, madeChanges])
 

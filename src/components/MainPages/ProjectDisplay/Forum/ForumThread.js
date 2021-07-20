@@ -6,7 +6,6 @@ import NewComment from './ForumForms/CommentTextEditor/NewComment'
 import { handleTimestamp } from '../../../../utils/handlers'
 
 export default function ForumThread({ thread, idx, projectOwnerId, invokeRerender }) {
-    console.log(thread)
     return (<Card>
         <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey={idx.toString()} className='btn-as-link text-dark forum-post w-100'>

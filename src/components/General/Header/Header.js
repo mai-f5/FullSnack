@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import MyPopover from '../Popover/MyPopover';
 import MyModal from '../Modal/MyModal';
@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 import logo from '../../../images/logoSvg.svg';
 import userContext from '../../../utils/AuthContext'
 import Cookies from "js-cookie";
-import { getUserData } from '../../../DAL/users';
 
 export default function Header() {
     const context = useContext(userContext)
@@ -32,7 +31,13 @@ export default function Header() {
                 {/* collapsed menu - includes (by logged state) - sign up, sign in/ my projects, settings, logout */}
                 <Navbar.Collapse id="basic-navbar-nav">
 
-                    <Nav className="mr-auto">
+                    <Nav className="mr-auto text-light">
+                        <div className='d-lg-none'>
+                            <p className='m-0 mt-3'>Signed in as
+                                <span className='font-weight-bold'> {context.loggedUser.username}</span>
+                            </p>
+                        </div>
+
                         <Nav.Link className='ml-lg-4'><Link to='/explore' >Explore</Link></Nav.Link>
 
                         <div className='border-top'>

@@ -7,19 +7,21 @@ import { getProjectsThreadsComments } from '../../../../DAL/forum';
 
 import ForumThread from './ForumThread'
 export default function ProjectsForum({ projectData }) {
-    console.log(projectData)
+
 
     const [forumData, setForumData] = useState([])
     const [load, setLoad] = useState(true)
     const [rerender, setRerender] = useState(false)
 
-    useEffect(async () => {
-        if (projectData.id) {
-            setLoad(true)
-            const forum = await getProjectsThreadsComments(projectData.id)
-            console.log(forum)
-            setForumData([...forum])
-        }
+    useEffect(() => {
+        (async () => {
+            if (projectData.id) {
+                setLoad(true)
+                const forum = await getProjectsThreadsComments(projectData.id)
+                setForumData([...forum])
+            }
+        })();
+
     }, [projectData.id, rerender])
 
     useEffect(() => {

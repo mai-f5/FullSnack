@@ -38,10 +38,10 @@ const removeHandler = async (type, id, idx, filesArr = [], file = null, userId) 
 function handleTimestamp(timestamp) {
     var d = new Date(timestamp);
     const hours = d.getUTCHours() < 10 ? `0${d.getUTCHours()}` : d.getUTCHours();
-    const minutes = d.getUTCMinutes() < 10 ? `0${d.getUTCMinutes()}` : `0${d.getUTCMinutes()}`
+    const minutes = d.getUTCMinutes() < 10 ? `0${d.getUTCMinutes()}` : `${d.getUTCMinutes()}`
 
     const day = d.getUTCDate();
-    const month = d.getUTCMonth() < 10 ? `0${d.getUTCMonth()}` : `0${d.getUTCMonth()}`
+    const month = d.getUTCMonth() < 10 ? `0${d.getUTCMonth()}` : `${d.getUTCMonth()}`
     const year = d.getUTCFullYear();
 
     return `${hours}:${minutes} ${day}/${month}/${year}`;

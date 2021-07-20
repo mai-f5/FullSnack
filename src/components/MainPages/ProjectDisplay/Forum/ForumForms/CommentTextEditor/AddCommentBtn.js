@@ -5,7 +5,6 @@ import { addNewComment } from '../../../../../../DAL/forum'
 import { addNewNotification } from '../../../../../../DAL/events'
 import userContext from '../../../../../../utils/AuthContext'
 export default function AddCommentBtn({ comment, threadRelevantData, returnError, invokeRerender }) {
-    console.log(comment)
     const context = useContext(userContext)
 
     const validateCommentBlocks = () => {
@@ -17,7 +16,6 @@ export default function AddCommentBtn({ comment, threadRelevantData, returnError
                 }
             }
         }
-        console.log(hasText)
         return hasText;
     }
 
