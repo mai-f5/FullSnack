@@ -8,6 +8,7 @@ import userContext from '../../../utils/AuthContext'
 import { Redirect, useHistory } from 'react-router-dom'
 
 export default function FilterSection({ setCardsData, usersDashboard, setLoader, rerender }) {
+    console.log(usersDashboard)
     const context = useContext(userContext)
     const [filterByData, setFilterByData] = useState({
         sortBy: 'likes',
@@ -17,8 +18,16 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
         requiredTechnologies: [],
         assets: [],
         currentPage: 1,
-        userId: context.loggedUser.id
+        userId: usersDashboard ? context.loggedUser.id : ''
     })
+
+    useEffect(() => {
+        setFilterByData({
+            ...filterByData,
+            userId: usersDashboard ? context.loggedUser.id : ''
+        })
+    }, [usersDashboard])
+
 
     useEffect(() => {
         (async () => {
@@ -35,7 +44,6 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
                 setLoader(false)
             }
         })();
-
     }, [usersDashboard, filterByData, rerender])
 
 
