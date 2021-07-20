@@ -20,25 +20,30 @@ export default function AddCommentBtn({ comment, threadRelevantData, returnError
     }
 
     const onSendComment = async (e) => {
-        if (validateCommentBlocks()) {
-            await addNewComment({
-                user_id: context.loggedUser.id,
-                thread_id: threadRelevantData.threadId,
-                text: JSON.stringify(comment)
-            })
+        if (context.loggedUser.id) {
+            if (validateCommentBlocks()) {
+                await addNewComment({
+                    user_id: context.loggedUser.id,
+                    thread_id: threadRelevantData.threadId,
+                    text: JSON.stringify(comment)
+                })
 
-            if (context.loggedUser.id !== threadRelevantData.threadOwnerId) {
-                await addNewNotification({ type_id: 4, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.threadOwnerId, project_id: threadRelevantData.projectId })
+                if (context.loggedUser.id !== threadRelevantData.threadOwnerId) {
+                    await addNewNotification({ type_id: 4, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.threadOwnerId, project_id: threadRelevantData.projectId })
+                }
+
+                if (threadRelevantData.threadOwnerId !== threadRelevantData.projectOwnerId && context.loggedUser.id !== threadRelevantData.projectOwnerId) {
+                    await addNewNotification({ type_id: 3, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.projectOwnerId, project_id: threadRelevantData.projectId })
+                }
+
+                invokeRerender()
+            } else {
+                returnError('Empty comment is not allowed')
             }
-
-            if (threadRelevantData.threadOwnerId !== threadRelevantData.projectOwnerId && context.loggedUser.id !== threadRelevantData.projectOwnerId) {
-                await addNewNotification({ type_id: 3, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.projectOwnerId, project_id: threadRelevantData.projectId })
-            }
-
-            invokeRerender()
         } else {
-            returnError()
+            returnError('Must login to comment')
         }
+
     }
 
     return (

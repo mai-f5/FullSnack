@@ -13,7 +13,7 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
         amount: 20,
         searchTxt: '',
         difficultyLevels: [],
-        requiredTechs: [],
+        requiredTechnologies: [],
         assets: [],
         currentPage: 1,
         userId: context.loggedUser.id

@@ -44,10 +44,10 @@ const inputsRequirements = {
     },
     topic: {
         required: true,
-        pattern: /^.{2,75}$/
+        pattern: /.{2,75}$/
     },
     body: {
-        pattern: /^.{0,500}$/
+        pattern: /.{0,500}$/
     },
     gender: {
         required: false
