@@ -32,11 +32,11 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
 
                     <Nav className="mr-auto text-light">
-                        <div className='d-lg-none'>
+                        {context.loggedUser.id && <div className='d-lg-none'>
                             <p className='m-0 mt-3'>Signed in as
                                 <span className='font-weight-bold'> {context.loggedUser.username}</span>
                             </p>
-                        </div>
+                        </div>}
 
                         <Link className='ml-lg-4' to='/explore' >Explore</Link>
 
