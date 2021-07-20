@@ -2,6 +2,7 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertFromRaw } from 'draft-js';
+import { handleTimestamp } from '../../../../utils/handlers'
 
 
 export default function ForumComment({ comment }) {
@@ -13,7 +14,7 @@ export default function ForumComment({ comment }) {
                     <div className='media-body '>
                         <div className='comment-mdata d-md-flex justify-content-between'>
                             <p className='m-0 mb-md-2 d-md-inline mr-md-4 blk-txt font-weight-bold'>{comment.user.username}</p>
-                            <p className='m-0 d-md-inline mr-4 blk-txt font-weight-light text-muted'>{comment.timestamp}</p>
+                            <p className='m-0 d-md-inline mr-4 blk-txt font-weight-light text-muted'>{handleTimestamp(comment.timestamp)}</p>
                         </div>
                         <div className='mr-4 blk-txt font-weight-normal'>
                             <Editor

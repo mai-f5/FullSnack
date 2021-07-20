@@ -35,4 +35,16 @@ const removeHandler = async (type, id, idx, filesArr = [], file = null, userId) 
     }
 }
 
-export { inputChangeHandler, removeHandler }
+function handleTimestamp(timestamp) {
+    var d = new Date(timestamp);
+    const hours = d.getUTCHours() < 10 ? `0${d.getUTCHours()}` : d.getUTCHours();
+    const minutes = d.getUTCMinutes() < 10 ? `0${d.getUTCMinutes()}` : `0${d.getUTCMinutes()}`
+
+    const day = d.getUTCDate();
+    const month = d.getUTCMonth() < 10 ? `0${d.getUTCMonth()}` : `0${d.getUTCMonth()}`
+    const year = d.getUTCFullYear();
+
+    return `${hours}:${minutes} ${day}/${month}/${year}`;
+}
+
+export { inputChangeHandler, removeHandler, handleTimestamp }

@@ -3,6 +3,7 @@ import { MdReply } from 'react-icons/md'
 import { Card, Accordion, Button } from 'react-bootstrap'
 import ForumComment from './ForumComment'
 import NewComment from './ForumForms/CommentTextEditor/NewComment'
+import { handleTimestamp } from '../../../../utils/handlers'
 
 export default function ForumThread({ thread, idx, projectOwnerId, invokeRerender }) {
     console.log(thread)
@@ -15,7 +16,7 @@ export default function ForumThread({ thread, idx, projectOwnerId, invokeRerende
                         <h4 className='font-weight-bolder mt-2 mb-0'>{thread.topic}</h4>
                         <div className='d-md-flex justify-content-between w-75 blk-txt'>
                             <p className='my-1 font-weight-bold'>By {thread.user.username}</p>
-                            <p className='my-1'>{thread.timestamp}</p>
+                            <p className='my-1'>{handleTimestamp(thread.timestamp)}</p>
                             <p>
                                 <MdReply className='mr-1 text-dark' />
                                 <span>{thread.comments.length} {thread.comments.length === 1 ? 'replay' : 'replies'}</span>
