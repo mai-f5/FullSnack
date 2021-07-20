@@ -60,7 +60,6 @@ const getDidUserLikeProject = async (userId, projectId) => {
 
 //POST
 const addLike = async newLikeData => {
-    console.log('events dal', newLikeData)
     try {
         const res = await fetch(`http://localhost:3100/events/likes`, {
             method: 'POST',

@@ -54,7 +54,6 @@ const hideProject = async (projectId, userId) => {
 
 //POST
 const addNewProject = async newProjectData => {
-    console.log(newProjectData.get('userId'))
     try {
         const res = await fetch(`http://localhost:3100/projects`, {
             method: 'POST',

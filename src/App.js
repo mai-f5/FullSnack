@@ -31,7 +31,7 @@ function App() {
       <Router>
         <Header />
         <Routes />
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </userContext.Provider>
   );

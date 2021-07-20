@@ -13,7 +13,6 @@ import Cookies from "js-cookie";
 export default function Header() {
     const context = useContext(userContext)
     const history = useHistory();
-
     return (
         <header>
             <Navbar bg="dark" variant="dark" expand="lg">
@@ -33,7 +32,7 @@ export default function Header() {
 
                     <Nav className="mr-auto text-light">
                         {context.loggedUser.id && <div className='d-lg-none'>
-                            <p className='m-0 mt-3'>Signed in as
+                            <p className='m-0 mt-3 mb-2'>Signed in as
                                 <span className='font-weight-bold'> {context.loggedUser.username}</span>
                             </p>
                         </div>}
@@ -62,6 +61,7 @@ export default function Header() {
                         </div>
                     </Nav>
 
+                    {/* large screen menu */}
                     <Nav className='d-none d-lg-block'>
                         {!context.loggedUser.id &&
                             <>

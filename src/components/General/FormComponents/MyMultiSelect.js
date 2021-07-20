@@ -40,12 +40,12 @@ export default function MyMultiSelect({ onSelectChange, onChange, type, location
             ? selected.map(({ label }) => label).join(', ')
             : type === 'requiredTechnologies' ?
                 location ? 'Select Required Technologies' : 'Required Technologies'
-                : type === 'difficultyLvls' ? 'Difficulty Levels' : 'Assets'
+                : type === 'difficultyLvls' ? 'Difficulty Levels' : 'Assets Included'
     };
 
     return (
         <MultiSelect
-            className='multi-select mb-3'
+            className='multi-select mb-3 w-100'
             options={type === 'requiredTechnologies' ? requiredTechnologies : type === 'difficultyLvls' ? difficultyLvls : assets}
             value={selected}
             onChange={(e) => {

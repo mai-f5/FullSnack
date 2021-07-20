@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
 import MyModal from '../../General/Modal/MyModal'
-import { BiLike, BiDownload } from 'react-icons/bi'
+import { BiLike, BiDislike, BiDownload } from 'react-icons/bi'
 import { FiCode, FiExternalLink } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
@@ -99,20 +99,20 @@ export default function ProjectDisplay() {
                     <Row className='ml-2 flex-column'>
                         <div>
                             <h2 className='mr-5 text-dark d-block d-md-inline'>{projectsData.name}</h2>
-                            <Button className={`like-share-icon rounded-circle text-center mr-2 ${didUserLike ? 'clicked-like' : ''}`} onMouseDown={(e) => e.preventDefault()} onClick={handleLikeBtnClick}><BiLike /></Button>
+                            <Button className={`like-share-icon rounded-circle text-center mr-2 ${didUserLike ? 'clicked-like' : ''}`} onMouseDown={(e) => e.preventDefault()} onClick={handleLikeBtnClick}>{didUserLike ? <BiDislike /> : <BiLike />}</Button>
                             <MyModal type='share' projectId={pid} />
 
                             <p className='font-weight-bold d-block mb-3 mt-3 mt-lg-0'>By {projectsData.user.username}</p>
 
                         </div>
                         {error && <small className='text-danger'>Must login to recommend a project</small>}
-                        <p><BiLike className='mr-3 text-dark' />{projectsData.likesCounter} Recommended this project</p>
+                        <p><BiLike className='mr-1 text-dark static-like' />{projectsData.likesCounter} Recommended this project</p>
 
                     </Row>
-                    <Carousel activeIndex={index} onSelect={handleSelect} className='ml-0 col-lg-9 col-sm-12'>
-                        {projectsData.pictures.map(pic => {
+                    <Carousel activeIndex={index} onSelect={handleSelect} className='ml-0 col-lg-9 col-sm-12 carousel-height'>
+                        {projectsData.pictures.map((pic, idx) => {
                             return (
-                                <Carousel.Item>
+                                <Carousel.Item key={idx}>
                                     <img className="d-block w-100" src={`http://localhost:3100/public/${pic}`} alt='project example' />
                                 </Carousel.Item>
                             )
@@ -125,7 +125,7 @@ export default function ProjectDisplay() {
                                 <BsBarChart className='mr-2' />
                                 <div>
                                     <h3 className='text-dark'>Difficulty Level:</h3>
-                                    <p className='p-2 bg-warning text-center d-block'>{projectsData.difficultyLevel}</p>
+                                    <p className={`p-2 text-center d-block bg-diff-${projectsData.difficultyLevel}`}>{projectsData.difficultyLevel}</p>
                                 </div>
                             </div>
                             <div>
@@ -157,7 +157,7 @@ export default function ProjectDisplay() {
                             </div>}
                             {projectsData.githubLink && <div className='d-flex mt-3'>
                                 <GrGithub className='mr-3' />
-                                <h3 className='text-dark'><a className='text-dark' href={`${projectsData.githubLink}`}>{`${projectsData.name}`} Repository<FiExternalLink className='pl-1' /></a></h3>
+                                <h3 className='text-dark'><a className='text-dark' href={`${projectsData.githubLink}`}>{`${projectsData.name}`}'s Repository<FiExternalLink className='pl-1' /></a></h3>
                             </div>}
                         </Col>
                     </Row>
