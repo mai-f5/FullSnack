@@ -11,7 +11,6 @@ const getUserData = async userId => {
 
 //PUT
 const updateUserData = async updatedUserData => {
-    console.log('also gets called?!')
     try {
         const res = await fetch(`http://localhost:3100/users/${updatedUserData.get('userId')}`, {
             method: 'PUT',

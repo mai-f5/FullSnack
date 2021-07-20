@@ -6,7 +6,6 @@ import { FiCopy } from 'react-icons/fi'
 
 
 export default function ShareProject({ projectId }) {
-    console.log(projectId)
     const link = `http://localhost:3000/projectdisplay/${projectId}`;
     return (
         <div className='share-project'>

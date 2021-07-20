@@ -57,10 +57,10 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
                         onChange={onInputChangeHandler}
                         value={filterByData.searchTxt}
                     />
-                    <button className='btn-as-link text-dark'  ><BiSearch /></button>
+                    <button disabled className='btn-as-link text-dark'><BiSearch /></button>
                 </Form.Group>
-                <Form.Row className='col-12'>
-                    <p className='mr-4 font-weight-bold'>Filter By</p>
+                <Form.Row className='col-12 flex-column flex-lg-row'>
+                    <p className='mr-4 font-weight-bold d-sm-block'>Filter By</p>
                     <div className='mr-2'>
                         <MyMultiSelect type='requiredTechnologies' onSelectChange={onInputChangeHandler} />
                     </div>
@@ -71,7 +71,7 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
                         <MyMultiSelect type='assets' onSelectChange={onInputChangeHandler} />
                     </div>
                 </Form.Row>
-                <Form.Row className='sort-by-section col-12'>
+                <Form.Row className='sort-by-section col-12 flex-column flex-lg-row'>
                     <p className='mr-4 font-weight-bold d-sm-block'>Sort By</p>
                     <Form.Check
                         label="Most Popular"

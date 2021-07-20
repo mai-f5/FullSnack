@@ -94,7 +94,7 @@ export default function PasswordChange({ close, updatePasswordResponse }) {
                     onBlur={(e) => setPasswordData(validateInput(e, passwordData))}
                     error={passwordData.passwordConfirm.error} />
 
-                <Button type='submit' disabled={disableBtn}>Save Changes</Button>
+                <Button type='submit' disabled={disableBtn} className='mr-2'>Save Changes</Button>
                 <Button onClick={close}>Cancel</Button>
                 {loader && <MySpinner />}
             </Form>

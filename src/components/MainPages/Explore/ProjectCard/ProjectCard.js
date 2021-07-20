@@ -10,7 +10,7 @@ import MyModal from '../../../General/Modal/MyModal'
 export default function ProjectCard({ ownsProject, data, invokeExploreRerender }) {
     const history = useHistory();
     return (
-        <Col sm={12} md={4} lg={3} className='project-card'>
+        <Col sm={12} md={6} lg={3} className='project-card'>
             <Card className='mb-4 pt-4 pl-4 pr-4 pb-3'>
                 <div>
                     <div className='image-overlay'>

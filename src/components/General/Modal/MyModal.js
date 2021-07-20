@@ -25,7 +25,7 @@ function MyModal({ type, projectId, removeType, removeName, removableId, removeB
                             handleShow(e)
                             e.stopPropagation();
                         }}>remove</Button> :
-                            <Button variant="primary" onClick={handleShow}>
+                            <Button variant="primary" onClick={handleShow} className={type === 'signup' ? 'py-3 px-5' : ''}>
                                 {type === 'signup' ? 'Sign Up' :
                                     type === 'newThread' ? 'New Thread' :
                                         'Change Password'

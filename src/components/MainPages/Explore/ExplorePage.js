@@ -32,8 +32,8 @@ export default function Explore({ type }) {
     }
 
     return (
-        <Container className='mt-5'>
-            <h2 >{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
+        <Container className='mt-5 mb-5'>
+            <h2 className='mb-2'>{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
             {isUsersDashboard &&
                 <Button onClick={() => history.push('/editproject/new')} className='mb-3'>+ Add New Project</Button>
             }

@@ -78,10 +78,11 @@ export default function SignIn() {
                     onChange={(e) => {
                         setLoginResult({})
                         setLoginData(inputChangeHandler(e, loginData))
+
                     }}
                     onBlur={(e) => setLoginData(validateInput(e, loginData))} />
 
-                <Button variant="primary" type="submit" className='d-block mx-auto' disabled={disableBtn}>
+                <Button variant="primary" type="submit" className='d-block mx-auto wider-btn' disabled={disableBtn}>
                     Sign in
                 </Button>
                 {typeof loginResult === 'string' ? <ErrorMessage error={loginResult} /> : null}

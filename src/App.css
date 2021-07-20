@@ -121,6 +121,10 @@ nav {
 #logo {
 	width: 60px;
 }
+.homepage-logo {
+	width: 20%;
+	margin-bottom: 40px;
+}
 
 header {
 	position: sticky;
@@ -136,15 +140,14 @@ header {
 }
 
 footer {
-	position: absolute;
+	position: fixed;
+	left: 0;
 	bottom: 0;
-	width: 100vw;
-	z-index: 222;
-	text-align: center;
-	padding: 5px;
+	width: 100%;
+	/* height: 5%; */
 	background-color: #d8d8d8;
 	color: var(--black);
-	/* font-weight: bold; */
+	text-align: center;
 }
 
 /* HOMEPAGE */
@@ -159,21 +162,23 @@ footer {
 	width: 100%;
 	height: 50vh;
 }
-
-.homepage-top h2 {
+.homepage-top p {
 	font-weight: 900;
 	color: var(--white);
 	margin-top: -30px;
+	font-size: 2em;
+}
+.homepage-top span {
+	font-size: 1.7rem;
 }
 
 .white-bg-thumbnails {
 	background-color: var(--white);
 	border: 3px var(--medium-blue) dashed;
 	margin: -120px auto 10px auto;
-	width: 160px;
-	height: 160px;
+	width: 200px;
+	height: 200px;
 }
-
 @media (max-width: 768px) {
 	.white-bg-thumbnails {
 		margin: 0 auto 10px auto;
@@ -186,7 +191,7 @@ footer {
 
 .white-bg-thumbnails svg {
 	color: var(--medium-blue);
-	font-size: 2.5rem;
+	font-size: 3rem;
 	margin: auto auto;
 }
 .white-bg-thumbnails path {
@@ -197,7 +202,7 @@ footer {
 .share-project h3 {
 	color: var(--medium-blue);
 	font-weight: bold;
-	font-size: 12pt;
+	font-size: 16pt;
 }
 
 /* EXPLORE PAGE */
@@ -205,8 +210,8 @@ footer {
 .project-card .card {
 	background: #f1f1f14a linear-gradient(135deg, #f1f1f1 0%, #e3e3e300 100%) 0%
 		0% no-repeat padding-box;
-	box-shadow: 3px 3px 7px #b4b4b485;
-	border: 2px solid #dfdfdf63;
+	box-shadow: 3px 3px 7px #a7a7a785;
+	border: 2px solid #c7c7c763;
 	border-radius: 20px;
 	backdrop-filter: blur(15px);
 	-webkit-backdrop-filter: blur(15px);
@@ -230,9 +235,16 @@ footer {
 
 .project-card .list-group-item svg {
 	display: inline;
+	color: var(--medium-blue);
 }
+
+.project-card .list-group-item path {
+	color: var(--medium-blue);
+	stroke: var(--medium-blue);
+}
+
 .project-card .card-img-top {
-	border: 1px solid #b2b2b2;
+	border: 1px solid #afaccf;
 	min-height: 160px;
 	max-height: 160px;
 	object-fit: cover;
@@ -280,6 +292,9 @@ footer {
 	right: 0;
 	top: 5px;
 }
+.search button:hover {
+	color: var(--darkest-blue) !important;
+}
 
 .multi-select {
 	width: 200px;
@@ -308,6 +323,8 @@ footer {
 .projectInfo svg {
 	color: var(--medium-blue) !important;
 	stroke: var(--medium-blue) !important;
+	height: 1.2rem;
+	width: 1.2rem;
 }
 
 .projectInfo a {
@@ -339,7 +356,7 @@ footer {
 .clicked-like:focus,
 .clicked-like:active,
 .clicked-like:hover {
-	background-color: #000520;
+	background-color: var(--black);
 	box-shadow: none !important;
 }
 
@@ -374,7 +391,7 @@ footer {
 	width: 170px;
 	height: auto;
 	opacity: 0.2;
-	margin-top: 50px;
+	margin-top: 100px;
 }
 /* .empty-forum.forum-bg {
 	padding: 100px 0 !important;
@@ -578,4 +595,46 @@ button.forum-post:focus {
 /* REMOVE WARNING */
 .bg-secondary {
 	background-color: lightgray !important;
+}
+
+h2,
+label {
+	color: var(--medium-blue);
+	margin-bottom: 0;
+}
+
+.wider-btn {
+	width: 100%;
+	height: 40px;
+}
+
+.bg-diff-Easy {
+	background-color: rgb(209, 255, 255);
+}
+
+.bg-diff-Medium {
+	background-color: rgb(250, 173, 31);
+}
+
+.bg-diff-Hard {
+	background-color: rgb(252, 99, 99);
+}
+
+.static-like {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.carousel-item img {
+	height: 300px;
+	object-fit: cover;
+}
+.carousel-height {
+	height: 350px;
+}
+.carousel-indicators li {
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+	background-color: darkgray;
 }

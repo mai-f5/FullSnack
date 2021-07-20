@@ -6,6 +6,7 @@ import AddCommentBtn from './AddCommentBtn'
 import { useState, useContext } from 'react';
 import ErrorMessage from '../../../../../General/FormComponents/ErrorMsg';
 import userContext from '../../../../../../utils/AuthContext';
+import noUserImg from '../../../../../../images/img-placeholder.png'
 export default function NewComment({ relevantData, invokeRerender }) {
 
     const context = useContext(userContext)
@@ -34,7 +35,7 @@ export default function NewComment({ relevantData, invokeRerender }) {
 
     return (<div>
         <div className='media p-3 pl-5 border border-dark rounded'>
-            <img src={`http://localhost:3100/public/${context.loggedUser.profile_img}`} className='mr-3 mt-3 forum-user-img rounded-circle d-inline' alt='commenter' />
+            <img src={context.loggedUser.profile_img ? `http://localhost:3100/public/${context.loggedUser.profile_img}` : noUserImg} className='mr-3 mt-3 forum-user-img rounded-circle d-inline' alt='commenter' />
             <Editor
                 editorState={commentData.value}
                 toolbar={{
