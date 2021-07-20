@@ -9,15 +9,17 @@ export default function TextInput({ controlId, type, icon, label, info, info2, i
                 {icon ? icon : ''}
                 {label}
             </Form.Label>
-            {info && <Form.Text className="text-muted d-inline text-left">
-                {info}
-            </Form.Text>}
-            {info2 && <Form.Text className="text-muted ">
-                {info2}
-            </Form.Text>}
-            {isRequired && <Form.Text className="text-muted d-inline text-right ml-3">
-                *Required
-            </Form.Text>}
+            <div className='d-flex justify-content-between'>
+                {info && <Form.Text className="text-muted">
+                    {info}
+                </Form.Text>}
+                {info2 && <Form.Text className="text-muted">
+                    {info2}
+                </Form.Text>}
+                {isRequired && <Form.Text className="text-muted">
+                    *Required
+                </Form.Text>}
+            </div>
             <Form.Control type={type}
                 name={name}
                 value={value}
