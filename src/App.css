@@ -135,6 +135,18 @@ header {
 	object-fit: cover;
 }
 
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+	z-index: 222;
+	text-align: center;
+	padding: 5px;
+	background-color: #d8d8d8;
+	color: var(--black);
+	/* font-weight: bold; */
+}
+
 /* HOMEPAGE */
 .homepage {
 	text-align: center;
