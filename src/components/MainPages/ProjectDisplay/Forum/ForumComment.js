@@ -1,8 +1,7 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
-import userProfileImagePlaceholder from '../../../../images/img-placeholder.png'
+import { EditorState, convertFromRaw } from 'draft-js';
 
 
 export default function ForumComment({ comment }) {
@@ -10,7 +9,7 @@ export default function ForumComment({ comment }) {
         <div>
             <Card.Body className=''>
                 <div className='media text-left forum-comment pt-3 pl-5 rounded'>
-                    <img src={userProfileImagePlaceholder} className='mr-3 forum-user-img rounded-circle d-inline' alt='commenter' />
+                    <img src={`http://localhost:3100/public/${comment.user.profile_img}`} className='mr-3 forum-user-img rounded-circle d-inline' alt='commenter' />
                     <div className='media-body '>
                         <div className='comment-mdata d-md-flex justify-content-between'>
                             <p className='m-0 mb-md-2 d-md-inline mr-md-4 blk-txt font-weight-bold'>{comment.user.username}</p>
@@ -18,6 +17,7 @@ export default function ForumComment({ comment }) {
                         </div>
                         <div className='mr-4 blk-txt font-weight-normal'>
                             <Editor
+                                editorClassName="mb-3"
                                 editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(comment.text)))} readOnly={true}
                                 toolbarHidden
                             />

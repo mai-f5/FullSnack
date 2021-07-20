@@ -4,10 +4,12 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import userProfileImagePlaceholder from '../../../../../../images/img-placeholder.png'
 import React from 'react'
 import AddCommentBtn from './AddCommentBtn'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ErrorMessage from '../../../../../General/FormComponents/ErrorMsg';
+import userContext from '../../../../../../utils/AuthContext';
 export default function NewComment({ relevantData, invokeRerender }) {
 
+    const context = useContext(userContext)
     const [commentData, setCommentData] = useState({
         value: EditorState.createEmpty(),
         error: ''
@@ -33,7 +35,7 @@ export default function NewComment({ relevantData, invokeRerender }) {
 
     return (<div>
         <div className='media p-3 pl-5 border border-dark rounded'>
-            <img src={userProfileImagePlaceholder} className='mr-3 mt-3 forum-user-img rounded-circle d-inline' alt='commenter' />
+            <img src={`http://localhost:3100/public/${context.loggedUser.profile_img}`} className='mr-3 mt-3 forum-user-img rounded-circle d-inline' alt='commenter' />
             <Editor
                 editorState={commentData.value}
                 toolbar={{

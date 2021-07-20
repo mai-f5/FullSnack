@@ -59,7 +59,7 @@ export default function ProjectDisplay() {
                 }
             })
         })();
-    }, [])
+    }, [didUserLike])
 
     useEffect(() => {
         (async () => {
@@ -87,8 +87,8 @@ export default function ProjectDisplay() {
         } else {
             setError(true)
         }
-
     }
+
     return (
 
         <Container fluid className='projectDisplay text-left'>

@@ -2,15 +2,15 @@ import React from 'react'
 import { MdReply } from 'react-icons/md'
 import { Card, Accordion, Button } from 'react-bootstrap'
 import ForumComment from './ForumComment'
-import userProfileImagePlaceholder from '../../../../images/img-placeholder.png'
 import NewComment from './ForumForms/CommentTextEditor/NewComment'
 
 export default function ForumThread({ thread, idx, projectOwnerId, invokeRerender }) {
+    console.log(thread)
     return (<Card>
         <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey={idx.toString()} className='btn-as-link text-dark forum-post w-100'>
                 <div className='media text-left'>
-                    <img src={userProfileImagePlaceholder} className='mr-3 mt-2 forum-user-img rounded-circle d-inline' alt='user' />
+                    <img src={`http://localhost:3100/public/${thread.user.profile_img}`} className='mr-3 mt-2 forum-user-img rounded-circle d-inline' alt='user' />
                     <div className='media-body forum-post'>
                         <h4 className='font-weight-bolder mt-2 mb-0'>{thread.topic}</h4>
                         <div className='d-md-flex justify-content-between w-75 blk-txt'>
