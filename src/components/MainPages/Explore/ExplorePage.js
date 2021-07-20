@@ -18,8 +18,7 @@ export default function Explore({ type }) {
     const [rerender, setRerender] = useState(true)
 
     useEffect(() => {
-        console.log(type, uid, context.loggedUser.id)
-        if (uid && context.loggedUser.id && uid === context.loggedUser.id) {
+        if (uid && context.loggedUser.id && uid == context.loggedUser.id) {
             setIsUsersDashboard(true)
         } else {
             setIsUsersDashboard(false);
