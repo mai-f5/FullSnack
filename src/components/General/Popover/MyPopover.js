@@ -13,7 +13,6 @@ export default function MyPopover({ type }) {
     const context = useContext(userContext);
     const [notifications, setNotifications] = useState([])
     const [updateNotifs, setUpdateNotifs] = useState(false)
-    const [notificationsInterval, setNotificationsInterval] = useState('')
 
     async function fetchNotifications() {
         if (context.loggedUser.id) {
@@ -24,14 +23,14 @@ export default function MyPopover({ type }) {
     }
 
     useEffect(() => {
-        if (type === 'notifications') {
-            setNotificationsInterval(
-                setInterval(() => {
-                    fetchNotifications();
-                }, NOTIFICATIONS_INTERVAL_DURATION)
-            )
+        if (context.loggedUser.id && type === 'notifications') {
+
+            const notifsInterval = setInterval(() => {
+                fetchNotifications();
+            }, NOTIFICATIONS_INTERVAL_DURATION)
+
             return () => {
-                return clearInterval(notificationsInterval)
+                clearInterval(notifsInterval)
             }
         }
     }, [updateNotifs])
