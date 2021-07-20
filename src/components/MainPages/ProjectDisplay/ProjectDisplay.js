@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { Redirect, useHistory, useLocation, useParams } from "react-router-dom";
 import { Container, Row, Col, Button, Carousel, Spinner } from 'react-bootstrap'
 import ProjectsForum from './Forum/ProjectsForum'
 import MyModal from '../../General/Modal/MyModal'
@@ -16,6 +16,7 @@ import userContext from '../../../utils/AuthContext';
 export default function ProjectDisplay() {
     const context = useContext(userContext)
     const { pid } = useParams();
+    const [error, setError] = useState(false)
     const [projectsData, setProjectsData] = useState({
         id: '',
         name: '',
@@ -74,14 +75,19 @@ export default function ProjectDisplay() {
     }, [projectsData])
 
     async function handleLikeBtnClick() {
-        if (didUserLike) {
-            await removeLike(context.loggedUser.id, projectsData.id)
-            setDidUserLike(false)
+        if (context.loggedUser.id) {
+            if (didUserLike) {
+                await removeLike(context.loggedUser.id, projectsData.id)
+                setDidUserLike(false)
+            } else {
+                await addLike({ userId: context.loggedUser.id, projectId: projectsData.id })
+                setDidUserLike(true)
+                if (context.loggedUser.id !== projectsData.user.id) await addNewNotification({ type_id: 2, acted_user_id: context.loggedUser.id, notified_user_id: projectsData.user.id, project_id: projectsData.id })
+            }
         } else {
-            await addLike({ userId: context.loggedUser.id, projectId: projectsData.id })
-            setDidUserLike(true)
-            if (context.loggedUser.id !== projectsData.user.id) await addNewNotification({ type_id: 2, acted_user_id: context.loggedUser.id, notified_user_id: projectsData.user.id, project_id: projectsData.id })
+            setError(true)
         }
+
     }
     return (
 
@@ -95,10 +101,13 @@ export default function ProjectDisplay() {
                             <h2 className='mr-5 text-dark d-block d-md-inline'>{projectsData.name}</h2>
                             <Button className={`like-share-icon rounded-circle text-center mr-2 ${didUserLike ? 'clicked-like' : ''}`} onMouseDown={(e) => e.preventDefault()} onClick={handleLikeBtnClick}><BiLike /></Button>
                             <MyModal type='share' projectId={pid} />
+
                             <p className='font-weight-bold d-block mb-3 mt-3 mt-lg-0'>By {projectsData.user.username}</p>
 
                         </div>
+                        {error && <small className='text-danger'>Must login to recommend a project</small>}
                         <p><BiLike className='mr-3 text-dark' />{projectsData.likesCounter} Recommended this project</p>
+
                     </Row>
                     <Carousel activeIndex={index} onSelect={handleSelect} className='ml-0 col-lg-9 col-sm-12'>
                         {projectsData.pictures.map(pic => {

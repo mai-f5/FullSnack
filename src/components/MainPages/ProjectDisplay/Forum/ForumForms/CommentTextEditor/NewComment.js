@@ -24,10 +24,10 @@ export default function NewComment({ relevantData, invokeRerender }) {
         setCommentDataDB({ ...data })
     };
 
-    function returnError() {
+    function returnError(err) {
         setCommentData({
             ...commentData,
-            error: 'Empty comment is not allowed'
+            error: err
         })
     }
 
@@ -51,7 +51,7 @@ export default function NewComment({ relevantData, invokeRerender }) {
                 onEditorStateChange={onCommentChange}
             />
         </div >
-        <div className='d-block'>
+        <div className='d-block text-center'>
             <ErrorMessage error={commentData.error} />
         </div>
     </div>

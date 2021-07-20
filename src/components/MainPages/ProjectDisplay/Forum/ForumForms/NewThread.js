@@ -11,6 +11,7 @@ export default function NewThread({ relevantData, close, invokeRerender }) {
 
     const context = useContext(userContext)
     const [disableBtn, setDisableBtn] = useState(true)
+    const [error, setError] = useState(false)
     const [newThreadData, setNewThreadData] = useState({
         topic: {
             value: '',
@@ -27,18 +28,27 @@ export default function NewThread({ relevantData, close, invokeRerender }) {
     }, [newThreadData])
 
     const onPostThread = async (e) => {
-        e.preventDefault()
-        if (isFormValid(newThreadData)) {
-            await addNewThread({
-                project_id: relevantData.projectId,
-                user_id: context.loggedUser.id,
-                topic: newThreadData.topic.value,
-                body: newThreadData.body.value
-            })
-            if (context.loggedUser.id !== relevantData.projectsOwnerId) {
-                await addNewNotification({ type_id: 1, acted_user_id: context.loggedUser.id, notified_user_id: relevantData.projectsOwnerId, project_id: relevantData.projectId })
+        e.preventDefault();
+
+        if (!context.loggedUser.id) {
+            setError(true)
+        } else {
+            setError(false)
+        }
+
+        if (context.loggedUser.id) {
+            if (isFormValid(newThreadData)) {
+                await addNewThread({
+                    project_id: relevantData.projectId,
+                    user_id: context.loggedUser.id,
+                    topic: newThreadData.topic.value,
+                    body: newThreadData.body.value
+                })
+                if (context.loggedUser.id !== relevantData.projectsOwnerId) {
+                    await addNewNotification({ type_id: 1, acted_user_id: context.loggedUser.id, notified_user_id: relevantData.projectsOwnerId, project_id: relevantData.projectId })
+                }
+                invokeRerender()
             }
-            invokeRerender()
         }
     }
 
@@ -46,6 +56,7 @@ export default function NewThread({ relevantData, close, invokeRerender }) {
         <div className='new-thread-form'>
             <h4 className='font-weight-bold text-center'>New Thread</h4>
             <hr />
+            {error && <small className='d-block text-center text-danger'>Must login to post a thread</small>}
             <Form onSubmit={onPostThread}>
                 <TextInput controlId="thread"
                     label="Topic:"
@@ -72,7 +83,13 @@ export default function NewThread({ relevantData, close, invokeRerender }) {
                     rows={10}
                     maxLength={500}
                 />
-                <Button type='submit' onClick={close} disabled={disableBtn}>Post Thread</Button>
+                <Button type='submit' onClick={(e) => {
+                    if (context.loggedUser.id) {
+                        close()
+                    }
+
+                }} disabled={disableBtn}>Post Thread</Button>
+
             </Form>
         </div >
     )

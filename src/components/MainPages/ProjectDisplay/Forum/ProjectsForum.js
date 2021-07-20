@@ -34,7 +34,7 @@ export default function ProjectsForum({ projectData }) {
         <div className='projects-forum'>
             <div>
                 <section>
-                    <h3>Recipes notebook's Forum</h3>
+                    <h3>{projectData.name}'s Forum</h3>
                     <p>Feel free to ask questions in the forum and help others.</p>
                 </section>
                 {load && <div className='text-center'><Spinner animation="border" variant="dark" /></div>}
