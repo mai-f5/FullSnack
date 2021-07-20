@@ -13,14 +13,13 @@ export default function MyMultiSelect({ onSelectChange, onChange, type, location
     const [selected, setSelected] = useState([]);
 
     useEffect(() => {
-        getRequiredTechsList().then(data => {
-            setReqTechs([...data])
-        }, [])
-
-        getDifficultyLevelsList().then(data => {
-            setDifficultyLevels([...data])
-        })
-        if (type === 'requiredTechnologies' && location) { setSelected(checkedValues) }
+        (async () => {
+            const reqTechs = await getRequiredTechsList()
+            setReqTechs([...reqTechs])
+            const difficulties = await getDifficultyLevelsList()
+            setDifficultyLevels([...difficulties])
+            if (type === 'requiredTechnologies' && location) { setSelected(checkedValues) }
+        })();
     }, [])
 
     useEffect(() => {

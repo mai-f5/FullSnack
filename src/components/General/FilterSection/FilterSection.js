@@ -19,20 +19,21 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
         userId: context.loggedUser.id
     })
 
-    useEffect(async () => {
-        let cards;
-        // setLoader(true)
-        if (usersDashboard) {
-            cards = await getUsersProjectsCardData(filterByData);
-        } else {
-            cards = await getProjectsCardData(filterByData);
-        }
-        if (cards.msg) {
-            setCardsData([])
-        } else {
-            setCardsData([...cards])
-            setLoader(false)
-        }
+    useEffect(() => {
+        (async () => {
+            let cards;
+            if (usersDashboard) {
+                cards = await getUsersProjectsCardData(filterByData);
+            } else {
+                cards = await getProjectsCardData(filterByData);
+            }
+            if (cards.msg) {
+                setCardsData([])
+            } else {
+                setCardsData([...cards])
+                setLoader(false)
+            }
+        })();
     }, [usersDashboard, filterByData, rerender])
 
 

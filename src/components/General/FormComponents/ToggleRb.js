@@ -5,14 +5,16 @@ import { getDifficultyLevelsList, getGenderList } from "../../../DAL/staticData"
 function ToggleRb({ name, onRbChange, checkedValue }) {
     const [options, setOptions] = useState([])
 
-    useEffect(async () => {
-        let options = [];
-        if (name === 'gender') {
-            options = await getGenderList();
-        } else if (name === 'difficultyLevel') {
-            options = await getDifficultyLevelsList()
-        }
-        setOptions([...options])
+    useEffect(() => {
+        (async () => {
+            let options = [];
+            if (name === 'gender') {
+                options = await getGenderList();
+            } else if (name === 'difficultyLevel') {
+                options = await getDifficultyLevelsList()
+            }
+            setOptions([...options])
+        })();
     }, [])
 
     return (

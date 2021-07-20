@@ -29,7 +29,6 @@ const updateNotificationsAsRead = async userId => {
 
 //POST
 const addNewNotification = async newNotificationData => {
-    console.log(newNotificationData)
     try {
         const res = await fetch(`http://localhost:3100/events/notifications`, {
             method: 'POST',
