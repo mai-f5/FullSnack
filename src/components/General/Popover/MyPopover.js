@@ -4,7 +4,6 @@ import UserMenu from './UsersMenu/UserMenu'
 import { OverlayTrigger, Popover } from 'react-bootstrap'
 import { BiBell } from 'react-icons/bi'
 import Notifications from './Notifications/Notifications'
-import userProfileImagePlaceholder from '../../../images/img-placeholder.png'
 import { useState, useEffect, useContext } from 'react'
 import { getUsersNewNotifications, updateNotificationsAsRead } from '../../../DAL/events'
 import userContext from '../../../utils/AuthContext'
@@ -69,9 +68,9 @@ export default function MyPopover({ type }) {
                         {
                             type === 'signin' ? 'Sign In' :
                                 type === 'usermenu' ?
-                                    <img src={userProfileImagePlaceholder} className='header-user-img rounded-circle' alt='user profile' />
+                                    <img src={`http://localhost:3100/public/${context.loggedUser.profile_img}`} className='header-user-img rounded-circle' alt='user profile' />
                                     :
-                                    <div className='mt-n3'>
+                                    <div className='mt-n3 ml-3 mr-3'>
                                         <BiBell />
                                         {notifications.length > 0 ? <div className='notif-badge rounded-circle bg-white text-dark text-center mt-n4 font-weight-bold ml-3'>{notifications.length}</div> : null}
                                     </div>

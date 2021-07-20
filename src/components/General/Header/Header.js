@@ -21,7 +21,7 @@ export default function Header() {
                 <Navbar.Brand ><Link to="/home" ><img src={logo} alt='full snack logo' className='img-fluid mr-3' id='logo' /><h1>Full Snack</h1></Link></Navbar.Brand>
 
                 {/* notifications on small screens - outside of collapsed menu */}
-                <Nav className='d-lg-none'>
+                <Nav className='d-lg-none mr-3 mt-3 '>
                     {context.loggedUser.id && <>
                         <MyPopover type='notifications' />
                     </>}

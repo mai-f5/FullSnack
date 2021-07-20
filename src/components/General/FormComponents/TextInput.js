@@ -29,6 +29,7 @@ export default function TextInput({ controlId, type, icon, label, info, info2, i
                 as={as}
                 maxLength={maxLength}
                 defaultValue={defaultValue}
+                autoComplete="new-password"
             />
 
         </Form.Group>

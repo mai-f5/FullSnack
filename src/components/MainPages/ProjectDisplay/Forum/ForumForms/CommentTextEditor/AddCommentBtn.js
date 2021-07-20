@@ -5,6 +5,7 @@ import { addNewComment } from '../../../../../../DAL/forum'
 import { addNewNotification } from '../../../../../../DAL/events'
 import userContext from '../../../../../../utils/AuthContext'
 export default function AddCommentBtn({ comment, threadRelevantData, returnError, invokeRerender }) {
+    console.log(comment)
     const context = useContext(userContext)
 
     const validateCommentBlocks = () => {
@@ -16,6 +17,7 @@ export default function AddCommentBtn({ comment, threadRelevantData, returnError
                 }
             }
         }
+        console.log(hasText)
         return hasText;
     }
 
@@ -35,7 +37,6 @@ export default function AddCommentBtn({ comment, threadRelevantData, returnError
                 if (threadRelevantData.threadOwnerId !== threadRelevantData.projectOwnerId && context.loggedUser.id !== threadRelevantData.projectOwnerId) {
                     await addNewNotification({ type_id: 3, acted_user_id: context.loggedUser.id, notified_user_id: threadRelevantData.projectOwnerId, project_id: threadRelevantData.projectId })
                 }
-
                 invokeRerender()
             } else {
                 returnError('Empty comment is not allowed')

@@ -73,6 +73,13 @@ export default function Settings() {
 
         setPreviewedPicture(URL.createObjectURL(e.target.files[0]))
         setImgFile(e.target.files[0])
+        setUserData({
+            ...userData,
+            profileImg: {
+                ...userData.profileImg,
+                value: e.target.files[0]
+            }
+        })
     }
 
     function updatePasswordResponse() {
