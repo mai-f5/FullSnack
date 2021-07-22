@@ -9,7 +9,7 @@ import { getUsersNewNotifications, updateNotificationsAsRead } from '../../../DA
 import userContext from '../../../utils/AuthContext'
 export default function MyPopover({ type }) {
 
-    const NOTIFICATIONS_INTERVAL_DURATION = 1000 * 5;
+    const NOTIFICATIONS_INTERVAL_DURATION = 1000 * 60 * 30;
     const context = useContext(userContext);
     const [notifications, setNotifications] = useState([])
     const [updateNotifs, setUpdateNotifs] = useState(false)
