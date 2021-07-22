@@ -19,7 +19,7 @@ const inputsRequirements = {
     },
     name: {
         required: true,
-        pattern: /^[\s\S]{4,20}$/
+        pattern: /^[\s\S]{2,20}$/
     },
     difficultyLevel: {
         required: true,
