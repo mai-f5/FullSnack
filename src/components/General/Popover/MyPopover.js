@@ -64,7 +64,7 @@ export default function MyPopover({ type }) {
                         {
                             type === 'signin' ? 'Sign In' :
                                 type === 'usermenu' ?
-                                    <img src={`http://localhost:3100/public/${context.loggedUser.profile_img}`} className='header-user-img rounded-circle' alt='user profile' />
+                                    <img src={`${process.env.REACT_APP_BACKEND_URL}/public/${context.loggedUser.profile_img}`} className='header-user-img rounded-circle' alt='user profile' />
                                     :
                                     <div className='mt-n3 ml-3 mr-3'>
                                         <BiBell />

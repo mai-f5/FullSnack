@@ -35,7 +35,7 @@ export default function NewComment({ relevantData, invokeRerender }) {
 
     return (<div>
         <div className='media p-3 pl-5 border border-dark rounded'>
-            <img src={context.loggedUser.profile_img ? `http://localhost:3100/public/${context.loggedUser.profile_img}` : noUserImg} className='mr-3 mt-3 forum-user-img rounded-circle d-inline' alt='commenter' />
+            <img src={context.loggedUser.profile_img ? `${process.env.REACT_APP_BACKEND_URL}/public/${context.loggedUser.profile_img}` : noUserImg} className='mr-3 mt-3 forum-user-img rounded-circle d-inline' alt='commenter' />
             <Editor
                 editorState={commentData.value}
                 toolbar={{

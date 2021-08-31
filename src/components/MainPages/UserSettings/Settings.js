@@ -50,7 +50,7 @@ export default function Settings() {
             error: ''
         }
     })
-    const [previewedPicture, setPreviewedPicture] = useState(`http://localhost:3100/public/${userData.profileImg.value}`)
+    const [previewedPicture, setPreviewedPicture] = useState(`${process.env.REACT_APP_BACKEND_URL}/public/${userData.profileImg.value}`)
 
     const fetchOccupations = async () => {
         const occupationsOptions = await getOccupationsList()
