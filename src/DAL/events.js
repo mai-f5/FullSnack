@@ -86,4 +86,4 @@ const removeLike = async (userId, projectId) => {
     }
 }
 
-module.exports = { getUsersNewNotifications, updateNotificationsAsRead, addNewNotification, getDidUserLikeProject, addLike, removeLike }
+export { getUsersNewNotifications, updateNotificationsAsRead, addNewNotification, getDidUserLikeProject, addLike, removeLike }
