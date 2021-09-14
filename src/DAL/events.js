@@ -3,7 +3,7 @@
 //GET
 const getUsersNewNotifications = async userId => {
     try {
-        const res = await fetch(`http://localhost:3100/events/notifications/${userId}`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/events/notifications/${userId}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
@@ -17,7 +17,7 @@ const getUsersNewNotifications = async userId => {
 //PUT
 const updateNotificationsAsRead = async userId => {
     try {
-        const res = await fetch(`http://localhost:3100/events/notifications/${userId}`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/events/notifications/${userId}`, {
             method: 'PUT',
             credentials: 'include'
         })
@@ -30,7 +30,7 @@ const updateNotificationsAsRead = async userId => {
 //POST
 const addNewNotification = async newNotificationData => {
     try {
-        const res = await fetch(`http://localhost:3100/events/notifications`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/events/notifications`, {
             method: 'POST',
             body: JSON.stringify(newNotificationData),
             headers: { 'Content-Type': 'application/json' }
@@ -48,7 +48,7 @@ const addNewNotification = async newNotificationData => {
 //GET
 const getDidUserLikeProject = async (userId, projectId) => {
     try {
-        const res = await fetch(`http://localhost:3100/events/likes/${userId}/${projectId}`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/events/likes/${userId}/${projectId}`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -61,7 +61,7 @@ const getDidUserLikeProject = async (userId, projectId) => {
 //POST
 const addLike = async newLikeData => {
     try {
-        const res = await fetch(`http://localhost:3100/events/likes`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/events/likes`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newLikeData),
@@ -76,7 +76,7 @@ const addLike = async newLikeData => {
 //DELETE
 const removeLike = async (userId, projectId) => {
     try {
-        const res = await fetch(`http://localhost:3100/events/likes/${userId}/${projectId}`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/events/likes/${userId}/${projectId}`, {
             method: 'DELETE',
             credentials: 'include'
         })
@@ -86,4 +86,4 @@ const removeLike = async (userId, projectId) => {
     }
 }
 
-module.exports = { getUsersNewNotifications, updateNotificationsAsRead, addNewNotification, getDidUserLikeProject, addLike, removeLike }
+export { getUsersNewNotifications, updateNotificationsAsRead, addNewNotification, getDidUserLikeProject, addLike, removeLike }

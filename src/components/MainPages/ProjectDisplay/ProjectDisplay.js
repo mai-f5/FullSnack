@@ -113,7 +113,7 @@ export default function ProjectDisplay() {
                         {projectsData.pictures.map((pic, idx) => {
                             return (
                                 <Carousel.Item key={idx}>
-                                    <img className="d-block w-100" src={`http://localhost:3100/public/${pic}`} alt='project example' />
+                                    <img className="d-block w-100" src={`${process.env.REACT_APP_BACKEND_URL}/public/${pic}`} alt='project example' />
                                 </Carousel.Item>
                             )
                         })}
@@ -152,7 +152,7 @@ export default function ProjectDisplay() {
                                 <GrAttachment className='mr-3' />
                                 <div>
                                     <h3 className='text-dark'>Project's Assets</h3>
-                                    <a href={`http://localhost:3100/projects/download/${projectsData.assetsSrc.split('/')[1]}`} >{projectsData.name} Assets <BiDownload className='ml-1' /></a>
+                                    <a href={`${process.env.REACT_APP_BACKEND_URL}/projects/download/${projectsData.assetsSrc.split('/')[1]}`} >{projectsData.name} Assets <BiDownload className='ml-1' /></a>
                                 </div>
                             </div>}
                             {projectsData.githubLink && <div className='d-flex mt-3'>
