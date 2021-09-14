@@ -1,6 +1,7 @@
+console.log(process.env.REACT_APP_BACKEND_URL)
 const getDifficultyLevelsList = async () => {
     try {
-        const res = await fetch('http://localhost:3100/staticdata/difficultylevels')
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/staticdata/difficultylevels`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -9,7 +10,7 @@ const getDifficultyLevelsList = async () => {
 
 const getGenderList = async () => {
     try {
-        const res = await fetch('http://localhost:3100/staticdata/gender')
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/staticdata/gender`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -18,7 +19,7 @@ const getGenderList = async () => {
 
 const getOccupationsList = async () => {
     try {
-        const res = await fetch('http://localhost:3100/staticdata/occupations')
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/staticdata/occupations`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -27,7 +28,7 @@ const getOccupationsList = async () => {
 
 const getRequiredTechsList = async () => {
     try {
-        const res = await fetch('http://localhost:3100/staticdata/requiredtechs')
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/staticdata/requiredtechs`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -36,7 +37,7 @@ const getRequiredTechsList = async () => {
 
 const getNotificationsTypesList = async () => {
     try {
-        const res = await fetch('http://localhost:3100/staticdata/notificationstypes')
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/staticdata/notificationstypes`)
         return await res.json()
     } catch (err) {
         console.log(err)

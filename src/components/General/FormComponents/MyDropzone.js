@@ -45,7 +45,7 @@ export default function MyDropzone({ name, insertedFiles, onFileUpload, onInputV
                                     {files.map((file, idx) => <li key={idx} className='d-flex'>
                                         <AiOutlineFile className='mr-2' />
                                         <span className='file-name-dnd mr-2'>{typeof file.pic_src === 'string' ?
-                                            <a href={`http://localhost:3100/projects/download/${file.pic_src.split('/')[1]}`} onClick={(e) => e.stopPropagation()}>{file.pic_src.split('/')[1].split('_')[1]}</a>
+                                            <a href={`${process.env.REACT_APP_BACKEND_URL}/projects/download/${file.pic_src.split('/')[1]}`} onClick={(e) => e.stopPropagation()}>{file.pic_src.split('/')[1].split('_')[1]}</a>
                                             : file.name
                                         }
                                         </span>
@@ -60,7 +60,7 @@ export default function MyDropzone({ name, insertedFiles, onFileUpload, onInputV
                                     <div className='mt-4'>
                                         <AiOutlineFile />
                                         <div className='file-name-dnd mr-2'>{typeof files === 'string' ? files.includes('http') ? files :
-                                            <a href={`http://localhost:3100/projects/download/${files.split('/')[1]}`} onClick={(e) => e.stopPropagation()}>{files.split('/')[1].split('_')[1]}</a> :
+                                            <a href={`${process.env.REACT_APP_BACKEND_URL}/projects/download/${files.split('/')[1]}`} onClick={(e) => e.stopPropagation()}>{files.split('/')[1].split('_')[1]}</a> :
                                             files[0].name}</div>
                                         <div onClick={(e) => {
                                             e.stopPropagation();

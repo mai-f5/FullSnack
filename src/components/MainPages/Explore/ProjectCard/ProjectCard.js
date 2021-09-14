@@ -17,7 +17,7 @@ export default function ProjectCard({ ownsProject, data, invokeExploreRerender }
                         <Card.Img variant="top"
                             src={data.projects_pictures.length > 0 ?
                                 data.projects_pictures[0].pic_src.includes('http') ? data.projects_pictures[0]
-                                    : `http://localhost:3100/public/${data.projects_pictures[0].pic_src}`
+                                    : `${process.env.REACT_APP_BACKEND_URL}/public/${data.projects_pictures[0].pic_src}`
                                 : image}
                             onClick={() => history.push(`/projectdisplay/${data.id}`, data)} />
                     </div>

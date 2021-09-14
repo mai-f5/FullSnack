@@ -1,7 +1,7 @@
 //GET
 const getProjectsCardData = async formData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/explore?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}`)
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/explore?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -10,7 +10,7 @@ const getProjectsCardData = async formData => {
 
 const getUsersProjectsCardData = async formData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/dashboard/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&userId=${formData.userId}`,
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/dashboard/?search=${formData.searchTxt}&reqtechs=${formData.requiredTechnologies}&difflvls=${formData.difficultyLevels}&assets=${formData.assets}&sortby=${formData.sortBy}&amount=${formData.amount}&currentpage=${formData.currentPage}&userId=${formData.userId}`,
             {
                 method: 'GET',
                 credentials: 'include'
@@ -24,7 +24,7 @@ const getUsersProjectsCardData = async formData => {
 
 const getProjectData = async projectId => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/${projectId}`)
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/${projectId}`)
         return await res.json()
     } catch (err) {
         console.log(err)
@@ -34,7 +34,7 @@ const getProjectData = async projectId => {
 //PUT
 const updateProjectData = async updatedProjectData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects`, {
             method: 'PUT',
             body: updatedProjectData,
             credentials: 'include'
@@ -47,7 +47,7 @@ const updateProjectData = async updatedProjectData => {
 
 const hideProject = async (projectId, userId) => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/${projectId}/${userId}/remove`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/${projectId}/${userId}/remove`, {
             method: 'PUT',
             credentials: 'include'
         })
@@ -60,7 +60,7 @@ const hideProject = async (projectId, userId) => {
 //POST
 const addNewProject = async newProjectData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects`, {
             method: 'POST',
             body: newProjectData,
             credentials: 'include'
@@ -76,7 +76,7 @@ const addNewProject = async newProjectData => {
 //DELETE
 const removeReqTech = async (projectId, reqTechId) => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/remove/requiredtech/${projectId}/${reqTechId}`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/remove/requiredtech/${projectId}/${reqTechId}`, {
             method: 'DELETE',
             credentials: 'include'
         })
@@ -88,7 +88,7 @@ const removeReqTech = async (projectId, reqTechId) => {
 
 const removePicture = async removePicData => {
     try {
-        const res = await fetch(`http://localhost:3100/projects/remove/picture/${removePicData.picId}`, {
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects/remove/picture/${removePicData.picId}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(removePicData),
