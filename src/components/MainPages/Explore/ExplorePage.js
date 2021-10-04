@@ -47,7 +47,7 @@ export default function Explore({ type }) {
                         <BsSearch className='mt-5 mb-5' />
                         <p>No Projects Found</p>
                     </div> : <div className='empty-users-projects mt-2 text-center'>
-                        <img src='/images/development.svg' className='m-5' alt='no projects decoration' />
+                        <img src='/images/development.png' className='m-5' alt='no projects decoration' />
                         <p>No projects created yet.<br />
                             Go ahead and create your first project!
                         </p>

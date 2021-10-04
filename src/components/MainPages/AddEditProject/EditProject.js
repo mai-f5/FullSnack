@@ -127,7 +127,7 @@ export default function EditProject() {
                             <TextInput
                                 controlId='projectName'
                                 type='text'
-                                icon={<img src='/images/name_tag.svg' alt='name tag icon' className='name-svg mr-2' />}
+                                icon={<img src='/images/name_tag.png' alt='name tag icon' className='name-svg mr-2' />}
                                 label='Project Name:'
                                 info='Must be between 2-20 characters'
                                 isRequired={true}
