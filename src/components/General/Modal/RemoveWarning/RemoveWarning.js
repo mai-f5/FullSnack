@@ -10,6 +10,9 @@ export default function RemoveWarning({ type, name, close, id, idx, prevFilesArr
 
         const result = await removeHandler(type, id, idx, prevFilesArr, file, context.loggedUser.id)
         if (result instanceof Array && type !== 'Project') getNewFilesArr(result)
+        else if (type === 'Project') {
+            invokeExploreRerender()
+        }
     }
 
     return (
@@ -22,7 +25,6 @@ export default function RemoveWarning({ type, name, close, id, idx, prevFilesArr
                 <Button className='bg-secondary' onClick={(e) => {
                     handlePromise()
                     close()
-                    if (type === 'Project') invokeExploreRerender()
                 }}>Yes, Remove {type}</Button>
             </div>
         </div>
