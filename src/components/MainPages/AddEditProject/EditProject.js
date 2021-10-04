@@ -11,7 +11,6 @@ import { FiSave, FiCode } from 'react-icons/fi'
 import { GrAttachment, GrGithub } from 'react-icons/gr'
 import { BsBarChart, BsBook } from 'react-icons/bs'
 import { CgImage } from 'react-icons/cg'
-import nameTag from '../../../images/name_tag.svg'
 import { inputChangeHandler } from '../../../utils/handlers'
 import { validateInput, isFormValid } from '../../../utils/validations'
 import { addNewProject, getProjectData, updateProjectData } from '../../../DAL/projects'
@@ -128,7 +127,7 @@ export default function EditProject() {
                             <TextInput
                                 controlId='projectName'
                                 type='text'
-                                icon={<img src={nameTag} alt='name tag icon' className='name-svg mr-2' />}
+                                icon={<img src='/images/name_tag.svg' alt='name tag icon' className='name-svg mr-2' />}
                                 label='Project Name:'
                                 info='Must be between 2-20 characters'
                                 isRequired={true}

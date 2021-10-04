@@ -8,7 +8,7 @@ import userContext from '../../../utils/AuthContext'
 import { Redirect, useHistory } from 'react-router-dom'
 
 export default function FilterSection({ setCardsData, usersDashboard, setLoader, rerender }) {
-    console.log(usersDashboard)
+
     const context = useContext(userContext)
     const [filterByData, setFilterByData] = useState({
         sortBy: 'likes',

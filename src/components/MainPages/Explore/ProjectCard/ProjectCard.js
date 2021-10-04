@@ -5,7 +5,6 @@ import { BiLike } from 'react-icons/bi'
 import { FiCode } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { BsBarChart } from 'react-icons/bs'
-import image from '../../../../images/img-placeholder.png'
 import MyModal from '../../../General/Modal/MyModal'
 export default function ProjectCard({ ownsProject, data, invokeExploreRerender }) {
     const history = useHistory();
@@ -18,7 +17,7 @@ export default function ProjectCard({ ownsProject, data, invokeExploreRerender }
                             src={data.projects_pictures.length > 0 ?
                                 data.projects_pictures[0].pic_src.includes('http') ? data.projects_pictures[0]
                                     : `${process.env.REACT_APP_BACKEND_URL}/public/${data.projects_pictures[0].pic_src}`
-                                : image}
+                                : '/images/img-placeholder.png'}
                             onClick={() => history.push(`/projectdisplay/${data.id}`, data)} />
                     </div>
                     <Card.Header className='text-center font-weight-bold border-none p-2'>{data.name}</Card.Header>

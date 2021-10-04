@@ -4,7 +4,6 @@ import { BsSearch } from 'react-icons/bs'
 import ProjectCard from './ProjectCard/ProjectCard'
 import FilterSection from '../../General/FilterSection/FilterSection'
 import { useHistory, useParams } from 'react-router'
-import EmptyProjectSvg from '../../../images/development.svg'
 import MySpinner from '../../General/MySpinner'
 import userContext from '../../../utils/AuthContext'
 export default function Explore({ type }) {
@@ -48,7 +47,7 @@ export default function Explore({ type }) {
                         <BsSearch className='mt-5 mb-5' />
                         <p>No Projects Found</p>
                     </div> : <div className='empty-users-projects mt-2 text-center'>
-                        <img src={EmptyProjectSvg} className='m-5' alt='no projects decoration' />
+                        <img src='/images/development.svg' className='m-5' alt='no projects decoration' />
                         <p>No projects created yet.<br />
                             Go ahead and create your first project!
                         </p>
