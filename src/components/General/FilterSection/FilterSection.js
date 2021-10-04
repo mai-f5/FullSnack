@@ -55,7 +55,7 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
     }
 
     return (
-        <div>
+        <div className='px-5'>
             <Form>
                 <Form.Group controlId='search' className='search col-sm-12 col-md-6 col-lg-4 p-0'>
                     <FormControl

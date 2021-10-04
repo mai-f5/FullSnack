@@ -31,8 +31,8 @@ export default function Explore({ type }) {
     }
 
     return (
-        <Container className='mt-5 mb-5'>
-            <h2 className='mb-2'>{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
+        <Container fluid className='mt-5 mb-5 px-5'>
+            <h2 className='mb-2 pl-5'>{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
             {isUsersDashboard &&
                 <Button onClick={() => history.push('/editproject/new')} className='mb-3'>+ Add New Project</Button>
             }
@@ -40,7 +40,7 @@ export default function Explore({ type }) {
             {load && <MySpinner />}
             {!load && <div className='projectsExplore'>
                 {cardsData.length > 0 ?
-                    < Row >
+                    < Row className='px-5' >
                         {cardsData.map((cardData, idx) => <ProjectCard key={idx} data={cardData} ownsProject={isUsersDashboard} invokeExploreRerender={onProjectRemove} />)}
                     </Row > :
                     !isUsersDashboard ? <div className='text-center projs-not-found'>
