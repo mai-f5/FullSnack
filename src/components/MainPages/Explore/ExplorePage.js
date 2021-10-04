@@ -34,7 +34,7 @@ export default function Explore({ type }) {
         <Container fluid className='mt-5 mb-5 px-5'>
             <h2 className='mb-2 pl-5'>{!isUsersDashboard ? 'Full Stack Projects' : 'My Projects'}</h2>
             {isUsersDashboard &&
-                <Button onClick={() => history.push('/editproject/new')} className='mb-3'>+ Add New Project</Button>
+                <Button onClick={() => history.push('/editproject/new')} className='ml-5 mb-3'>+ Add New Project</Button>
             }
             <FilterSection setCardsData={setCardsData} usersDashboard={isUsersDashboard} setLoader={setLoad} rerender={rerender} />
             {load && <MySpinner />}
