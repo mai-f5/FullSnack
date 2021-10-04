@@ -6,7 +6,6 @@ import {
     Link
 } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import logo from '../../../images/logoSvg.svg';
 import userContext from '../../../utils/AuthContext'
 import Cookies from "js-cookie";
 
@@ -16,7 +15,7 @@ export default function Header() {
     return (
         <header>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand ><Link to="/home" ><img src={logo} alt='full snack logo' className='img-fluid mr-3' id='logo' /><h1>Full Snack</h1></Link></Navbar.Brand>
+                <Navbar.Brand ><Link to="/home" ><img src='/images/logoSvg.svg' alt='full snack logo' className='img-fluid mr-3' id='logo' /><h1>Full Snack</h1></Link></Navbar.Brand>
 
                 {/* notifications on small screens - outside of collapsed menu */}
                 <Nav className='d-lg-none mr-3 mt-3 '>

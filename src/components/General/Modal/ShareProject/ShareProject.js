@@ -6,7 +6,7 @@ import { FiCopy } from 'react-icons/fi'
 
 
 export default function ShareProject({ projectId }) {
-    const link = `http://localhost:3000/projectdisplay/${projectId}`;
+    const link = `${process.env.REACT_APP_FRONTEND_URL}/projectdisplay/${projectId}`;
     return (
         <div className='share-project'>
             <h2>Share Project</h2>
@@ -28,8 +28,6 @@ export default function ShareProject({ projectId }) {
                     <button className='copy-btn m-n4 d-inline btn-as-link text-dark text-dark-hover'><FiCopy /></button>
                 </CopyToClipboard>
             </div>
-
-
         </div>
     )
 }
