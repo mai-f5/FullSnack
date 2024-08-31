@@ -29,22 +29,22 @@ export default function FilterSection({ setCardsData, usersDashboard, setLoader,
     }, [usersDashboard])
 
 
-    useEffect(() => {
-        (async () => {
-            let cards;
-            if (usersDashboard) {
-                cards = await getUsersProjectsCardData(filterByData);
-            } else {
-                cards = await getProjectsCardData(filterByData);
-            }
-            if (cards.msg) {
-                setCardsData([])
-            } else {
-                setCardsData([...cards])
-                setLoader(false)
-            }
-        })();
-    }, [usersDashboard, filterByData, rerender])
+    // useEffect(() => {
+    //     (async () => {
+    //         let cards = [];
+    //         if (usersDashboard) {
+    //             cards = await getUsersProjectsCardData(filterByData);
+    //         } else {
+    //             cards = await getProjectsCardData(filterByData);
+    //         }
+    //         if (!cards) {
+    //             setCardsData([])
+    //         } else {
+    //             setCardsData([...cards])
+    //             setLoader(false)
+    //         }
+    //     })();
+    // }, [usersDashboard, filterByData, rerender])
 
 
     function onInputChangeHandler({ target: { name, value } }) {
